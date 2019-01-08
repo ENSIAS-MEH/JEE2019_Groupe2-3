@@ -88,7 +88,7 @@
        <h2 class="text-center" style="margin-left: 150px">Nouveau sur la plateforme?</h2>
        <br><br>
        <form action="-------A MODIFIER">
-    <select name="choix_inscription" class="custom-select mb-5" style="margin-left: 75px">
+    <select name="choix_inscription" class="custom-select mb-5" style="margin-left: 75px" id="myselect">
       <option selected>Choisir votre profil</option>
       <option value="choix_association">Association</option>
       <option value="choix_benevole">Bénévole</option>
@@ -96,7 +96,22 @@
     </select>
     <br>
     <button type="submit" class="btn btn-dark" style="margin-left: 200px">S'inscrire</button>
+    <% while(true){ 
+       String x = request.getParameter("submit");
+       String y = request.getParameter("myselect");
+       System.out.println("x="+x);
+       System.out.println("y="+y);
+       if( x!= null && x.equals("confirm") && y.equals("choix_association")){
+    	   request.getRequestDispatcher("/association/inscription.jsp").forward(request, response);
+    	   System.out.println("after click");
+           
+    	   System.out.println("x="+x);
+           System.out.println("y="+y);
+       }
+    }
+      %>
    </form>
+   
       <!-- <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
       <br>

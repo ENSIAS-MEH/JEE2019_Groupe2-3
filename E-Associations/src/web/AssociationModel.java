@@ -11,7 +11,30 @@ public class AssociationModel {
 	private Date date_creation;
 	private String nom_categorie;
 	private String objet;
+	private String motDePasse;
 	
+	
+	public AssociationModel(int num, String nom, String siege, int tel, Date date_creation, String nom_categorie,
+			String objet, String motDePasse) {
+		super();
+		this.num = num;
+		this.nom = nom;
+		this.siege = siege;
+		this.tel = tel;
+		this.date_creation = date_creation;
+		this.nom_categorie = nom_categorie;
+		this.objet = objet;
+		this.motDePasse = motDePasse;
+	}
+
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
+
 	public AssociationModel() {
 		super();
 		// TODO Auto-generated constructor stub

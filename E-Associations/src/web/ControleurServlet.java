@@ -29,6 +29,8 @@ public class ControleurServlet extends HttpServlet {
 		String path = request.getServletPath();
 		if(path.equals("/index.do"))
 			request.getRequestDispatcher("index.jsp").forward(request, response);
+		else if(path.equals("/association/inscription.do"))
+			request.getRequestDispatcher("/association/inscription.jsp").forward(request, response);
 		else
 			response.sendError(response.SC_NOT_FOUND);
 	}
