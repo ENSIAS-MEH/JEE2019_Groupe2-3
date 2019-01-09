@@ -96,7 +96,7 @@
     </select>
     <br>
     <button type="submit" class="btn btn-dark" style="margin-left: 200px">S'inscrire</button>
-    <% while(true){ 
+    <%/* while(true){ 
        String x = request.getParameter("submit");
        String y = request.getParameter("myselect");
        System.out.println("x="+x);
@@ -109,7 +109,7 @@
            System.out.println("y="+y);
        }
     }
-      %>
+     */ %>
    </form>
    
       <!-- <p>Some text..</p>
