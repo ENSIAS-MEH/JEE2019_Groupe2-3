@@ -8,6 +8,7 @@ public class BenevoleModel {
 	 */
 	
 	// image traitement ??
+	// how to stock it
 	
 	private String cin;
 	private String nom_ben;
