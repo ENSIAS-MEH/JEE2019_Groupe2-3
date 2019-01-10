@@ -92,7 +92,7 @@ Cette inscription vous permet d'accéder à l'ensemble des projets E-Association</
                                             <input type="text" minlength="10" maxlength="10" name="site_web" class="form-control" placeholder="Site Web *" value="" />
                                         </div>
                                          <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="l'email de l'association *" value="" name="email_association" />
+                                            <input type="email" class="form-control" placeholder="L'email de l'association *" value="" name="emSail_association" />
                                         </div>
                                        
                                        
