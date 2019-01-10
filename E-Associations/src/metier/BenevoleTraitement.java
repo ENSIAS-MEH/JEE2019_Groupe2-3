@@ -13,6 +13,8 @@ import web.BenevoleModel;
 
 public class BenevoleTraitement {
 	
+	// traitement
+	
 	private static  BenevoleConnection bnconx = new BenevoleConnection();
 	
 	public static BenevoleModel ChercherBenevoleparCin(String cin){
