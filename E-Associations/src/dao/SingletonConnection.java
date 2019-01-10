@@ -8,10 +8,11 @@ public class SingletonConnection {
 	static {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/e_association","root","");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/e-association","root","");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("Killer hell Killer");
 		}
 	}
 	public static Connection getConnection() {
