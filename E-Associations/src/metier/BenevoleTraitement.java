@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import dao.SingletonConnection;
 import web.BenevoleModel;
 
+// hello
 
 public class BenevoleTraitement {
 	
