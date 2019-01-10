@@ -81,7 +81,7 @@ public class BenevoleTraitement {
 	}
 	
 	public static void ajoutBenevole(int id_authentif, String cin, String nom_ben, String prenom_ben, String profession_ben, String email_ben, String tele_ben, String sexe_ben){
-		
+		   //
 		try {
 			
 			PreparedStatement ps;
