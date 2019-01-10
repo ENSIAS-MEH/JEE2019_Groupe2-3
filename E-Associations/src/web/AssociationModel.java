@@ -9,7 +9,10 @@ public class AssociationModel {
 	 * 
 	 * id_assoc 	nom_assoc 	date_creation 	tele_assoc 	president_assoc 
 	 * 	description_assoc 	effectif 	fax_assoc 	site_web 	
-	 * email_assoc 	id_authentif 	id_categorie 
+	 * email_assoc 	id_authentif 	id_categorie  
+	 * 
+	 * 
+	 * 
 	 */
 	
 	
