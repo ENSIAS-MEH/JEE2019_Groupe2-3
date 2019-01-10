@@ -1,5 +1,6 @@
 package web;
 
+import java.util.Date;
 
 public class AssociationModel {
 	
@@ -8,13 +9,16 @@ public class AssociationModel {
 	 * 
 	 * id_assoc 	nom_assoc 	date_creation 	tele_assoc 	president_assoc 
 	 * 	description_assoc 	effectif 	fax_assoc 	site_web 	
-	 * email_assoc 	id_authentif 	id_categorie 
+	 * email_assoc 	id_authentif 	id_categorie  
+	 * 
+	 * 
+	 * 
 	 */
 	
 	
 	private int id_assoc;
 	private String nom_assoc;
-	private String date_creation;
+	private Date date_creation;
 	private String tele_assoc;
 	private String president_assoc;
 	private String description_assoc;
@@ -28,7 +32,7 @@ public class AssociationModel {
 	public AssociationModel() {
 		super();
 	}
-	public AssociationModel(int id_assoc, String nom_assoc, String date_creation, String tele_assoc,
+	public AssociationModel(int id_assoc, String nom_assoc, Date date_creation, String tele_assoc,
 			String president_assoc, String description_assoc, int effectif, String fax_assoc, String site_web,
 			String email_assoc, int id_authentif, int id_categorie) {
 		super();
@@ -45,10 +49,10 @@ public class AssociationModel {
 		this.id_authentif = id_authentif;
 		this.id_categorie = id_categorie;
 	}
-	public String getDate_creation() {
+	public Date getDate_creation() {
 		return date_creation;
 	}
-	public void setDate_creation(String date_creation) {
+	public void setDate_creation(Date date_creation) {
 		this.date_creation = date_creation;
 	}
 	public String getTele_assoc() {
