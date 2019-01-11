@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,14 @@ public class BenevoleConnection {
 	
 private static Connection conx = SingletonConnection.getConnection();
 	
+
+/*
+ * setImage(rs.getBytes(7));
+ * String s
+ * InputStream img = new FileInputStream(new File(s));
+ * ps.setBinaryStream(7, img (int)(new File(s).lenght()));
+ * 
+ */
 	public static BenevoleModel ChercherBenevoleCin(String cin){
 		BenevoleModel benevole = null;
 		try {
@@ -75,7 +84,8 @@ private static Connection conx = SingletonConnection.getConnection();
 		return benevoles;
 	}
 	
-	public static void ajoutBenevole(int id_authentif, String cin, String nom_ben, String prenom_ben, String profession_ben, String email_ben, String tele_ben, String sexe_ben){
+	public static void ajoutBenevole(int id_authentif, String cin, String nom_ben, String prenom_ben, String profession_ben, String email_ben,
+			String tele_ben, String sexe_ben, InputStream image){
 		   
 		try {
 			
@@ -86,10 +96,10 @@ private static Connection conx = SingletonConnection.getConnection();
 			ps.setString(3, prenom_ben);
 			ps.setString(4, profession_ben);
 			ps.setString(5, email_ben);
-			ps.setString(5, tele_ben);
-			ps.setString(5, sexe_ben);
-
-			ps.setInt(6, id_authentif);	
+			ps.setString(6, tele_ben);
+			ps.setString(7, sexe_ben);
+			ps.setBlob(8, image);
+			ps.setInt(9, id_authentif);	
 			ResultSet rs = 	ps.executeQuery();
 
 			ps.close();
