@@ -55,22 +55,7 @@ public class AssociationTraitement {
 	public ArrayList<AssociationModel> getAllAssociations(){
 		java.sql.PreparedStatement ps;
 		ArrayList<AssociationModel> AM = new ArrayList<AssociationModel> ();
-	/*
-	 * 
-	 * 	 *         id_assoc          Int  Auto_increment  NOT NULL ,
-        nom_assoc         Varchar (50) NOT NULL ,
-        date_creation     Date NOT NULL ,
-        tele_assoc        Varchar (50) NOT NULL ,
-        president_assoc   Char (5) NOT NULL ,
-        description_assoc Char (5) NOT NULL ,
-        effectif          Int NOT NULL ,
-        fax_assoc         Varchar (50) ,
-        site_web          Varchar (50) NOT NULL ,
-        email_assoc       Varchar (50) NOT NULL ,
-        id_authentif      Int NOT NULL ,
-        id_categorie      Int NOT NULL
-	 * 
-	 */
+	
 		try {
 			ps = (PreparedStatement) conx.prepareStatement("select * from association");
 			ResultSet rs;
