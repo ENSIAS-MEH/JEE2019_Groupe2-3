@@ -103,6 +103,6 @@ public class AssociationTraitement {
 		am.setPresident_assoc("111");
 		am.setSite_web("111");
 		am.setTele_assoc("111");
-		at.addassociation(am, "logo_CINDH.png");
+		//at.addassociation(am, "logo_CINDH.png");
 	}
 }
