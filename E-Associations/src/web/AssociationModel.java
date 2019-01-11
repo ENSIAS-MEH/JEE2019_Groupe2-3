@@ -18,7 +18,7 @@ public class AssociationModel {
 	
 	private int id_assoc;
 	private String nom_assoc;
-	private Date date_creation;
+	private String date_creation;
 	private String tele_assoc;
 	private String president_assoc;
 	private String description_assoc;
@@ -28,31 +28,26 @@ public class AssociationModel {
 	private String email_assoc;
 	private int id_authentif;
 	private int id_categorie;
+	private byte[] logo;
 	
-	public AssociationModel() {
-		super();
+	
+	
+	public int getId_assoc() {
+		return id_assoc;
 	}
-	public AssociationModel(int id_assoc, String nom_assoc, Date date_creation, String tele_assoc,
-			String president_assoc, String description_assoc, int effectif, String fax_assoc, String site_web,
-			String email_assoc, int id_authentif, int id_categorie) {
-		super();
+	public void setId_assoc(int id_assoc) {
 		this.id_assoc = id_assoc;
-		this.nom_assoc = nom_assoc;
-		this.date_creation = date_creation;
-		this.tele_assoc = tele_assoc;
-		this.president_assoc = president_assoc;
-		this.description_assoc = description_assoc;
-		this.effectif = effectif;
-		this.fax_assoc = fax_assoc;
-		this.site_web = site_web;
-		this.email_assoc = email_assoc;
-		this.id_authentif = id_authentif;
-		this.id_categorie = id_categorie;
 	}
-	public Date getDate_creation() {
+	public String getNom_assoc() {
+		return nom_assoc;
+	}
+	public void setNom_assoc(String nom_assoc) {
+		this.nom_assoc = nom_assoc;
+	}
+	public String getDate_creation() {
 		return date_creation;
 	}
-	public void setDate_creation(Date date_creation) {
+	public void setDate_creation(String date_creation) {
 		this.date_creation = date_creation;
 	}
 	public String getTele_assoc() {
@@ -109,21 +104,35 @@ public class AssociationModel {
 	public void setId_categorie(int id_categorie) {
 		this.id_categorie = id_categorie;
 	}
-	
-	
-	public int getId_assoc() {
-		return id_assoc;
+	public byte[] getLogo() {
+		return logo;
 	}
-	public void setId_assoc(int id_assoc) {
+	public void setLogo(byte[] logo) {
+		this.logo = logo;
+	}
+	public AssociationModel(int id_assoc, String nom_assoc, String date_creation, String tele_assoc,
+			String president_assoc, String description_assoc, int effectif, String fax_assoc, String site_web,
+			String email_assoc, int id_authentif, int id_categorie, byte[] logo) {
+		super();
 		this.id_assoc = id_assoc;
-	}
-	public String getNom_assoc() {
-		return nom_assoc;
-	}
-	public void setNom_assoc(String nom_assoc) {
 		this.nom_assoc = nom_assoc;
+		this.date_creation = date_creation;
+		this.tele_assoc = tele_assoc;
+		this.president_assoc = president_assoc;
+		this.description_assoc = description_assoc;
+		this.effectif = effectif;
+		this.fax_assoc = fax_assoc;
+		this.site_web = site_web;
+		this.email_assoc = email_assoc;
+		this.id_authentif = id_authentif;
+		this.id_categorie = id_categorie;
+		this.logo = logo;
 	}
-
-
+	public AssociationModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	
 }
