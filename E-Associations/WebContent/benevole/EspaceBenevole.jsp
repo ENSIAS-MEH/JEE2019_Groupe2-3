@@ -13,8 +13,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
 
+		<h3>${errorMessage}</h3>
+	
+<h1>Welcome </h1>
 
 </body>
 </html>

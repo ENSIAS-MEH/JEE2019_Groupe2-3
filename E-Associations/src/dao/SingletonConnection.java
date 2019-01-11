@@ -2,6 +2,8 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
 
 public class SingletonConnection {
 	private static Connection connection;
@@ -18,4 +20,6 @@ public class SingletonConnection {
 	public static Connection getConnection() {
 		return connection;
 	}
+	
+	 
 }

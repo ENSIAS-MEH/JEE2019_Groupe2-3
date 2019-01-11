@@ -2,9 +2,8 @@ package web;
 
 public class AuthentificationModel {
 	
-	/*
-	 * 	id_authentif 	login 	mdp_login 	type_authentif 
-	 */
+
+
 	private String login;
 	private String mdp_login;
 	private String type_authentif;

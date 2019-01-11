@@ -1,25 +1,20 @@
 package dao;
 
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import javax.servlet.http.Part;
 
 import web.BenevoleModel;
 
 public class BenevoleConnection {
 	
 private static Connection conx = SingletonConnection.getConnection();
-	
 
-/*
- * setImage(rs.getBytes(7));
- * String s
- * InputStream img = new FileInputStream(new File(s));
- * ps.setBinaryStream(7, img (int)(new File(s).lenght()));
- * 
- */
 	public static BenevoleModel ChercherBenevoleCin(String cin){
 		BenevoleModel benevole = null;
 		try {
@@ -30,7 +25,8 @@ private static Connection conx = SingletonConnection.getConnection();
 			ResultSet rs = 	ps.executeQuery();
 			while(rs.next()) {
 				benevole = new BenevoleModel(rs.getString("cin"), rs.getString("nom_ben"), rs.getString("prenom_ben"),
-						rs.getString("profession_ben"), rs.getString("email_ben"), rs.getString("tele_ben") , rs.getString("sexe_ben") ,rs.getInt("id_authentif") );
+						rs.getString("profession_ben"), rs.getString("email_ben"), rs.getString("tele_ben") , 
+						rs.getString("sexe_ben") ,rs.getInt("id_authentif"), rs.getBlob("image_b") );
 			}
 			ps.close();
 		} catch (Exception e) {
@@ -51,7 +47,8 @@ private static Connection conx = SingletonConnection.getConnection();
 			ResultSet rs = 	ps.executeQuery();
 			while(rs.next()) {
 				benevole = new BenevoleModel(rs.getString("	cin"), rs.getString("nom_ben"), rs.getString("prenom_ben"),
-						rs.getString("profession_ben"), rs.getString("email_ben"), rs.getString("tele_ben") , rs.getString("sexe_ben") ,rs.getInt("id_authentif") );
+						rs.getString("profession_ben"), rs.getString("email_ben"), rs.getString("tele_ben") , 
+						rs.getString("sexe_ben") ,rs.getInt("id_authentif"), rs.getBlob("image_b"));
 			}
 			ps.close();
 		} catch (Exception e) {
@@ -73,7 +70,8 @@ private static Connection conx = SingletonConnection.getConnection();
 			ResultSet rs = 	ps.executeQuery();
 			while(rs.next()) {
 				benevole = new BenevoleModel(rs.getString("	cin"), rs.getString("nom_ben"), rs.getString("prenom_ben"),
-						rs.getString("profession_ben"), rs.getString("email_ben"), rs.getString("tele_ben") , rs.getString("sexe_ben") ,rs.getInt("id_authentif") );
+						rs.getString("profession_ben"), rs.getString("email_ben"), rs.getString("tele_ben") , 
+						rs.getString("sexe_ben") ,rs.getInt("id_authentif"), rs.getBlob("image_b") );
 				benevoles.add(benevole);
 			}
 			ps.close();
@@ -86,7 +84,7 @@ private static Connection conx = SingletonConnection.getConnection();
 	
 	public static void ajoutBenevole(int id_authentif, String cin, String nom_ben, String prenom_ben, String profession_ben, String email_ben,
 			String tele_ben, String sexe_ben, InputStream image){
-		   
+
 		try {
 			
 			PreparedStatement ps;
@@ -99,8 +97,24 @@ private static Connection conx = SingletonConnection.getConnection();
 			ps.setString(6, tele_ben);
 			ps.setString(7, sexe_ben);
 			ps.setBlob(8, image);
+
+/*			JSP
+   <td><input type="file" name="photo" size="50"/></td>
+ */
+			
+/*	Servlet		
+        InputStream imageis = null;
+        Part filePart = request.getPart("photo");
+		imageis = filePart.getInputStream();
+		
+		 if (imageis != null) {
+            // fetches input stream of the upload file for the blob column
+            ps.setBlob(8, imageis);
+         }
+*/			
 			ps.setInt(9, id_authentif);	
-			ResultSet rs = 	ps.executeQuery();
+			
+			ps.executeQuery();
 
 			ps.close();
 		} catch (Exception e) {
