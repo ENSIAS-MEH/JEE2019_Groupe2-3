@@ -10,6 +10,9 @@ public class AlbumModel {
 	
 	
 	
+	
+	
+	
 	private int id_album;
 	private String nom_album;
 	private int id_projet;
