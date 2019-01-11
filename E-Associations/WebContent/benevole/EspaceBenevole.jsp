@@ -15,7 +15,7 @@
 <body>
 	
 	<% BenevoleModel bene = new BenevoleModel();%>
-	<%  bene = BenevoleTraitement.ChercherBenevoleCin("JB491434"); %>
+	<%  bene = BenevoleConnection.ChercherBenevoleCin("JB491434"); %>
 	<% if(bene == null){ %>
 		<h1>hi</h1>
 	<% }else{ %>
