@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import dao.SingletonConnection;
 import web.AssociationModel;
-import web.BenevoleModel;
 
 public class AssociationTraitement {
 	
