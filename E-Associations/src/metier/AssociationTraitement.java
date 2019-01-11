@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-
 import dao.SingletonConnection;
 import web.AssociationModel;
 import web.CategorieModel;
@@ -26,6 +24,7 @@ public class AssociationTraitement {
 			PreparedStatement ps;
 			ps = (PreparedStatement) conx.prepareStatement("insert into association values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
+
 			    ps.setInt(1,assoc.getId_assoc());
 		     	ps.setString(2,assoc.getNom_assoc());
 		     	ps.setString(3,assoc.getDate_creation());
@@ -40,9 +39,6 @@ public class AssociationTraitement {
 		     	ps.setInt(12,assoc.getId_categorie());
                 ps.setBinaryStream(13,img, (int)(new File(s).length()));   
                 System.out.println("wow");
-
-
-		     
 
 	            ps.executeUpdate();
 	            ps.close();
@@ -163,17 +159,6 @@ public void upadatAssociation(AssociationModel assoc ,int id_assoc,String s) thr
 	
 		AssociationTraitement at = new AssociationTraitement();
 	    InputStream img = new FileInputStream(new File(s));
-
-
-		/*
-		 * 
-		 * id_assoc 	nom_assoc 	date_creation 	tele_assoc 	president_assoc 
-		 * 	description_assoc 	effectif 	fax_assoc 	site_web 	
-		 * email_assoc 	id_authentif 	id_categorie  
-		 * 
-		 * 
-		 * 
-		 */
 		
 		try {
 			
@@ -203,7 +188,21 @@ public void upadatAssociation(AssociationModel assoc ,int id_assoc,String s) thr
 
 }
 	
+public void deleteAssoc(int id_assoc) {
+
+	java.sql.PreparedStatement ps;
+	try {
+		ps = (PreparedStatement) conx.prepareStatement("delete from association where id_assoc= ?");
+		ps.setInt(1,id_assoc);
+		ps.executeUpdate();
+	    ps.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
+	}
 
 	
 	public static void main(String[] args) throws FileNotFoundException {
@@ -222,7 +221,7 @@ public void upadatAssociation(AssociationModel assoc ,int id_assoc,String s) thr
 		am.setSite_web("333");
 		am.setTele_assoc("333");
 		//at.addassociation(am, "logo_CINDH.png");
-		at.upadatAssociation(am, 2, "logo_CINDH.png");
+		//at.upadatAssociation(am, 2, "logo_CINDH.png");
 		/*am=at.Association(2);	
 		System.out.println(am);*/
 		
