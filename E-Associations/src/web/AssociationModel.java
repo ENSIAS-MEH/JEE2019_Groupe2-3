@@ -1,5 +1,6 @@
 package web;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class AssociationModel {
@@ -16,6 +17,14 @@ public class AssociationModel {
 	 */
 	
 	
+	@Override
+	public String toString() {
+		return "AssociationModel [id_assoc=" + id_assoc + ", nom_assoc=" + nom_assoc + ", date_creation="
+				+ date_creation + ", tele_assoc=" + tele_assoc + ", president_assoc=" + president_assoc
+				+ ", description_assoc=" + description_assoc + ", effectif=" + effectif + ", fax_assoc=" + fax_assoc
+				+ ", site_web=" + site_web + ", email_assoc=" + email_assoc + ", id_authentif=" + id_authentif
+				+ ", id_categorie=" + id_categorie + ", logo=" + Arrays.toString(logo) + "]";
+	}
 	private int id_assoc;
 	private String nom_assoc;
 	private String date_creation;
