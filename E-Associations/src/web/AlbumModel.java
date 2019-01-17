@@ -7,6 +7,12 @@ public class AlbumModel {
 	 * id_album 	nom_album 	id_projet 
 	 */
 
+	
+	
+	
+	
+	
+	
 	private int id_album;
 	private String nom_album;
 	private int id_projet;

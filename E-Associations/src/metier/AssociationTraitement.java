@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import dao.SingletonConnection;
 import web.AssociationModel;
 import web.CategorieModel;
+import web.ParticiperModel;
 
 public class AssociationTraitement {
 	
 	private static Connection conx = SingletonConnection.getConnection();
 
-	public static void addassociation(AssociationModel assoc,String s) throws FileNotFoundException{
+	public static void addassociation(AssociationModel assoc, String s) throws FileNotFoundException{
 	    InputStream img = new FileInputStream(new File(s));
 	
 
@@ -50,7 +51,7 @@ public class AssociationTraitement {
 		
 	}
 	
-	public ArrayList<AssociationModel> getAllAssociations(){
+	public static ArrayList<AssociationModel> getAllAssociations(){
 		java.sql.PreparedStatement ps;
 		ArrayList<AssociationModel> AM = new ArrayList<AssociationModel> ();
 	
@@ -81,7 +82,9 @@ public class AssociationTraitement {
 		}
 		return AM;
 } 
-	public ArrayList<AssociationModel> getAllAssociations_Cat(int id_categorie){
+	
+	
+	public static ArrayList<AssociationModel> getAllAssociations_Cat(int id_categorie){
 		java.sql.PreparedStatement ps;
 		ArrayList<AssociationModel> AM = new ArrayList<AssociationModel> ();
 	
@@ -115,7 +118,7 @@ public class AssociationTraitement {
 } 
 	
 	
-public  AssociationModel  Association(int id_assoc) {
+        public static  AssociationModel  Association(int id_assoc) {
 		
 		java.sql.ResultSet rs;
 		java.sql.PreparedStatement ps;
@@ -153,7 +156,7 @@ public  AssociationModel  Association(int id_assoc) {
 			}
 		 }
 
-public void upadatAssociation(AssociationModel assoc ,int id_assoc,String s) throws FileNotFoundException {
+public  static void upadatAssociation(AssociationModel assoc ,int id_assoc,String s) throws FileNotFoundException {
 		
 		java.sql.PreparedStatement ps;
 	
@@ -188,7 +191,7 @@ public void upadatAssociation(AssociationModel assoc ,int id_assoc,String s) thr
 
 }
 	
-public void deleteAssoc(int id_assoc) {
+public static void deleteAssoc(int id_assoc) {
 
 	java.sql.PreparedStatement ps;
 	try {
@@ -204,6 +207,35 @@ public void deleteAssoc(int id_assoc) {
 	
 	}
 
+public static ArrayList<ParticiperModel> getAllParticipants(String type ){
+	
+	java.sql.PreparedStatement ps;
+	ArrayList<ParticiperModel> AM = new ArrayList<ParticiperModel> ();
+
+	try {
+		ps = (PreparedStatement) conx.prepareStatement("select * from participer where type_participation ="+type);
+		ResultSet rs;
+		rs = ps.executeQuery();
+        while(rs.next()){
+        	ParticiperModel c=new ParticiperModel();
+         c.setCin(rs.getString("nom_assoc"));  
+         c.setId_projet(rs.getInt("id_projet"));
+         c.setType_participation(rs.getString("type_participation")); 
+         c.setMontant(rs.getFloat("montant"));
+        
+         AM.add(c);
+        }
+        return AM ;
+        }
+		
+		
+	catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		
+	}
+	return AM;
+} 
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		
@@ -220,6 +252,7 @@ public void deleteAssoc(int id_assoc) {
 		am.setPresident_assoc("333");
 		am.setSite_web("333");
 		am.setTele_assoc("333");
+		
 		//at.addassociation(am, "logo_CINDH.png");
 		//at.upadatAssociation(am, 2, "logo_CINDH.png");
 		/*am=at.Association(2);	

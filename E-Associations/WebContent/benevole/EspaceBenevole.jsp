@@ -13,14 +13,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+		<h3>${errorMessage}</h3>
 	
-	<% BenevoleModel bene = new BenevoleModel();%>
-	<%  bene = BenevoleConnection.ChercherBenevoleCin("JB491434"); %>
-	<% if(bene == null){ %>
-		<h1>hi</h1>
-	<% }else{ %>
-		<h1><%=bene.getNom_ben() %></h1>
-	<% } %>
+<h1>Welcome </h1>
 
 </body>
 </html>

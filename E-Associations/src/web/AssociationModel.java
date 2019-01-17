@@ -3,6 +3,7 @@ package web;
 import java.util.Arrays;
 import java.util.Date;
 
+
 public class AssociationModel {
 	
 
@@ -15,7 +16,7 @@ public class AssociationModel {
 	 * 
 	 * 
 	 */
-	
+
 	
 	@Override
 	public String toString() {
