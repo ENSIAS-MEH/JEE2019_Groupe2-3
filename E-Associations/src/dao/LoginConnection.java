@@ -10,7 +10,7 @@ import com.mysql.jdbc.PreparedStatement;
 public class LoginConnection {
 	
 	int j=0 ;
-	int d= 0;
+	int l= 0;
 		private Connection connexion = (Connection) SingletonConnection.getConnection();
 		
 		
