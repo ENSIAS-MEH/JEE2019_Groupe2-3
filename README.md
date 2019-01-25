@@ -5,8 +5,8 @@ Membre de l’équipe :
 
               EL MOUKHTAFI Khawla             
               MAMDOUH Salma             
-              MACHAALLAH Meriem              
-              BENNANI Kawtar
+              MACHAALLAH Mariam              
+              BENNANI Kaoutar
               
 I.	Description du projet :
 
