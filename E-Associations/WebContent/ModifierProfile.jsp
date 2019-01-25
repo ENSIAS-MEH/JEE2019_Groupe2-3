@@ -788,34 +788,33 @@ input, select, textarea {
 
 
 	<label class="label" for="input">nom</label>
-	<input class="input" type="text" id="input">
+	<input class="input" type="text" id="input" name ="nom">
 	
 	
 		<label class="label" for="input">président</label>
 		  
       
-	<input class="input texte"  type="text" id="input">
+	<input class="input texte"  type="text" id="input" name="president">
   
   	<label class="label" for="input">date de creation </label>	
 	<input class="input" type="date" id="input">
   
   </div>
-
+ 
   <br>
   <label class="label" for="select">Categorie</label>
 	<div class="select-wrap e">
-		<select class="select" id="select">
-			<option value="option">Genre</option>
-			<option value="option2">Option 2</option>
-			<option value="option3">Option 3</option>
-      <option value="option3">Option 3</option>
-      <option value="option3">Option 3</option>
-      <option value="option3">Option 3</option>
-      <option value="option3">Option 3</option>
-      <option value="option3">Option 3</option>
-      <option value="option3">Option 3</option>
-      <option value="option3">Option 3</option>
+		<select class="" id="" >
+		
+		     <c:forEach items="${cat}" var="cat"> 
+		        
+		     <option value=""> </option>
+			 <option  value="${cat.getNom_categorie()}">${cat.getNom_categorie()}</option>
+		     </c:forEach> 
+		
 		</select>
+     
+		
 	</div>
   
 
@@ -836,20 +835,20 @@ input, select, textarea {
       </div-->
        <div class="social">
   <label class="label" for="input">numero</label>	
-	<input class="input e" type="text" id="input">
+	<input class="input e" type="text" id="input" name = "numero">
       </div>
        <div class="social r1">
   <label class="label" for="input">site web</label>	
-	<input class="input e" type="text" id="input">
+	<input class="input e" type="text" id="input" name = "site_web">
 </div>
          <div class="social r2">
   <label class="label" for="input">email</label>	
-	<input class="input e" type="text" id="input">
+	<input class="input e" type="text" id="input" name = "email">
 
   
       </div>
   
-  <button>Update profile</button>
+  <button value = "modifier_profile" name = "action">modifier</button>
       
       </div>
        
@@ -869,16 +868,16 @@ input, select, textarea {
      
     <div class="tr wwq">
   	<label class="label" for="input">email actuel</label>	
-	<input class="input e" type="text" id="input">
+	<input class="input e" type="text" id="input" name = "email_actuel">
 
     <label class="label" for="input">nouveau email</label>	
-	<input class="input e" type="email" id="input">
+	<input class="input e" type="email" id="input" name="nv_email">
           
     <label class="label" for="input">confirmer mot de passe</label>	
-	<input class="input e" type="password" id="input">
+	<input class="input e" type="password" id="input" name= "confirm_pass_email">
 
       </div>
-       <button>Update Email</button>
+       <button name = "action" value = "update_email">Modifier L'Email</button>
     </article>
   </section>
   <section id="section3">
@@ -888,17 +887,17 @@ input, select, textarea {
    
       <div class="tr wwq">
   	<label class="label" for="input">mot de passe actuel</label>	
-	<input class="input e" type="password" id="input">
+	<input class="input e" type="password" id="input" name = "password_actuel">
 
   <label class="label" for="input">nouveau mot de passe</label>	
-	<input class="input e" type="password" id="input">
+	<input class="input e" type="password" id="input" name ="nv_password">
         
   <label class="label" for="input">repéter le mot de passe</label>	
-	<input class="input e" type="password" id="input">
+	<input class="input e" type="password" id="input" name= "repete_password">
 
 
       </div> 
-      <button>Change Password</button>
+      <button value="change_password" name ="action" >Changer le MDP</button>
     </article>
   </section>
  

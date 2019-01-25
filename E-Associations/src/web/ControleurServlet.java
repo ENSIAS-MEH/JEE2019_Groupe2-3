@@ -1,111 +1,152 @@
 package web;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+
 
 
 import metier.BenevoleTraitement;
 import metier.LoginTraitement;
 
-/**
- * Servlet implementation class ControleurServlet
- */
+
 @WebServlet(urlPatterns = {"/ControleurServlet","*.do"})
+@MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
+
 public class ControleurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String control = null;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-   /* public ControleurServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }*/
-	
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	private String espaceActuel = "v";
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String path = request.getServletPath();
-		
-		if(path.equals("/index.do")) {
+		if(path.equals("/index.do")||path.equals("/")) {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-		} else if(path.equals("/association/inscription.do")) {
-			request.getRequestDispatcher("/association/inscription.jsp").forward(request, response);
-		} else if(path.equals("/benevole/inscription.do")) {
-						//doPost(request, response);
-						request.getRequestDispatcher("/benevole/inscriptionb.jsp").forward(request, response);	
-						//control = "benevoleInscription"; 
-		}else {
-			System.out.println("ICIII");
+			control = "choisirProfil";
+			System.out.println("control = "+control);
+		}
+		else if(path.equals("/association_inscription.do")) {
+			request.getRequestDispatcher("inscription.jsp").forward(request, response);	
+		} 
+		else if(path.equals("/benevole_inscription.do")) {
+			request.getRequestDispatcher("/benevole/inscriptionb.jsp").forward(request, response);	
+			control = "benevoleInscription"; 
+		}
+		else  if(path.equals("/connecter.do")) {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			control = "login";
+			System.out.println("control = "+control);
+		}
+		else  if(path.equals("/association.do")) {
+			request.getRequestDispatcher("/association/ProfileAssociation.jsp").forward(request, response);
+			control = "associationSession";
+			System.out.println("control = "+control);
+		}
+		else  if(path.equals("/benevole.do")) {
+			request.getRequestDispatcher("/benevole/EspaceBenevole.jsp").forward(request, response);
+			control = "benevoleSession";
+			System.out.println("control = "+control);
+		}
+		else {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
+	
+		
+		
+		
+		
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
 		if(control.equals("benevoleInscription")) {
-					
-			if(request.getParameter("savebenevole") != null) {
-				String optradios[] = request.getParameterValues("optradio");
-
-				
-				for(String s : optradios) {
-							if(s.equals("b")) {
-								
-								BenevoleTraitement bt = new BenevoleTraitement();
-								LoginTraitement lt = new LoginTraitement();
-								
-								InputStream imageis = null;
-								String cin, nom_ben, prenom_ben, profession_ben, email_ben, tele_ben, sexe_ben, login, mdp_login;
-								int id_authentif;
-								
-								Part filePart = request.getPart("photo");	        
-						         cin = request.getParameter("cin");
-								 nom_ben = request.getParameter("nom_ben");
-								 prenom_ben = request.getParameter("prenom_ben");
-								 profession_ben = request.getParameter("profession_ben");
-								 email_ben = request.getParameter("email_ben");
-								
-								 tele_ben = request.getParameter("tele_ben");
-								 sexe_ben = request.getParameter("sexe_ben");
-								 
-								 mdp_login = request.getParameter("mdp_login");
-								 login = request.getParameter("login");
-		
-		
-								 id_authentif = lt.creerAuthentificationTr(login, mdp_login, "b");
-						        
-						        
-						        
-								imageis = filePart.getInputStream();
-								
-								 if (imageis != null) {
-									 bt.ajoutBenevole(imageis, id_authentif, cin, nom_ben, prenom_ben, profession_ben, email_ben, tele_ben, sexe_ben);
-						         }
-								  request.setAttribute("errorMessage", "L'ajout d'un nouveau Benevole : Succes");
-						          RequestDispatcher rd = request.getRequestDispatcher("EspaceBenevole.jsp");
-						          rd.forward(request, response);
-							}
+			
+			BenevoleTraitement bt = new BenevoleTraitement();
+			bt.ajoutBenevWeb(request);
+		    response.setContentType("text/html;charset=ISO-8859-1");
+		    PrintWriter out = response.getWriter();
+			out.println("<script>alert(\"Vous êtes bien inscrit! Bienvenue \")</script>");      
+			
+		}	
+		else if(control.equals("choisirProfil")) {
+			
+			System.out.println("i am here in choixProfil");
+			
+			// login cards
+			if(request.getParameter("choix_association") != null) {
+				System.out.println("je suis dans espace association");
+					espaceActuel="a";							
+				response.sendRedirect("/E-Associations/connecter.do");
+			}
+			if(request.getParameter("choix_benevole") != null) {
+				System.out.println("je suis dans espace benevoole");
+				espaceActuel="b";
+				response.sendRedirect("/E-Associations/connecter.do");				
+			}
+			
+			//inscription cards
+			if(request.getParameter("choix_association_inscr") != null) {
+				System.out.println("je suis dans espace association");							
+				response.sendRedirect("/E-Associations/association_inscription.do");
+			}
+			if(request.getParameter("choix_benevole_inscr") != null) {
+				System.out.println("je suis dans espace benevoole");
+				response.sendRedirect("/E-Associations/benevole_inscription.do");				
+			}
+		}
+		else if(control.equals("login")) {
+			
+			System.out.println("dans login dopost");
+			LoginTraitement log = new LoginTraitement();
+			
+			if(request.getParameter("connecter") != null) {
+				boolean existe;
+				if(espaceActuel.equals("b")) {
+					existe = log.connecterUtilisateur(request);
+					if(!existe) {
+						System.out.println("user pas dans baase de donnees");
 						
+						response.setContentType("text/html;charset=ISO-8859-1");
+					    PrintWriter out = response.getWriter();
+						out.println("<script>alert(\"Login ou Mot de passe erroné(s) \")</script>");
 						
+						response.sendRedirect("/E-Associations/connecter.do");
+				         
 					}
-			}        
-		}		
+					else {
+						System.out.println("je serai redirigé vers mon espace user");
+					    response.sendRedirect("/E-Associations/benevole.do");     
+					}
+				}
+				else if(espaceActuel.equals("a")) {
+					existe = log.connecterAssociation(request);
+					if(!existe) {
+						System.out.println("user pas dans baase de donnees");
+						
+						response.setContentType("text/html;charset=ISO-8859-1");
+					    PrintWriter out = response.getWriter();
+						out.println("<script>alert(\"Login ou Mot de passe erroné(s) \")</script>");
+						
+						response.sendRedirect("/E-Associations/connecter.do");
+					}
+					else {
+						System.out.println("je serai redirigé vers mon espace association");
+						response.sendRedirect("/E-Associations/association.do");
+					}
+				}
+				
+				
+			}
+	   }
 	}
 
 }

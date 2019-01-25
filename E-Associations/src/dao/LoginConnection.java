@@ -3,14 +3,14 @@ package dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
+
 
 import com.mysql.jdbc.PreparedStatement;
 
 public class LoginConnection {
 	
-	int j=0 ;
-	int m= 0;
+	
+	
 		private Connection connexion = (Connection) SingletonConnection.getConnection();
 		
 		
@@ -39,7 +39,7 @@ public class LoginConnection {
 				ps = (PreparedStatement) connexion.prepareStatement("select id_authentif from authentification where login = ? and mdp_login = ? and type_authentif = ?");
 				ps.setString(1, login);
 				ps.setString(2, mdp);
-				ps.setString(2, type_authentif);
+				ps.setString(3, type_authentif);
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
 					id = rs.getInt("id_authentif");
@@ -49,6 +49,27 @@ public class LoginConnection {
 				e.printStackTrace();
 			}
 			return id;
+		}
+		
+		public boolean existe(String login ,String mdp, String type_authentif) {
+			boolean bool = false;
+			PreparedStatement ps;
+			try {
+				ps = (PreparedStatement) connexion.prepareStatement("select * from authentification where login = ? and mdp_login = ? and type_authentif = ?");
+				ps.setString(1, login);
+				ps.setString(2, mdp);
+				ps.setString(3, type_authentif);
+
+				ResultSet rs = ps.executeQuery();
+				while (rs.next()) {
+					System.out.println("il affiche des resultats");
+					bool = true;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return bool;
 		}
 
 }

@@ -343,7 +343,7 @@ section.section2 {
 					<ul class="row2tab clearfix">
 					
 						<li ><i  class="fa fa-list-alt"></i> <a href = "ProfileAssociation.jsp"  style="text-decoration: none" class="active"> Mes Evenements </a> </li>
-						<li><i class="fa fa-heart"></i><a href = "ModifierProfile.jsp"  style="text-decoration: none"> modifier mon profile</a> </li>
+						<li><i class="fa fa-heart"></i><a href = "catservlet"  style="text-decoration: none"> modifier mon profile</a> </li>
 						<li><i class="fa fa-check"></i><a href = "AjouterEvenement.jsp"  style="text-decoration: none" > Ajouter un evenement</a> </li>
 						<li><i class="fa fa-thumbs-o-up "></i><a href = "ConsulterDon.jsp"  style="text-decoration: none" >  Consulter mes dons</a> </li>
 				

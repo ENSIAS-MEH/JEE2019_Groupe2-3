@@ -88,7 +88,7 @@ private static Connection conx = SingletonConnection.getConnection();
 		try {
 			
 			PreparedStatement ps;
-			ps = (PreparedStatement) conx.prepareStatement("insert into benevole values (?,?,?,?,?,?,?,?,?,?)");
+			ps = (PreparedStatement) conx.prepareStatement("insert into benevole values (?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, cin);
 			ps.setString(2, nom_ben);
 			ps.setString(3, prenom_ben);
@@ -97,24 +97,9 @@ private static Connection conx = SingletonConnection.getConnection();
 			ps.setString(6, tele_ben);
 			ps.setString(7, sexe_ben);
 			ps.setBlob(8, image);
-
-/*			JSP
-   <td><input type="file" name="photo" size="50"/></td>
- */
-			
-/*	Servlet		
-        InputStream imageis = null;
-        Part filePart = request.getPart("photo");
-		imageis = filePart.getInputStream();
-		
-		 if (imageis != null) {
-            // fetches input stream of the upload file for the blob column
-            ps.setBlob(8, imageis);
-         }
-*/			
 			ps.setInt(9, id_authentif);	
 			
-			ps.executeQuery();
+	        ps.executeUpdate();
 
 			ps.close();
 		} catch (Exception e) {
