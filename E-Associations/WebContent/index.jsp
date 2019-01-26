@@ -1,8 +1,9 @@
-<!DOCTYPE html> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
 <html> 
         
 <head> 
-<meta charset="ISO-8859-1"> 
+
 <title>Site Web E-Associations</title> 
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> 
@@ -11,7 +12,11 @@
   <link rel="stylesheet" href="tether/tether.min.css">
   <link rel="stylesheet" href="css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
-
+  <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
+	<script type="text/javascript" 
+			src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script src="js/jquery.autocomplete.js"></script>  
+	
 <style> 
 .fakeimg { 
    height: 200px; 
@@ -373,13 +378,11 @@ nav .mbr-section-btn {
   position: absolute;
   top: -2px;
   font-weight: normal; }
-
   
 </style> 
 </head> 
         
 <body data-spy="scroll" data-target=".navbar" data-offset="50"> 
-        
         <section class="hero"> 
            <header> 
            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">    
@@ -392,10 +395,14 @@ nav .mbr-section-btn {
                    <ul class="navbar-nav" style="margin-left:auto">             
                    <li> 
                     <form class="form-inline my-2 my-lg-0"> 
-                       <input class="form-control mr-sm-2" type="search" placeholder="Trouver une association" aria-label="Search"> 
+                       <input class="form-control mr-sm-2" type="text" id="associ" name="associ"/> 
+                       
                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> 
-                       Recherche</button>                 
+                       Recherche</button> 
+                       
+                                      
                    </form> 
+                   
                    </li>         
                    <li class="nav-item"> 
                            <a class="nav-link" href="#login">Log in</a> 
@@ -419,7 +426,7 @@ nav .mbr-section-btn {
            </header> 		
        </section>        
      
-<div class="jumbotron jumbotron-fluid mb-0"> 
+<div class="jumbotron jumbotron-fluid mb-0">  
   				<div class="container container-fluid">
   				<div class="col-lg-6">
 				  <h1 class="display-3">E-Association Platforme</h1>
@@ -617,14 +624,18 @@ nav .mbr-section-btn {
          </footer>
     
     
-         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
+        <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> --> 
            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
            <script src="js/bootstrap.min.js" ></script>
-             <script src="js/jquery.min.js"></script>
+            <!--  <script src="js/jquery.min.js"></script>--> 
 			  <script src="js/popper.min.js"></script>
 			  <script src="js/tether.min.js"></script>
 			  <script src="js/smooth-scroll.js"></script>
 			  <script src="js/jarallax.min.js"></script>
 			  <script src="js/script.js"></script>
+			   <script >
+							$("#associ").autocomplete("getdata.jsp");
+			   </script>  
        </body>
+      
        </html>
