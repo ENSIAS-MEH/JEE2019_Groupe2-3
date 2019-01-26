@@ -19,6 +19,10 @@ public class BenevoleTraitement {
 	
 	private  BenevoleConnection bnconx = new BenevoleConnection();
 	
+	public BenevoleConnection getBnconx() {
+		return bnconx;
+	}
+
 	public BenevoleModel ChercherBenevoleparCin(String cin){
 		BenevoleModel benevole = null;
 		benevole = bnconx.ChercherBenevoleCin(cin);

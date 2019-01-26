@@ -1,6 +1,7 @@
 package metier;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import dao.LoginConnection;
 
@@ -22,11 +23,16 @@ public class LoginTraitement {
         String login = getValeurChamp( request, CHAMP_LOGIN );
         String mdp = getValeurChamp( request, CHAMP_PASS );
         String type_authentif = "b";
-
+        
         //un autre teste
         //System.out.println("Le login est:"+request.getParameter( CHAMP_LOGIN ));
         System.out.println("Le t est:"+type_authentif);
         boolean existe = acces.existe(login ,mdp, type_authentif);
+        if(existe) {
+        	HttpSession session=request.getSession();  
+            session.setAttribute("login",login); 
+            session.setAttribute("mdp_login", mdp);
+        }
         return existe;
 	}
 	public boolean connecterAssociation(HttpServletRequest request) {

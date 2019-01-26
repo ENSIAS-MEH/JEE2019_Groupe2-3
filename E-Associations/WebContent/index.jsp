@@ -634,7 +634,7 @@ nav .mbr-section-btn {
 			  <script src="js/jarallax.min.js"></script>
 			  <script src="js/script.js"></script>
 			   <script >
-							$("#associ").autocomplete("getdata.jsp");
+							$("#associ").autocomplete("getdataAssociation.jsp");
 			   </script>  
        </body>
       

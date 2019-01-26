@@ -32,7 +32,7 @@ public class LoginConnection {
 			return created;
 		}
 		
-		private int savoirIdUser(String login ,String mdp, String type_authentif) {
+		public int savoirIdUser(String login ,String mdp, String type_authentif) {
 			int id = 0;
 			PreparedStatement ps;
 			try {

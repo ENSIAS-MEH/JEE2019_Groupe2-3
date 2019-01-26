@@ -5,6 +5,7 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.Part;
@@ -46,7 +47,7 @@ private static Connection conx = SingletonConnection.getConnection();
 			ps.setInt(1, id_authentif);		
 			ResultSet rs = 	ps.executeQuery();
 			while(rs.next()) {
-				benevole = new BenevoleModel(rs.getString("	cin"), rs.getString("nom_ben"), rs.getString("prenom_ben"),
+				benevole = new BenevoleModel(rs.getString("cin"), rs.getString("nom_ben"), rs.getString("prenom_ben"),
 						rs.getString("profession_ben"), rs.getString("email_ben"), rs.getString("tele_ben") , 
 						rs.getString("sexe_ben") ,rs.getInt("id_authentif"), rs.getBlob("image_b"));
 			}
@@ -106,6 +107,23 @@ private static Connection conx = SingletonConnection.getConnection();
 			e.printStackTrace();
 		}	
 		
+	}
+	
+	public int savoirNombreParticipations(String cin) {
+		int nb = 0;
+		PreparedStatement ps;
+		try {
+			ps = (PreparedStatement) conx.prepareStatement("select * from participer where cin = ?");
+			ps.setString(1, cin);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				nb++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nb;
 	}
 
 }

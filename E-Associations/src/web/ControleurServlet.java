@@ -9,8 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
+import javax.servlet.http.HttpSession;
 
 import metier.BenevoleTraitement;
 import metier.LoginTraitement;
@@ -27,7 +26,8 @@ public class ControleurServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String path = request.getServletPath();
-		if(path.equals("/index.do")||path.equals("/")) {
+		if(path.equals("/index.do")||path.equals("/")|| path.startsWith("/index")) {
+			path="/index.do";
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			control = "choisirProfil";
 			System.out.println("control = "+control);
@@ -50,7 +50,15 @@ public class ControleurServlet extends HttpServlet {
 			System.out.println("control = "+control);
 		}
 		else  if(path.equals("/benevole.do")) {
+			
+			/*HttpSession session = request.getSession(true); 
+			String loginB = (String) session.getAttribute("login");
+			String mdpB = (String) session.getAttribute("mdp_login"); */
 			request.getRequestDispatcher("/benevole/EspaceBenevole.jsp").forward(request, response);
+			//response.sendRedirect("/E-Associations/benevole/EspaceBenevole.jsp");
+			//tests
+			//System.out.println("--------------------------------");
+			//System.out.println("login session = "+loginB);
 			control = "benevoleSession";
 			System.out.println("control = "+control);
 		}
