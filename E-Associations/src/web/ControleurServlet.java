@@ -62,6 +62,17 @@ public class ControleurServlet extends HttpServlet {
 			control = "benevoleSession";
 			System.out.println("control = "+control);
 		}
+		else if(path.equals("/activites.do")) {
+			request.getRequestDispatcher("/benevole/activites.jsp").forward(request, response);
+		}
+		else if(path.startsWith("/projet.do")) {
+			request.getRequestDispatcher("/projet/projet.jsp").forward(request, response);
+			
+		}
+		else if(path.equals("/participations.do")) {
+			request.getRequestDispatcher("/benevole/participer.jsp").forward(request, response);
+		}
+		
 		else {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}

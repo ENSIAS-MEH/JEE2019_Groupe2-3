@@ -1,10 +1,14 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import web.ProjetModel;
+
 
 public class ProjetConnection {
 	
@@ -55,5 +59,28 @@ public class ProjetConnection {
 			}
 		}
 		return matched;
+	}
+	
+	public static ArrayList<ProjetModel> getProjets(){
+		ArrayList<ProjetModel> listePj = new ArrayList<>();
+		ProjetModel pj = new ProjetModel();
+
+		
+		try {
+			
+			PreparedStatement ps;
+			ps = (PreparedStatement) conx.prepareStatement("select * from projet");
+			ResultSet rs = 	ps.executeQuery();
+			while(rs.next()) {
+				pj = new ProjetModel(rs.getInt("id_projet"), rs.getString("nom_projet"), rs.getString("description_projet"), rs.getString("date_debut"), rs.getString("date_fin"),
+						rs.getString("lieu_projet") );
+				listePj.add(pj);
+			}
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return listePj;
 	}
 }

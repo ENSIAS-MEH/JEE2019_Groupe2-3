@@ -1,4 +1,3 @@
-<%@page import="java.sql.Blob"%>
 <%@page import="metier.ProjetTraitement"%>
 <%@page import="web.BenevoleModel"%>
 <%@page import="metier.BenevoleTraitement"%>
@@ -68,10 +67,6 @@ th, td {
   padding: 8px;
 }
 tr:nth-child(even) {background-color: #f2f2f2;}
-div.groove {border-style: groove;}
-b.italic {
-  font-style: italic;
-}
 </style>
 <body>
 	<%
@@ -80,6 +75,9 @@ b.italic {
 	  BenevoleTraitement bt =  new BenevoleTraitement();
 	  int id_bene = lc.savoirIdUser((String)session.getAttribute("login"),(String)session.getAttribute("mdp_login"),"b");
 	  bm = bt.ChercherBenevoleparIdauthentif(id_bene);
+	  ProjetModel pm ;
+	  ProjetConnection pc = new ProjetConnection();
+	  ArrayList<ProjetModel> listePj;
 	%>
 	 <section class="hero"> 
            <header> 
@@ -98,8 +96,8 @@ b.italic {
        </section>   
        <br><br><br>
        <ul class="ul">
-  		<li class="li"><a class="active" href="">Consulter le Profil</a></li>
-  		<li class="li"><a href="/E-Associations/activites.do">Consulter vos activites</a></li>
+  		<li class="li"><a href="/E-Associations/benevole.do"">Consulter le Profil</a></li>
+  		<li class="li"><a class="active" href="/E-Associations/activites.do">Consulter vos activites</a></li>
   		<li class="li"><a href="/E-Associations/participations.do">Participer un projet</a></li>
   		<li class="li"><a href="#messagerie">Messagerie</a></li>
   		<li class="li"><a href="#reussites">Calendrier</a></li>
@@ -109,26 +107,83 @@ b.italic {
 	 
 	  <div style="margin-left:25%;padding:1px 16px;height:1000px;">
 	  <br>
-	  <h3 style="text-align: center;">Consultation du profil</h3>
-	  	
+	  <h3 style="text-align: center;">Vos activites</h3>
 	  	<section>
-	  		<div class="groove">
-	  			<br><br><br><br>
-	  			<!--  <img src="h" alt="Personal Photo" width="42" height="42" align="right"/>  Probleme here xD -->
-	  			<b style="font-size:100%;margin-left: 30px;">Nom : </b><%= bm.getNom_ben() %><br>
-	  			<b style="font-size:100%;margin-left: 30px;">Prenom : </b><%= bm.getPrenom_ben() %><br>
-	  			<b style="font-size:100%;margin-left: 30px;">Profession : </b><%= bm.getProfession_ben() %><br>
-	  			<b style="font-size:100%;margin-left: 30px;">Num CIN : </b><%= bm.getCin() %><br>
-	  			<b style="font-size:100%;margin-left: 30px;">E-mail : </b><%= bm.getEmail_ben() %><br>
-	  			<b style="font-size:100%;margin-left: 30px;">Sexe : </b><%= bm.getSexe_ben() %><br>
-	  			<b style="font-size:100%;margin-left: 30px;">Num Telephone : </b><%= bm.getTele_ben() %><br>
-	  			<br><br><br><br>
-	  			<form action="">
-	  				<button type="button">Modifier les informations</button>
-	  			</form>
+	  	<!-- Section nombre de participations -->
+	  	    <h4>Nombre de participation aux projets : </h4><b><%= bt.getBnconx().savoirNombreParticipations(bm.getCin()) %> fois</b> 
+	  		<br>
+	  		<br>Rechercher un projet ?
+	  		<form action="">
+	  		<br><input type="text" name="projet" id="projet" />
+	  		<script>
+				$("#projet").autocomplete("getdataProjet.jsp");
+			</script> 
+	  		<button type="button" name="detaisProjet" id="detailsProjet">Rechercher</button>
+	  		</form>
+	  		<br>
+	  		<br><button onclick="myFunction()">Cacher la liste des projets</button>
+	  		<div id="show" style="display:none">
+	  		<p><h4>Liste de tous les projets existants:</h4></p>
+	  		<p>
+	  			<%listePj = new ArrayList<>();
+	  			  listePj = pc.getProjets();
+	  			%>
+	  			<table id="table1">
+  					<tr>
+ 				    <th>Projet</th>
+ 					<th>Details du projet</th>
+ 					
+  					</tr>
+  					<%for(int i=0;i<listePj.size();i++){ 
+  					  pm = listePj.get(i);
+  					%>
+  					<tr>
+ 				    <th><%= pm.getNom_projet() %></th>
+ 				    <!--  <th><b>Du </b><br><%= pm.getDate_debut() %><br><b> Au</b><br><%= pm.getDate_fin() %></th>
+ 					<th><%= pm.getLieu_projet() %></th>
+ 					-->
+ 					<% String url ="/E-Associations/projet.do?id_project="+(i+1) ;%>
+ 					<th><a href=<%=url %> id="<%=i%>">Voir details</a></th>
+  					</tr>
+  					<%} %>
+				</table>
+	  		</p>
+	  		<%for(int i=0;i<listePj.size();i++){ %>
+	  		<script>
+	  				$("a").each(function ()
+	  				{
+	  				   $(this).trigger('click');//for clicking element
+	  				   var id = $(this).attr("id");
+	  				 <%session.setAttribute("id_projectt", ""+i+"");%>
+	  				});
+				<%//document.getElementById(<%=i).addEventListener("click", fct() {%>
+				<%//System.out.println("yess, clicked");%>
+				
+				<%//});%>
+			</script>
+			<%}%>
 	  		</div>
+	  		
+	  		<script type="text/javascript">
+	  		function myFunction() {
+	  		  var x = document.getElementById("show");
+	  		  if (x.style.display === "none") {
+	  		    x.style.display = "block";
+	  		  } else {
+	  		    x.style.display = "none";
+	  		  }
+	  		}
+	  		</script>
 	  	</section>
 	  	<section>
+	  	<!-- Section nombre de competences -->
+	  	<br><br>
+	  	
+	
+	  	</section>
+	  	<section>
+	  	<!-- Section calendrier -->
+	  	
 	  	</section>
 	  </div>
 
