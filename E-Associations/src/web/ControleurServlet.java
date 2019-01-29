@@ -1,6 +1,7 @@
 package web;
 
 import java.io.IOException;
+import java.io.*;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.LoginConnection;
 import metier.AssociationTraitement;
 import metier.BenevoleTraitement;
 import metier.CategorieTraitement;
@@ -96,6 +98,14 @@ public class ControleurServlet extends HttpServlet {
 			request.getRequestDispatcher("/benevole/participer.jsp").forward(request, response);
 		}
 		
+		else if (path.equals("/modifierprofilebenevole.do")) {
+			
+			request.getRequestDispatcher("/benevole/ModifierProfileBenevole.jsp").forward(request, response);
+			control = "modifierprofil";
+			System.out.println("control = "+control);
+			
+		}
+		
 		else {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
@@ -111,97 +121,124 @@ public class ControleurServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(control.equals("benevoleInscription")) {
-			
-			BenevoleTraitement bt = new BenevoleTraitement();
-			bt.ajoutBenevWeb(request);
-		    response.setContentType("text/html;charset=ISO-8859-1");
-		    PrintWriter out = response.getWriter();
-			out.println("<script>alert(\"Vous êtes bien inscrit! Bienvenue \")</script>");      
-			
-		}	
-		else if (control.equals("associationInscription")){ 
-			
-			AssociationTraitement asso = new AssociationTraitement();
-			asso.ajoutAssoWeb(request);
-		    response.setContentType("text/html;charset=ISO-8859-1");
-		    PrintWriter out = response.getWriter();
-			out.println("<script>alert(\"Vous êtes bien inscrit! Bienvenue \")</script>");  
-			
-		}
-		else if(control.equals("choisirProfil")) {
-			
-			System.out.println("i am here in choixProfil");
-			
-			// login cards
-			if(request.getParameter("choix_association") != null) {
-				System.out.println("je suis dans espace association");
-					espaceActuel="a";							
-				response.sendRedirect("/E-Associations/connecter.do");
-			}
-			if(request.getParameter("choix_benevole") != null) {
-				System.out.println("je suis dans espace benevoole");
-				espaceActuel="b";
-				response.sendRedirect("/E-Associations/connecter.do");				
-			}
-			
-			//inscription cards
-			if(request.getParameter("choix_association_inscr") != null) {
-				System.out.println("je suis dans espace association");							
-				response.sendRedirect("/E-Associations/association_inscription.do");
-			}
-			if(request.getParameter("choix_benevole_inscr") != null) {
-				System.out.println("je suis dans espace benevoole");
-				response.sendRedirect("/E-Associations/benevole_inscription.do");				
-			}
-		}
-		
-		
-		
-		else if(control.equals("login")) {
-			
-			System.out.println("dans login dopost");
-			LoginTraitement log = new LoginTraitement();
-			
-			if(request.getParameter("connecter") != null) {
-				boolean existe;
-				if(espaceActuel.equals("b")) {
-					existe = log.connecterUtilisateur(request);
-					if(!existe) {
-						System.out.println("user pas dans base de donnees");
-						response.setContentType("text/html;charset=ISO-8859-1");
-					    PrintWriter out = response.getWriter();
-						out.println("<script>alert(\"Login ou Mot de passe erroné(s) \")</script>");
 						
-						response.sendRedirect("/E-Associations/connecter.do");
-				         
-					}
-					else {
-						System.out.println("je serai redirigé vers mon espace user");
-					    response.sendRedirect("/E-Associations/benevole.do");     
-					}
-				}
-				
-				else if(espaceActuel.equals("a")) {
-					existe = log.connecterAssociation(request);
-					if(!existe) {
-						System.out.println("user pas dans baase de donnees");
-						
-						response.setContentType("text/html;charset=ISO-8859-1");
+						BenevoleTraitement bt = new BenevoleTraitement();
+						bt.ajoutBenevWeb(request);
+					    response.setContentType("text/html;charset=ISO-8859-1");
 					    PrintWriter out = response.getWriter();
-						out.println("<script>alert(\"Login ou Mot de passe erroné(s) \")</script>");
-						response.sendRedirect("/E-Associations/connecter.do");
-					}
-					
-					else {
-						System.out.println("je serai redirigé vers mon espace association");
-						System.out.println("sfsfsf");
-						response.sendRedirect("ProfileAssociation.jsp");
-					}
-				}
+						out.println("<script>alert(\"Vous êtes bien inscrit! Bienvenue \")</script>");      
+			
+		}		else if (control.equals("associationInscription")){ 
+			
+						AssociationTraitement asso = new AssociationTraitement();
+						asso.ajoutAssoWeb(request);
+					    response.setContentType("text/html;charset=ISO-8859-1");
+					    PrintWriter out = response.getWriter();
+						out.println("<script>alert(\"Vous êtes bien inscrit! Bienvenue \")</script>");  
+			
+		}	else if(control.equals("choisirProfil")) {
+			
+							System.out.println("i am here in choixProfil");
+							
+							// login cards
+							if(request.getParameter("choix_association") != null) {
+								System.out.println("je suis dans espace association");
+									espaceActuel="a";							
+								response.sendRedirect("/E-Associations/connecter.do");
+							}
+							if(request.getParameter("choix_benevole") != null) {
+								System.out.println("je suis dans espace benevoole");
+								espaceActuel="b";
+								response.sendRedirect("/E-Associations/connecter.do");				
+							}
+							
+							//inscription cards
+							if(request.getParameter("choix_association_inscr") != null) {
+								System.out.println("je suis dans espace association");							
+								response.sendRedirect("/E-Associations/association_inscription.do");
+							}
+							if(request.getParameter("choix_benevole_inscr") != null) {
+								System.out.println("je suis dans espace benevoole");
+								response.sendRedirect("/E-Associations/benevole_inscription.do");				
+							}
+		}    else if(control.equals("login")) {
+			
+						System.out.println("dans login dopost");
+						LoginTraitement log = new LoginTraitement();						
+						if(request.getParameter("connecter") != null) {
+							boolean existe;
+											if(espaceActuel.equals("b")) {
+												existe = log.connecterUtilisateur(request);
+												if(!existe) {
+													System.out.println("user pas dans base de donnees");
+													response.setContentType("text/html;charset=ISO-8859-1");
+												    PrintWriter out = response.getWriter();
+													out.println("<script>alert(\"Login ou Mot de passe erroné(s) \")</script>");
+													
+													response.sendRedirect("/E-Associations/connecter.do");
+											         
+												} else {
+													System.out.println("je serai redirigé vers mon espace user");
+												    response.sendRedirect("/E-Associations/benevole.do");     
+												}
+												
+											}	else if(espaceActuel.equals("a")) {
+												existe = log.connecterAssociation(request);
+												if(!existe) {
+													System.out.println("user pas dans baase de donnees");
+													
+													response.setContentType("text/html;charset=ISO-8859-1");
+												    PrintWriter out = response.getWriter();
+													out.println("<script>alert(\"Login ou Mot de passe erroné(s) \")</script>");
+													response.sendRedirect("/E-Associations/connecter.do");
+												}
+												
+												else {
+													System.out.println("je serai redirigé vers mon espace association");
+													System.out.println("sfsfsf");
+													response.sendRedirect("ProfileAssociation.jsp");
+												}
+											}
+						}
+							
+			}   else if(control.equals("modifierprofil")) {
+				//récuperer les modifs
+							System.out.println("post du servlet control= modifprofil");
+							if(request.getParameter("modifier_profile") != null){
+					            BenevoleTraitement ben = new BenevoleTraitement();
+			
+					            HttpSession session = request.getSession();
+					            
+					      	  LoginConnection lc = new LoginConnection(); 
+					      	  BenevoleModel bm = new BenevoleModel();
+					      	  BenevoleTraitement bt =  new BenevoleTraitement();
+					      	  int id_bene = lc.savoirIdUser((String)session.getAttribute("login"),(String)session.getAttribute("mdp_login"),"b");
+					      	  bm = bt.ChercherBenevoleparIdauthentif(id_bene);
+					  
+					            
+					            ben.updateB(request, bm.getCin());
+					            
+					            
+								response.sendRedirect("/E-Associations/benevole.do");	            
+						    }
+						    
+						    
+						  
+							if(request.getParameter("modifier_pic") != null) {
+			
+							    
+						    	BenevoleModel bm = new BenevoleModel();
+					            BenevoleTraitement ben = new BenevoleTraitement();
+					            InputStream image = null;
+					            image = new FileInputStream(new File(request.getParameter("photo")));
+			
+					            
+					            ben.upadatPicBenevole(bm.getCin(), image);
+						    
+						    }
 				
-				
-			}
+			}     ////
 	   }
 	}
 
-}
+
