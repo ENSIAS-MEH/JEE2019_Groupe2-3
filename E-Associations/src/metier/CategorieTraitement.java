@@ -26,7 +26,8 @@ public class CategorieTraitement {
 			rs = ps.executeQuery();
             while(rs.next()){
             	CategorieModel c=new CategorieModel();
-             c.setNom_categorie(rs.getString("nom_categorie"));     
+             c.setNom_categorie(rs.getString("nom_categorie")); 
+             c.setId_categorie(rs.getInt("id_categorie"));
             
              cat.add(c);
             }

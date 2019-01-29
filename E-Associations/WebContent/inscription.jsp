@@ -751,8 +751,7 @@ input, select, textarea {
       	 		
               <c:forEach items="${cat}" var="cat"> 
 		        
-		     <option value=""> </option>
-			 <option  value="${cat.getId_categorie()}">${cat.getNom_categorie()}</option>
+			 <option  value="${cat.getId_categorie()}">${cat.getId_categorie()} : ${cat.getNom_categorie()}</option>
 		     </c:forEach> 
 		     
              </select>

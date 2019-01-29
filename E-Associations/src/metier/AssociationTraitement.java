@@ -22,6 +22,23 @@ public class AssociationTraitement {
 	
 	private static Connection conx = SingletonConnection.getConnection();
 	private  AssociationConnection assoconx = new AssociationConnection();
+	
+	
+	public static String firstWord(String input) {
+	    String result = input;  // if no space found later, input is the first word
+
+	    for(int i = 0; i < input.length(); i++)
+	    {
+	        if(input.charAt(i) == ' ')
+	        {
+	            result = input.substring(0, i);
+	            break;
+	        }
+	    }
+
+	    return result; 
+	}
+	
 
 	public static void addassociation(AssociationModel assoc, String s) throws FileNotFoundException{
 	    InputStream img = new FileInputStream(new File(s));
@@ -327,12 +344,16 @@ public void ajoutAssoWeb(HttpServletRequest request) throws IOException, Servlet
     login = request.getParameter("login");
     id_authentif = lt.creerAuthentificationTr(login, mdp_login, "a");
     
-    if (imageis != null) {
+    String id_cat = firstWord(id_categorie);
+    
+    	if (imageis != null) {
     	//insérer les données dans la base de données
-    	assoconx.ajoutAssociation( nom_assoc, date_creation, tele_assoc, president_assoc, description_assoc,
-    			fax_assoc, site_web, email_assoc, effectif, id_authentif, id_categorie, imageis);
+    	AssociationConnection.ajoutAssociation( nom_assoc, date_creation, tele_assoc, president_assoc, description_assoc,
+    			fax_assoc, site_web, email_assoc, effectif, id_authentif, id_cat, imageis);
     	
-	}
+	     } else {
+	    	 System.out.println("image upload error");
+	     }
 }
 
 

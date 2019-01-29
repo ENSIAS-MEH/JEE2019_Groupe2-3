@@ -62,6 +62,8 @@ public class AssociationConnection {
 	
 	public static void ajoutAssociation(String nom_assoc,String date_creation,String tele_assoc,String president_assoc,String description_assoc,
 			String fax_assoc,String site_web,String email_assoc,String effectif,int  id_authentif,String  id_categorie ,InputStream imageis){
+		int effect = Integer.parseInt(effectif);
+		int id_cat = Integer.parseInt(id_categorie);
 
 		try {
 			
@@ -70,18 +72,18 @@ public class AssociationConnection {
 
 
 			    
-		     	ps.setString(2,nom_assoc);
-		     	ps.setString(3,date_creation);
-		     	ps.setString(4,tele_assoc);
-		     	ps.setString(5,president_assoc);
-		     	ps.setString(6,description_assoc);
-		     	ps.setInt(7,Integer.parseInt(effectif));
-		     	ps.setString(8,fax_assoc);
-		     	ps.setString(9,site_web);
-		     	ps.setString(10,email_assoc);
-		     	ps.setInt(11, id_authentif);
-		     	ps.setInt(12,Integer.parseInt(id_categorie));
-                ps.setBlob(13, imageis);
+		     	ps.setString(1,nom_assoc);
+		     	ps.setString(2,date_creation);
+		     	ps.setString(3,tele_assoc);
+		     	ps.setString(4,president_assoc);
+		     	ps.setString(5,description_assoc);
+		     	ps.setInt(6,effect);
+		     	ps.setString(7,fax_assoc);
+		     	ps.setString(8,site_web);
+		     	ps.setString(9,email_assoc);
+		     	ps.setInt(10, id_authentif);
+		     	ps.setInt(11,id_cat);
+                ps.setBlob(12, imageis);
                 
 	        ps.executeUpdate();
 
