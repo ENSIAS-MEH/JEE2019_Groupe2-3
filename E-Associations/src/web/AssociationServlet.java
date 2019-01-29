@@ -14,9 +14,6 @@ import metier.AssociationTraitement;
 import metier.CategorieTraitement;
 import metier.ProjetTraitement;
 
-/**
- * Servlet implementation class AssociationServlet
- */
 @WebServlet("/AssociationServlet")
 public class AssociationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +22,6 @@ public class AssociationServlet extends HttpServlet {
         super();
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -38,7 +34,6 @@ public class AssociationServlet extends HttpServlet {
 		
 		ArrayList<CategorieModel> cat = new ArrayList<CategorieModel> ();
         CategorieTraitement ct = new CategorieTraitement();	
-		
 		cat = ct.getAllCategories();
 		//for(CategorieModel cate : cat) {
 		//System.out.println("love");
@@ -83,6 +78,7 @@ public class AssociationServlet extends HttpServlet {
 	     
 	    	AssociationModel am = new AssociationModel();
             AssociationTraitement at = new AssociationTraitement();
+            int id ;
     		//at.addassociation(am, "logo_CINDH.png");
             am.setDate_creation(request.getParameter("date_assoc"));
             am.setDescription_assoc(request.getParameter("description_assoc"));
@@ -94,26 +90,45 @@ public class AssociationServlet extends HttpServlet {
             am.setPresident_assoc(request.getParameter("president"));
             am.setSite_web(request.getParameter("site_web"));
             am.setTele_assoc(request.getParameter("numero"));
-    		at.upadatAssociation1(am, 2);
+            id = Integer.parseInt(request.getParameter("action1"));
+            System.out.println(id);
+    		at.upadatAssociation1(am,id);
+    		  RequestDispatcher r2;
+  	        r2=request.getRequestDispatcher("ProfileAssociation.jsp");
+  			r2.forward(request, response);
 	    	    }
 	    if (action.equals("modifier_pic")){
 		    
 			AssociationModel am = new AssociationModel();
             AssociationTraitement.upadatPic(2,request.getParameter("logo"));
             RequestDispatcher r2;
-            r2=request.getRequestDispatcher("AjouterEvenement.jsp");
-    		r2.forward(request, response);
+	        r2=request.getRequestDispatcher("ProfileAssociation.jsp");
+			r2.forward(request, response);
 	    
 	    }
-   if (action.equals("update_email")){
+       if (action.equals("update_email")){
 		    
 			AssociationModel am = new AssociationModel();
-			AssociationTraitement.upadatEmailAssociation1(request.getParameter("nv_email"), 2);
-            RequestDispatcher r2;
-            r2=request.getRequestDispatcher("AjouterEvenement.jsp");
-    		r2.forward(request, response);
+            int id ;
+            id = Integer.parseInt(request.getParameter("ass"));
+			AssociationTraitement.upadatEmailAssociation1(request.getParameter("nv_email"), id);
+			RequestDispatcher r2;
+		    r2=request.getRequestDispatcher("ProfileAssociation.jsp");
+		    r2.forward(request, response);;
 	    
 	    }
+       
+       if (action.equals("recherche")){
+		    
+			AssociationModel am = new AssociationModel();
+            String name ;
+            name = request.getParameter("");
+			RequestDispatcher r2;
+		    r2=request.getRequestDispatcher("ResultatRecherche.jsp");
+		    r2.forward(request, response);;
+	    
+	    }
+		
 		
 		
 		

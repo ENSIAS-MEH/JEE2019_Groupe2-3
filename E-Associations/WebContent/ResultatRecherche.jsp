@@ -11,22 +11,13 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="template.css">
-<jsp:include page="Header.jsp" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 
- <%
 
-	  LoginConnection lc = new LoginConnection(); 
-      AssociationModel association = new AssociationModel();
-      AssociationTraitement at =  new AssociationTraitement();
-	  int id_authen = lc.savoirIdUser((String)session.getAttribute("login"),(String)session.getAttribute("mdp_login"),"a");
-	  association = AssociationTraitement.Association(id_authen);
-	  
-	%>
 <div class="container" style="padding :10px 0px 30px 0px ;">
 		
 	<div class="innerwrap">
@@ -37,10 +28,7 @@
 				
 					<ul class="row2tab clearfix">
 					
-						<li ><i  class="fa fa-list-alt"></i> <a href = "ProfileAssociation.jsp"  style="text-decoration: none" class="active"> Mes Evenements </a> </li>
-						<li><i class="fa fa-heart"></i><a href = "catservlet"  style="text-decoration: none"> Modifier mon profile</a> </li>
-						<li><i class="fa fa-check"></i><a href = "AjouterEvenement.jsp"  style="text-decoration: none" > Ajouter un evenement</a> </li>
-						<li><i class="fa fa-thumbs-o-up "></i><a href = "ConsulterDon.jsp"  style="text-decoration: none" >  Consulter mes dons</a> </li>
+<li ><i  class="fa fa-list-alt"></i> <a href = "ProfileAssociation.jsp"  style="text-decoration: none" class="active"> Les Evenements </a> </li>
 				
 					</ul>
 				</div>

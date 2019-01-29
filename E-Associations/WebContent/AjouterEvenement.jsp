@@ -6,8 +6,8 @@
 <link rel="stylesheet" type="text/css" href="template.css">
 <link rel="stylesheet" type="text/css" href="Modifier.css">
 <link rel="stylesheet" type="text/css" href="Ajout.css">
-
 <jsp:include page="Header.jsp" />
+
 
     <script src="jquery.js"></script> 
     
@@ -36,6 +36,7 @@
 			</span>
 			
 		</section>  
+		<div style = "width:2000px; margin: auto;" >
   <form action = "AssociationServlet" method="post">
 	    <h1>Ajouter des informations sur l'evenement  :</h1>
 	    
@@ -45,13 +46,13 @@
 
     	<div class="leftcontact">
 			      <div class="form-group">
-			        <p>Nom de l'evenement : <span>*</span></p>
+			        <p> Nom de l'evenement : <span>*</span></p>
 			        <span class="icon-case"><i class="fas fa-allergies	" style=" vertical-align: middle;"></i></span>
 				        <input type="text" name="nom_event" id="nom" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Nom evenement' doit être renseigné."/>
                 <div class="validation"></div>
        </div> 
-       <div class="form-group">
-			        <p>Description de l'evenement : <span>*</span></p>
+                  <div class="form-group">
+			        <p> Description de l'evenement : <span>*</span></p>
 			        <span class="icon-case"><i class=" " style=" vertical-align: middle;"></i></span>
 				        <input type="text" name="description_event" id="nom" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'desciption' doit être renseigné."/>
                 <div class="validation"></div>

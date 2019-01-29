@@ -19,6 +19,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
+<%
+
+	  LoginConnection lc = new LoginConnection(); 
+      AssociationModel association = new AssociationModel();
+      AssociationTraitement at =  new AssociationTraitement();
+	  int id_authen = lc.savoirIdUser((String)session.getAttribute("login"),(String)session.getAttribute("mdp_login"),"a");
+	  association = AssociationTraitement.Association(id_authen);
+	  
+	%>
 <div class="container" style="padding : 0px 0px 0px ;">
 
 	<div class="innerwrap" >
@@ -81,6 +90,7 @@
 
 	<label class="label" for="input">nom</label>
 	<input class="input" type="text" id="input" name ="nom">
+	<input  type ="hidden" name="action1" value=<%=association.getId_assoc() %> ></input>
 	
 	
 		<label class="label" for="input">président</label>
@@ -138,7 +148,7 @@
   
       </div>
   
-  <button value = "modifier_profile" name ="action">modifier</button>
+  <button value = "modifier_profile" name ="action"> modifier</button>
       </form>
       </div>
       
@@ -160,10 +170,11 @@
  <form action="AssociationServlet" method="post">
      
     <div class="tr wwq">
-  	<label class="label" for="input">email actuel</label>	
+  	<label class="label" for="input">Email actuel</label>	
 	<input class="input e" type="text" id="input" name = "email_actuel">
+	<input  type ="hidden" name="ass" value=<%=association.getId_assoc() %> ></input>
 
-    <label class="label" for="input">nouveau email</label>	
+    <label class="label" for="input">Nuveau Email</label>	
 	<input class="input e" type="email" id="input" name="nv_email">
           
   
@@ -200,19 +211,6 @@
   
   </div>
     
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>

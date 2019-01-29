@@ -348,6 +348,48 @@ public static ArrayList<ParticiperModel> getAllParticipants(String type ){
 	return AM;
 } 
 
+public static  AssociationModel  Association1(String nom_assoc) {
+
+java.sql.ResultSet rs;
+java.sql.PreparedStatement ps;
+AssociationModel Cl=new AssociationModel();
+   int l = 0;
+
+
+try {
+	ps = (PreparedStatement) conx.prepareStatement("select * from association where nom_assoc ="+nom_assoc);
+	   ps.executeQuery();
+	   rs=ps.getResultSet();
+		AssociationModel am =new AssociationModel();
+	  while(rs.next()){
+		  
+		  am.setNom_assoc(rs.getString("nom_assoc")); 
+		  am.setPresident_assoc(rs.getString("president_assoc"));   
+		  am.setDescription_assoc(rs.getString("description_assoc")); 
+		  am.setDate_creation(rs.getString("date_creation"));
+		  am.setLogo(rs.getBlob("logo_assoc"));  
+		  am.setEmail_assoc(rs.getString("email_assoc"));  
+		  am.setTele_assoc(rs.getString("tele_assoc"));
+		  am.setFax_assoc(rs.getString("fax_assoc")); 
+		  am.setEffectif(rs.getInt("effectif"));
+		  am.setSite_web(rs.getString("site_web"));
+		  am.setId_assoc(rs.getInt("id_assoc"));
+		  am.setId_authentif(rs.getInt("id_authentif"));
+		  am.setId_categorie(rs.getInt("id_categorie"));
+		  				  
+	  } 
+	  
+	  ps.close();
+	  return am;
+	  
+	  } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		  return Cl;
+
+	}
+ }
+
 public void ajoutAssoWeb(HttpServletRequest request) throws IOException, ServletException {
 	LoginTraitement lt = new LoginTraitement();
 	InputStream imageis = null;

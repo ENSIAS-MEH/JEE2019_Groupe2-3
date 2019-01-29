@@ -394,10 +394,11 @@ nav .mbr-section-btn {
                <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
                    <ul class="navbar-nav" style="margin-left:auto">             
                    <li> 
-                    <form class="form-inline my-2 my-lg-0"> 
-                       <input class="form-control mr-sm-2" type="text" id="associ" name="associ"/> 
+                   
+                    <form  class="form-inline my-2 my-lg-0"  action = "AssociationServlet" method = "post"> 
+                    <input class="form-control mr-sm-2" type="text" id="associ" name="associ"/> 
                        
-                       <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> 
+                       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name ="action" value = "recherche"><i class="fa fa-search" aria-hidden="true"></i> 
                        Recherche</button> 
                        
                                       
