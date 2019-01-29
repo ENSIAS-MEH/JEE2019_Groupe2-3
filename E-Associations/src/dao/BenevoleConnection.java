@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
@@ -149,6 +150,62 @@ private static Connection conx = SingletonConnection.getConnection();
 		}
 		return nb;
 	}
+	
+	
+
+public void updateB(String cin, String nomb, String prenomb, String professionb, String emailb, String teleb) {
+
+	java.sql.PreparedStatement ps;
+	
+	try {
+		
+		ps = (PreparedStatement) conx.prepareStatement("UPDATE benevole SET nom_ben= ? ,prenom_ben=? , profession_ben = ? , email_ben= ? ,tele_ben =? WHERE cin= ?");
+	
+     	ps.setString(1,nomb);
+     	ps.setString(2,prenomb);
+     	ps.setString(3, professionb);
+     	ps.setString(4, emailb);
+     	ps.setString(5, teleb);
+     	ps.setString(6,cin);
+     	
+    	System.out.println("secondmethod update benevole cnx");
+
+     	
+     	
+		ps.executeUpdate(); 
+		System.out.println("fin update retour a traitement");
+
+		ps.close();
+		}
+
+	         catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	
+}
+
+public  static void upadatPicBenevole (String cin , InputStream photo) throws FileNotFoundException {
+	
+	java.sql.PreparedStatement ps;
+	try {
+		
+		ps = (PreparedStatement) conx.prepareStatement("UPDATE benevole SET image_b= ?  WHERE cin= ?");
+	
+		ps.setBlob(1, photo);
+		ps.setString(2, cin);
+		
+		ps.executeUpdate(); 
+		ps.close();}
+
+	         catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+}
+
+
+
 
 
 }

@@ -1,6 +1,7 @@
 
 package metier;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import web.BenevoleModel;
 @MultipartConfig(maxFileSize = 16177215) 
 public class BenevoleTraitement {
 	
-	private  BenevoleConnection bnconx = new BenevoleConnection();
+	private static  BenevoleConnection bnconx = new BenevoleConnection();
 	
 	public BenevoleConnection getBnconx() {
 		return bnconx;
@@ -71,6 +72,43 @@ public class BenevoleTraitement {
 	    if (imageis != null) {
 	    	this.ajoutBenevole(imageis, id_authentif, cin, nom_ben, prenom_ben, profession_ben, email_ben, tele_ben, sexe_ben);
 		}
+	}
+
+	public void updateB(HttpServletRequest request, String cin) {
+		
+	    //appel a updatebenevole
+					BenevoleModel bm = new BenevoleModel();
+		            BenevoleTraitement ben = new BenevoleTraitement();
+
+		            /*updateBenevole1(BenevoleModel benevole ,String cin )*/
+		            // bm= récuperer le benevole connecte
+		            
+		           String nomb = request.getParameter("nom_ben");
+		          String prenomb = request.getParameter("prenom_ben");
+		            String professionb = request.getParameter("profession_ben");
+		            String emailb = request.getParameter("email_ben");
+		            String teleb = request.getParameter("tele_ben");
+		            
+		         
+		            
+		System.out.println("first method update benevole traitement");
+		bnconx.updateB(cin , nomb, prenomb, professionb, emailb, teleb);
+		System.out.println("fin normale");
+
+		//HttpSession session=request.getSession();  
+	    //session.setAttribute("login",login); 
+	    //session.setAttribute("mdp_login", mdp);
+		
+	}
+
+	public  static void upadatPicBenevole(String cin, InputStream photo ) {
+		try {
+			bnconx.upadatPicBenevole(cin,photo);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+
 	}
 	
 
