@@ -150,6 +150,9 @@ public class ControleurServlet extends HttpServlet {
 				response.sendRedirect("/E-Associations/benevole_inscription.do");				
 			}
 		}
+		
+		
+		
 		else if(control.equals("login")) {
 			
 			System.out.println("dans login dopost");

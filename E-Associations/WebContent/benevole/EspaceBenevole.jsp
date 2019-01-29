@@ -114,14 +114,32 @@ b.italic {
 	  	<section>
 	  		<div class="groove">
 	  			<br><br><br><br>
-	  			<!--  <img src="h" alt="Personal Photo" width="42" height="42" align="right"/>  Probleme here xD -->
-	  			<b style="font-size:100%;margin-left: 30px;">Nom : </b><%= bm.getNom_ben() %><br>
+	  			
+	  			 <div class="row">
+				    <div class="col">
+				      
+				 <b style="font-size:100%;margin-left: 30px;">Nom : </b><%= bm.getNom_ben() %><br>
 	  			<b style="font-size:100%;margin-left: 30px;">Prenom : </b><%= bm.getPrenom_ben() %><br>
 	  			<b style="font-size:100%;margin-left: 30px;">Profession : </b><%= bm.getProfession_ben() %><br>
 	  			<b style="font-size:100%;margin-left: 30px;">Num CIN : </b><%= bm.getCin() %><br>
 	  			<b style="font-size:100%;margin-left: 30px;">E-mail : </b><%= bm.getEmail_ben() %><br>
 	  			<b style="font-size:100%;margin-left: 30px;">Sexe : </b><%= bm.getSexe_ben() %><br>
 	  			<b style="font-size:100%;margin-left: 30px;">Num Telephone : </b><%= bm.getTele_ben() %><br>
+				      
+				    </div>
+				    <div class="col">
+				      
+				      
+	  				<img src="data:image/jpg;base64,<%=bm.BlobToString()%>"  height="200" width="200" alt=""/>
+	  			
+				      
+				    </div>
+				  </div>
+	  			
+	  
+	  		
+	  			
+	  			<!-- BlobToString -->
 	  			<br><br><br><br>
 	  			<form action="">
 	  				<button type="button">Modifier les informations</button>

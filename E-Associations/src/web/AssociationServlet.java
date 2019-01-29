@@ -66,7 +66,7 @@ public class AssociationServlet extends HttpServlet {
 		
 		}
 	    
-	    if (action.equals("Confirmer")){
+	    if (action.equals("ajouter_pic")){
 	    
 	    	PhotoModel pm = new PhotoModel();
            ProjetTraitement.addPhotos(pm,request.getParameter("img"),1);	  
@@ -74,9 +74,36 @@ public class AssociationServlet extends HttpServlet {
 	    	album.setNom_album(request.getParameter("nom_album"));
 	    	ProjetTraitement.addAlbum(album,2);
 	    
+	    }
+	    if (action.equals("modifier_profile")){
+	     
+		    	
+			AssociationModel am = new AssociationModel();
+            AssociationTraitement at = new AssociationTraitement();
+    		//at.addassociation(am, "logo_CINDH.png");
+            
+            am.setDate_creation(request.getParameter("date_assoc"));
+            am.setDescription_assoc(request.getParameter("description_assoc"));
+            am.setEmail_assoc(request.getParameter("email"));
+            am.setId_assoc(2);
+            am.setId_authentif(2);
+    		am.setId_categorie(1);
+            am.setNom_assoc(request.getParameter("nom"));
+            am.setPresident_assoc(request.getParameter("president"));
+            am.setSite_web(request.getParameter("site_web"));
+            am.setTele_assoc(request.getParameter("numero"));
+    		at.upadatAssociation1(am, 2);
+	    	    }
+	    if (action.equals("modifier_pic")){
+		    
+			AssociationModel am = new AssociationModel();
+            AssociationTraitement at = new AssociationTraitement();
+            at.upadatPic(2,request.getParameter("logo"));
+            RequestDispatcher r2;
+            r2=request.getRequestDispatcher("AjouterEvenement.jsp");
+    		r2.forward(request, response);
 	    
 	    }
-				
 		
 		
 		

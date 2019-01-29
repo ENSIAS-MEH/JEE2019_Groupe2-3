@@ -21,12 +21,6 @@ public class BenevoleModel {
 	private Blob image_b;
 	private String base64Image;
 
-	/*
-	 private byte[] image;  
-		public byte[] getImage() {
-	        return this.image;
-	    }
-	*/
  
 	    public String BlobToString() throws SQLException, IOException {
 	    	

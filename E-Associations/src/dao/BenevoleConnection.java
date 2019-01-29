@@ -1,12 +1,16 @@
 package dao;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 import javax.servlet.http.Part;
 
@@ -15,6 +19,26 @@ import web.BenevoleModel;
 public class BenevoleConnection {
 	
 private static Connection conx = SingletonConnection.getConnection();
+
+
+	
+
+	private byte[] image;  
+
+   public byte[] getImage() {
+       return this.image;
+   }
+
+   private String base64Image;
+    
+   public String getBase64Image() {
+       return base64Image;
+   }
+
+   public void setBase64Image(String base64Image) {
+       this.base64Image = base64Image;
+   }
+   
 
 	public static BenevoleModel ChercherBenevoleCin(String cin){
 		BenevoleModel benevole = null;
@@ -70,7 +94,7 @@ private static Connection conx = SingletonConnection.getConnection();
 			ps = (PreparedStatement) conx.prepareStatement("select * from benevole");
 			ResultSet rs = 	ps.executeQuery();
 			while(rs.next()) {
-				benevole = new BenevoleModel(rs.getString("	cin"), rs.getString("nom_ben"), rs.getString("prenom_ben"),
+				benevole = new BenevoleModel(rs.getString("cin"), rs.getString("nom_ben"), rs.getString("prenom_ben"),
 						rs.getString("profession_ben"), rs.getString("email_ben"), rs.getString("tele_ben") , 
 						rs.getString("sexe_ben") ,rs.getInt("id_authentif"), rs.getBlob("image_b") );
 				benevoles.add(benevole);
@@ -125,5 +149,6 @@ private static Connection conx = SingletonConnection.getConnection();
 		}
 		return nb;
 	}
+
 
 }

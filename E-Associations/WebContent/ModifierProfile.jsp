@@ -22,6 +22,7 @@
 <div class="container">
 		
 	<div class="innerwrap">
+	
 		<section class="section1 clearfix">
 
   
@@ -29,11 +30,10 @@
 				
 					<ul class="row2tab clearfix">
 					
-						<li ><i  class="fa fa-check"></i> <a href = "ProfileAssociation.jsp"  style="text-decoration: none"> Mes Evenements </a> </li>
-						<li><i class="fa fa-list-alt"></i><a href = "ModifierProfile.jsp" class="active" style="text-decoration: none"> modifier mon profile</a> </li>
-						<li><i class="fa fa-check"></i>   <a 
-href = "AjouterEvenement.jsp" style="text-decoration: none" > Ajouter un evenement</a> </li>
-						<li><i class="fa fa-thumbs-o-up "></i><a href = "ConsulterDon.jsp" style="text-decoration: none" >  Consulter mes dons</a> </li>
+			<li ><i  class="fa fa-check"></i> <a href = "ProfileAssociation.jsp"  style="text-decoration: none"> Mes Evenements </a> </li>
+			<li><i class="fa fa-list-alt"></i><a href = "ModifierProfile.jsp" class="active" style="text-decoration: none"> modifier mon profile</a> </li>
+			<li><i class="fa fa-check">   </i><a href = "AjouterEvenement.jsp" style="text-decoration: none" > Ajouter un evenement</a> </li>
+			<li><i class="fa fa-thumbs-o-up "></i><a href = "ConsulterDon.jsp" style="text-decoration: none" >  Consulter mes dons</a> </li>
 				
 					</ul>
 				</div>
@@ -47,29 +47,37 @@ href = "AjouterEvenement.jsp" style="text-decoration: none" > Ajouter un eveneme
 		 
   <div class="sttngs">
     <h2>SETTINGS</h2>
-<div class="tabordion">
+  <div class="tabordion">
   <section id="section1">
     <input class="t" type="radio" name="sections" id="option1" checked>
     <label for="option1" class="trr"> Account</label>
     <article>
   
     <div class="frm">     
+<form action="AssociationServlet" method = "post">
         
 <div id='profile-upload'>
+
 <div class="hvr-profile-img">
   
-  
   <input type="file" name="logo" id='getval'  class="upload"  id="imag">
-    
+  
   <div class="icon">
-    <div class="camera4"><span></span></div>
-  </div>
-  </div>
- 
+  <div class="camera4"><span></span></div>
+  
   </div>
   
+  <div>
+  </div>
+  
+  </div>
   
  
+  </div>
+      <button value = "modifier_pic" name ="action"> modifier </button>
+    </form>
+  
+ <form action="AssociationServlet" method="post">
 <div class="tr">
 
 
@@ -83,7 +91,7 @@ href = "AjouterEvenement.jsp" style="text-decoration: none" > Ajouter un eveneme
 	<input class="input texte"  type="text" id="input" name="president">
   
   	<label class="label" for="input">date de creation </label>	
-	<input class="input" type="date" id="input">
+	<input class="input" type="date" id="input" name = "date_assoc">
   
   </div>
  
@@ -93,9 +101,8 @@ href = "AjouterEvenement.jsp" style="text-decoration: none" > Ajouter un eveneme
 		<select class="" id="" >
 		
 		     <c:forEach items="${cat}" var="cat"> 
-		        
 		     <option value=""> </option>
-			 <option  value="${cat.getNom_categorie()}">${cat.getNom_categorie()}</option>
+			 <option  name = "cat" value="${cat.getNom_categorie()}"> ${cat.getNom_categorie()} </option>
 		     </c:forEach> 
 		
 		</select>
@@ -106,10 +113,9 @@ href = "AjouterEvenement.jsp" style="text-decoration: none" > Ajouter un eveneme
 
 	
 	<label class="label" for="textarea">Description <p id="count"></p></label> 
-	<!--textarea class="textarea" id="textarea"></textarea-->
 
   
-   <textarea class="textarea e" rows="7" cols="25" id="bio" maxlength="500" ></textarea>
+   <textarea class="textarea e" rows="7" name = "description_assoc" cols="25" id="bio" maxlength="500" ></textarea>
       
   
   	
@@ -134,13 +140,15 @@ href = "AjouterEvenement.jsp" style="text-decoration: none" > Ajouter un eveneme
   
       </div>
   
-  <button value = "modifier_profile" name = "action">modifier</button>
-      
+  <button value = "modifier_profile" name ="action">modifier</button>
+      </form>
       </div>
-       
       
-    </article>
-  </section>
+      </article>
+        </section>
+      
+      
+  
   <section id="section2">
     
    
