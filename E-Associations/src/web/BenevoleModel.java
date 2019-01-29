@@ -38,7 +38,6 @@ public class BenevoleModel {
                          
             inputStream.close();
             outputStream.close();
-            
             return base64Image;
 	    }
 	    

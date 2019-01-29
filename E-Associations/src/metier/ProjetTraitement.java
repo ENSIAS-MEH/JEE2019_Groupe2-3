@@ -68,21 +68,18 @@ public class ProjetTraitement {
 	
 	
 	public static void addPhotos(PhotoModel photo, String s ,int id_album) throws FileNotFoundException{
-	    InputStream img = new FileInputStream(new File(s));
-
-	    
+	    InputStream img = new FileInputStream(new File(s));	    
 		try {
-			PreparedStatement ps;
-			ps = (PreparedStatement) conx.prepareStatement("insert into Photo values(?,?,?)");
-
-
+			
+		    	PreparedStatement ps;
+		    	ps = (PreparedStatement) conx.prepareStatement("insert into Photo values(?,?,?)");
 			    ps.setInt(1,photo.getId_photo());
                 ps.setBinaryStream(3,img, (int)(new File(s).length()));   
                 ps.setInt(2, id_album);
 	            ps.executeUpdate();
 	            ps.close();
-	            
-		      } catch (SQLException e) {
+		    
+		    } catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

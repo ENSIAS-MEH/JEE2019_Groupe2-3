@@ -29,7 +29,8 @@ public class LoginTraitement {
         System.out.println("Le t est:"+type_authentif);
         boolean existe = acces.existe(login ,mdp, type_authentif);
         if(existe) {
-        	HttpSession session=request.getSession();  
+        	HttpSession session=request.getSession(); 
+        	System.out.println("benenenene");
             session.setAttribute("login",login); 
             session.setAttribute("mdp_login", mdp);
         }
@@ -44,9 +45,14 @@ public class LoginTraitement {
         String type_authentif = "a";
 
         //un autre teste
-        //System.out.println("Le login est:"+request.getParameter( CHAMP_LOGIN ));
+        System.out.println("Le login est:"+request.getParameter( CHAMP_LOGIN ));
         System.out.println("Le t est:"+type_authentif);
         boolean existe = acces.existe(login ,mdp, type_authentif);
+        if(existe) {
+        	HttpSession session=request.getSession();
+            session.setAttribute("login",login); 
+            session.setAttribute("mdp_login", mdp);
+        }
         return existe;
 	}
 	

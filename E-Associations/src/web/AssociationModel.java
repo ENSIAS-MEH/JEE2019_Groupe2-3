@@ -1,6 +1,12 @@
 package web;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 
 
@@ -18,14 +24,6 @@ public class AssociationModel {
 	 */
 
 	
-	@Override
-	public String toString() {
-		return "AssociationModel [id_assoc=" + id_assoc + ", nom_assoc=" + nom_assoc + ", date_creation="
-				+ date_creation + ", tele_assoc=" + tele_assoc + ", president_assoc=" + president_assoc
-				+ ", description_assoc=" + description_assoc + ", effectif=" + effectif + ", fax_assoc=" + fax_assoc
-				+ ", site_web=" + site_web + ", email_assoc=" + email_assoc + ", id_authentif=" + id_authentif
-				+ ", id_categorie=" + id_categorie + ", logo=" + Arrays.toString(logo) + "]";
-	}
 	private int id_assoc;
 	private String nom_assoc;
 	private String date_creation;
@@ -39,8 +37,6 @@ public class AssociationModel {
 	private int id_authentif;
 	private int id_categorie;
 	private byte[] logo;
-	
-	
 	
 	public int getId_assoc() {
 		return id_assoc;
@@ -122,7 +118,7 @@ public class AssociationModel {
 	}
 	public AssociationModel(int id_assoc, String nom_assoc, String date_creation, String tele_assoc,
 			String president_assoc, String description_assoc, int effectif, String fax_assoc, String site_web,
-			String email_assoc, int id_authentif, int id_categorie, byte[] logo) {
+			String email_assoc, int id_authentif, int id_categorie) {
 		super();
 		this.id_assoc = id_assoc;
 		this.nom_assoc = nom_assoc;
@@ -136,11 +132,18 @@ public class AssociationModel {
 		this.email_assoc = email_assoc;
 		this.id_authentif = id_authentif;
 		this.id_categorie = id_categorie;
-		this.logo = logo;
 	}
 	public AssociationModel() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "AssociationModel [id_assoc=" + id_assoc + ", nom_assoc=" + nom_assoc + ", date_creation="
+				+ date_creation + ", tele_assoc=" + tele_assoc + ", president_assoc=" + president_assoc
+				+ ", description_assoc=" + description_assoc + ", effectif=" + effectif + ", fax_assoc=" + fax_assoc
+				+ ", site_web=" + site_web + ", email_assoc=" + email_assoc + ", id_authentif=" + id_authentif
+				+ ", id_categorie=" + id_categorie + "]";
 	}
 	
 	

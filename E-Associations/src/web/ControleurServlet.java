@@ -45,7 +45,7 @@ public class ControleurServlet extends HttpServlet {
 			System.out.println("control = "+control);
 		}
 		else  if(path.equals("/association.do")) {
-			request.getRequestDispatcher("/association/ProfileAssociation.jsp").forward(request, response);
+			request.getRequestDispatcher("Header.jsp").forward(request, response);
 			control = "associationSession";
 			System.out.println("control = "+control);
 		}
@@ -132,7 +132,7 @@ public class ControleurServlet extends HttpServlet {
 				if(espaceActuel.equals("b")) {
 					existe = log.connecterUtilisateur(request);
 					if(!existe) {
-						System.out.println("user pas dans baase de donnees");
+						System.out.println("user pas dans base de donnees");
 						
 						response.setContentType("text/html;charset=ISO-8859-1");
 					    PrintWriter out = response.getWriter();
@@ -146,6 +146,7 @@ public class ControleurServlet extends HttpServlet {
 					    response.sendRedirect("/E-Associations/benevole.do");     
 					}
 				}
+				
 				else if(espaceActuel.equals("a")) {
 					existe = log.connecterAssociation(request);
 					if(!existe) {
@@ -154,12 +155,13 @@ public class ControleurServlet extends HttpServlet {
 						response.setContentType("text/html;charset=ISO-8859-1");
 					    PrintWriter out = response.getWriter();
 						out.println("<script>alert(\"Login ou Mot de passe erroné(s) \")</script>");
-						
 						response.sendRedirect("/E-Associations/connecter.do");
 					}
+					
 					else {
 						System.out.println("je serai redirigé vers mon espace association");
-						response.sendRedirect("/E-Associations/association.do");
+						System.out.println("sfsfsf");
+						response.sendRedirect("Header.jsp");
 					}
 				}
 				

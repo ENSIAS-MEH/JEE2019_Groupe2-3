@@ -28,15 +28,13 @@
   
 				<div class="row clearfix">
 				
-					<ul class="row2tab clearfix">
-					
+		    <ul class="row2tab clearfix">
 			<li ><i  class="fa fa-check"></i> <a href = "ProfileAssociation.jsp"  style="text-decoration: none"> Mes Evenements </a> </li>
 			<li><i class="fa fa-list-alt"></i><a href = "ModifierProfile.jsp" class="active" style="text-decoration: none"> modifier mon profile</a> </li>
 			<li><i class="fa fa-check">   </i><a href = "AjouterEvenement.jsp" style="text-decoration: none" > Ajouter un evenement</a> </li>
 			<li><i class="fa fa-thumbs-o-up "></i><a href = "ConsulterDon.jsp" style="text-decoration: none" >  Consulter mes dons</a> </li>
-				
-					</ul>
-				</div>
+			</ul>
+		    </div>
 			</div>
 			<span class="smalltri">
 				
@@ -74,7 +72,7 @@
   
  
   </div>
-      <button value = "modifier_pic" name ="action"> modifier </button>
+     <!--  <button value = "modifier_pic" name ="action"> modifier </button>  -->
     </form>
   
  <form action="AssociationServlet" method="post">
@@ -159,6 +157,7 @@
     
     <label for="option2" class="trr"> Email</label>
     <article>
+ <form action="AssociationServlet" method="post">
      
     <div class="tr wwq">
   	<label class="label" for="input">email actuel</label>	
@@ -167,14 +166,15 @@
     <label class="label" for="input">nouveau email</label>	
 	<input class="input e" type="email" id="input" name="nv_email">
           
-    <label class="label" for="input">confirmer mot de passe</label>	
-	<input class="input e" type="password" id="input" name= "confirm_pass_email">
+  
 
       </div>
        <button name = "action" value = "update_email">Modifier L'Email</button>
+           </form>
+       
     </article>
   </section>
-  <section id="section3">
+<!--   <section id="section3">
     <input class="t" type="radio" name="sections" id="option3">
     <label for="option3" class="trr">mot de passe</label>
     <article>
@@ -193,7 +193,7 @@
       </div> 
       <button value="change_password" name ="action" >Changer le MDP</button>
     </article>
-  </section>
+  </section> -->
  
 </div>
   

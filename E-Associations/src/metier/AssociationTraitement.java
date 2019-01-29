@@ -6,14 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import dao.AssociationConnection;
+import dao.BenevoleConnection;
 import dao.SingletonConnection;
 import web.AssociationModel;
+import web.BenevoleModel;
 import web.CategorieModel;
 import web.ParticiperModel;
 
 public class AssociationTraitement {
 	
 	private static Connection conx = SingletonConnection.getConnection();
+	private  AssociationConnection bnconx = new AssociationConnection();
 
 	public static void addassociation(AssociationModel assoc, String s) throws FileNotFoundException{
 	    InputStream img = new FileInputStream(new File(s));
@@ -117,7 +122,7 @@ public class AssociationTraitement {
 } 
 	
 	
-        public static  AssociationModel  Association(int id_assoc) {
+        public static  AssociationModel  Association(int id_authentif) {
 		
 		java.sql.ResultSet rs;
 		java.sql.PreparedStatement ps;
@@ -126,7 +131,7 @@ public class AssociationTraitement {
 
 		
 		try {
-			ps = (PreparedStatement) conx.prepareStatement("select * from association where id_assoc ="+id_assoc);
+			ps = (PreparedStatement) conx.prepareStatement("select * from association where id_assoc ="+id_authentif);
 			   ps.executeQuery();
 			   rs=ps.getResultSet();
 				AssociationModel am =new AssociationModel();
@@ -141,6 +146,12 @@ public class AssociationTraitement {
 				  am.setTele_assoc(rs.getString("tele_assoc"));
 				  am.setFax_assoc(rs.getString("fax_assoc")); 
 				  am.setEffectif(rs.getInt("effectif"));
+				  am.setSite_web(rs.getString("site_web"));
+				  am.setId_assoc(rs.getInt("id_assoc"));
+				  am.setId_authentif(rs.getInt("id_authentif"));
+				  am.setId_categorie(rs.getInt("id_categorie"));
+				  
+				  System.out.println("salma");
 				  
 			  } 
 			  
@@ -223,6 +234,30 @@ public  static void upadatAssociation1(AssociationModel assoc ,int id_assoc) thr
 			}
 
 }
+
+public  static void upadatEmailAssociation1(String s ,int id_assoc) throws FileNotFoundException {
+	
+	java.sql.PreparedStatement ps;
+
+	AssociationTraitement at = new AssociationTraitement();
+	
+	try {
+		
+		ps = (PreparedStatement) conx.prepareStatement("UPDATE association SET email_assoc = ? WHERE id_assoc= ?");
+	
+		
+     	ps.setString(1,s);
+        ps.setInt(2, id_assoc);
+		ps.executeUpdate(); 
+		ps.close();}
+
+	         catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+}
+
 	
 public  static void upadatPic(int id_assoc, String s ) throws FileNotFoundException {
 	
@@ -236,7 +271,9 @@ public  static void upadatPic(int id_assoc, String s ) throws FileNotFoundExcept
 	
 		
     
-        ps.setBinaryStream(10,img, (int)(new File(s).length()));  
+        ps.setBinaryStream(1,img, (int)(new File(s).length()));  
+        ps.setInt(2, id_assoc);
+        System.out.println("sd");
 		ps.executeUpdate(); 
 		ps.close();}
 
@@ -293,26 +330,21 @@ public static ArrayList<ParticiperModel> getAllParticipants(String type ){
 	return AM;
 } 
 	
+
+
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		AssociationModel am = new AssociationModel();
 		AssociationTraitement at = new AssociationTraitement();
-		am.setDate_creation("333");
-		am.setDescription_assoc("333");
-		am.setEffectif(4);
-		am.setEmail_assoc("444");
-		am.setFax_assoc("444");
-		am.setId_assoc(2);
-		am.setId_categorie(1);
-		am.setNom_assoc("44");
-		am.setPresident_assoc("333");
-		am.setSite_web("333");
-		am.setTele_assoc("333");
 		
+	//	am = at.ChercherAssociationIdauthentif(2);
+		
+		System.out.println(am.getDate_creation());
 		//at.addassociation(am, "logo_CINDH.png");
-		at.upadatAssociation(am, 2, "logo_CINDH.png");
-		/*am=at.Association(2);	
-		System.out.println(am);*/
+	//	at.upadatAssociation(am, 2, "logo_CINDH.png");
+		//at.upadatPic(2,  "IMG-20180903-WA0028.jpg");
+		am=at.Association(1);	
+		System.out.println(am);
 		
 	}
 }

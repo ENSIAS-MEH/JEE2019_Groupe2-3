@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import web.AssociationModel;
+import web.BenevoleModel;
+
 public class AssociationConnection {
 	
 	private static Connection conx = SingletonConnection.getConnection();
@@ -13,7 +16,7 @@ public class AssociationConnection {
 	private List<String> associations;
 	
 	
-	public AssociationConnection() {
+		public AssociationConnection() {
 		super();
 		this.associations = getAssociationsNames();
 		this.totalAssociations = this.associations.size();
@@ -57,6 +60,29 @@ public class AssociationConnection {
 		return matched;
 	}
 	
+	
+	public static AssociationModel ChercherAssociationIdauthentif(int id_authentif){
+		AssociationModel association = new AssociationModel();
+		
+		try {
+			
+			PreparedStatement ps;
+			ps = (PreparedStatement) conx.prepareStatement("select * from association where id_authentif = ?");
+			ps.setInt(1, id_authentif);		
+			ResultSet rs = 	ps.executeQuery();
+			while(rs.next()) {
+				association = new AssociationModel(rs.getInt("id_assoc"), rs.getString("nom_assoc"), rs.getString("nom_assoc"),
+						rs.getString("tele_assoc"), rs.getString("president_assoc"), rs.getString("description_assoc") , 
+						rs.getInt("effectif") ,rs.getString("fax_assoc"), rs.getString("site_web"),rs.getString("email_assoc"),rs.getInt(id_authentif),
+						rs.getInt("id_categorie"));
+			}
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return association;
+	}
 
 
 }

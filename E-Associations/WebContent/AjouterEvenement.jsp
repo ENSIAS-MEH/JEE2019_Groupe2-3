@@ -85,8 +85,6 @@
 			</div>	
 
 <button type="submit" name="action" value="ajouter_event" class="bouton-contact">Ajouter</button>
-
-
 	</div>
 	
 	</form>	

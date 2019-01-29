@@ -59,29 +59,31 @@ public class AssociationServlet extends HttpServlet {
         pm.setDate_debut(request.getParameter("debut_event"));
         pm.setDate_fin(request.getParameter("fin_event"));
         pm.setLieu_projet(request.getParameter("lieu_event"));
-          ProjetTraitement.addProjet(pm);
+        ProjetTraitement.addProjet(pm);
 		RequestDispatcher r2;
         r2=request.getRequestDispatcher("AjouterEvenement.jsp");
 		r2.forward(request, response);
 		
 		}
 	    
-	    if (action.equals("ajouter_pic")){
+   if (action.equals("ajouter_pic")){
 	    
 	    	PhotoModel pm = new PhotoModel();
-           ProjetTraitement.addPhotos(pm,request.getParameter("img"),1);	  
+            ProjetTraitement.addPhotos(pm,request.getParameter("logo"),2);	  
 	    	AlbumModel album = new AlbumModel();
 	    	album.setNom_album(request.getParameter("nom_album"));
 	    	ProjetTraitement.addAlbum(album,2);
+	    	RequestDispatcher r2;
+	        r2=request.getRequestDispatcher("AjouterEvenement.jsp");
+			r2.forward(request, response);
 	    
 	    }
+   
 	    if (action.equals("modifier_profile")){
 	     
-		    	
-			AssociationModel am = new AssociationModel();
+	    	AssociationModel am = new AssociationModel();
             AssociationTraitement at = new AssociationTraitement();
     		//at.addassociation(am, "logo_CINDH.png");
-            
             am.setDate_creation(request.getParameter("date_assoc"));
             am.setDescription_assoc(request.getParameter("description_assoc"));
             am.setEmail_assoc(request.getParameter("email"));
@@ -97,14 +99,21 @@ public class AssociationServlet extends HttpServlet {
 	    if (action.equals("modifier_pic")){
 		    
 			AssociationModel am = new AssociationModel();
-            AssociationTraitement at = new AssociationTraitement();
-            at.upadatPic(2,request.getParameter("logo"));
+            AssociationTraitement.upadatPic(2,request.getParameter("logo"));
             RequestDispatcher r2;
             r2=request.getRequestDispatcher("AjouterEvenement.jsp");
     		r2.forward(request, response);
 	    
 	    }
-		
+   if (action.equals("update_email")){
+		    
+			AssociationModel am = new AssociationModel();
+			AssociationTraitement.upadatEmailAssociation1(request.getParameter("nv_email"), 2);
+            RequestDispatcher r2;
+            r2=request.getRequestDispatcher("AjouterEvenement.jsp");
+    		r2.forward(request, response);
+	    
+	    }
 		
 		
 		
