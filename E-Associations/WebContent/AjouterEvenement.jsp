@@ -16,14 +16,12 @@
 <body>
 
 
-<div class="container">
-		
+  <div class="container">
 	<div class="innerwrap">
 		<section class="section1 clearfix">
 		
 				<div class="row clearfix">
-				
-					<ul class="row2tab clearfix">
+				<ul class="row2tab clearfix">
 						<li ><i  class="fa fa-list-alt"></i> <a href = "ProfileAssociation.jsp"  style="text-decoration: none"> Mes Evenements </a> </li>
 						<li><i class="fa fa-heart"></i><a href = "ModifierProfile.jsp"  style="text-decoration: none" > Modifier mon profile</a> </li>
 						<li><i class="fa fa-check"></i><a href = "AjouterEvenement.jsp"  style="text-decoration: none" class="active" > Ajouter un evenement</a> </li>
@@ -104,8 +102,8 @@
                 <div class="validation"></div>
 			</div>
 			<div class="form-group">
-            choisir images : <input type="file" name="img" multiple>
-            <input class="bouton-contact" name ="action" value ="Confirmer" type="submit">
+            choisir images : <input type="file" name="logo" multiple>
+            <input class="bouton-contact" name ="action" value ="ajouter_pic" type="submit">
             			</div>	
             
            </form>

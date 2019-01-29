@@ -23,9 +23,8 @@ public class AssociationTraitement {
 
 		try {
 			PreparedStatement ps;
-			ps = (PreparedStatement) conx.prepareStatement("insert into association values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-
+		    	ps = (PreparedStatement) conx.prepareStatement("insert into association values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			
 			    ps.setInt(1,assoc.getId_assoc());
 		     	ps.setString(2,assoc.getNom_assoc());
 		     	ps.setString(3,assoc.getDate_creation());
@@ -50,7 +49,7 @@ public class AssociationTraitement {
 			}
 		
 	}
-	
+
 	public static ArrayList<AssociationModel> getAllAssociations(){
 		java.sql.PreparedStatement ps;
 		ArrayList<AssociationModel> AM = new ArrayList<AssociationModel> ();
@@ -190,7 +189,64 @@ public  static void upadatAssociation(AssociationModel assoc ,int id_assoc,Strin
 			}
 
 }
+
+
+public  static void upadatAssociation1(AssociationModel assoc ,int id_assoc) throws FileNotFoundException {
+		
+		java.sql.PreparedStatement ps;
 	
+		AssociationTraitement at = new AssociationTraitement();
+		
+		try {
+			
+			ps = (PreparedStatement) conx.prepareStatement("UPDATE association SET nom_assoc= ? ,date_creation=? , tele_assoc = ?"
+					+ " , president_assoc= ? ,description_assoc =? ,effectif= ? , fax_assoc = ? , site_web = ? "
+					+ ",email_assoc = ? WHERE id_assoc= ?");
+		
+			
+	     	ps.setString(1,assoc.getNom_assoc());
+	     	ps.setString(2,assoc.getDate_creation());
+	     	ps.setString(3,assoc.getTele_assoc());
+	     	ps.setString(4,assoc.getPresident_assoc());
+	     	ps.setString(5,assoc.getDescription_assoc());
+	     	ps.setInt(6,assoc.getEffectif());
+	     	ps.setString(7,assoc.getFax_assoc());
+	     	ps.setString(8,assoc.getSite_web());
+	     	ps.setString(9,assoc.getEmail_assoc());
+            ps.setInt(10, id_assoc);
+			ps.executeUpdate(); 
+			ps.close();}
+
+		         catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+}
+	
+public  static void upadatPic(int id_assoc, String s ) throws FileNotFoundException {
+	
+	java.sql.PreparedStatement ps;
+    InputStream img = new FileInputStream(new File(s));
+	AssociationTraitement at = new AssociationTraitement();
+	
+	try {
+		
+		ps = (PreparedStatement) conx.prepareStatement("UPDATE association SET logo_assoc= ?  WHERE id_assoc= ?");
+	
+		
+    
+        ps.setBinaryStream(10,img, (int)(new File(s).length()));  
+		ps.executeUpdate(); 
+		ps.close();}
+
+	         catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+}
+
 public static void deleteAssoc(int id_assoc) {
 
 	java.sql.PreparedStatement ps;
@@ -244,17 +300,17 @@ public static ArrayList<ParticiperModel> getAllParticipants(String type ){
 		am.setDate_creation("333");
 		am.setDescription_assoc("333");
 		am.setEffectif(4);
-		am.setEmail_assoc("333");
-		am.setFax_assoc("333");
+		am.setEmail_assoc("444");
+		am.setFax_assoc("444");
 		am.setId_assoc(2);
 		am.setId_categorie(1);
-		am.setNom_assoc("333");
+		am.setNom_assoc("44");
 		am.setPresident_assoc("333");
 		am.setSite_web("333");
 		am.setTele_assoc("333");
 		
 		//at.addassociation(am, "logo_CINDH.png");
-		//at.upadatAssociation(am, 2, "logo_CINDH.png");
+		at.upadatAssociation(am, 2, "logo_CINDH.png");
 		/*am=at.Association(2);	
 		System.out.println(am);*/
 		
