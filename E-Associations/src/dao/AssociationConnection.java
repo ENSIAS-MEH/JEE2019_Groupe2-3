@@ -61,8 +61,7 @@ public class AssociationConnection {
 		return matched;
 	}
 	
-	
-<<<<<<< HEAD
+
 	public static AssociationModel ChercherAssociationIdauthentif(int id_authentif){
 		AssociationModel association = new AssociationModel();
 		
@@ -84,7 +83,7 @@ public class AssociationConnection {
 		}	
 		
 		return association;
-=======
+}
 	
 	public static void ajoutAssociation(String nom_assoc,String date_creation,String tele_assoc,String president_assoc,String description_assoc,
 			String fax_assoc,String site_web,String email_assoc,String effectif,int  id_authentif,String  id_categorie ,InputStream imageis){
@@ -118,7 +117,6 @@ public class AssociationConnection {
 			e.printStackTrace();
 		}	
 		
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 	}
 
 

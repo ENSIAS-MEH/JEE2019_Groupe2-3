@@ -24,8 +24,8 @@
 	  LoginConnection lc = new LoginConnection(); 
       AssociationModel association = new AssociationModel();
       AssociationTraitement at =  new AssociationTraitement();
-	  int id_bene = lc.savoirIdUser((String)session.getAttribute("login"),(String)session.getAttribute("mdp_login"),"a");
-	  association = AssociationTraitement.Association(id_bene);
+	  int id_authen = lc.savoirIdUser((String)session.getAttribute("login"),(String)session.getAttribute("mdp_login"),"a");
+	  association = AssociationTraitement.Association(id_authen);
 	  
 	%>
 		
@@ -36,12 +36,13 @@
 				<div class="row grid clearfix">
 				
 					<div class="col2 first">
+					
+				<img src="data:image/jpg;base64,<%=association.BlobToString()%>"  height="200" width="200" alt=""/>
 			         	
-					<img src="${association.BlobToString}" alt="">
 				         <h1><%=association.getId_authentif()%></h1>
 						<h1><%=association.getNom_assoc() %></h1>
 						<p>${association.getDescription_assoc()}</p>
-						<span> Ajouter un don </span>
+					
 				    	</div>
 					<div class="col2 last">
 						<div class="grid clearfix">

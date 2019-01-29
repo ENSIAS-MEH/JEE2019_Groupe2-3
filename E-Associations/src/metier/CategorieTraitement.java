@@ -39,27 +39,5 @@ public class CategorieTraitement {
 		return cat;
         } 
 
-	
-<<<<<<< HEAD
-	    public static void main(String[] args) {
-=======
 
-	
-	public static void main(String[] args) {
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
-		
-		CategorieTraitement am = new CategorieTraitement();
-
-		
-		
-	     	ArrayList<CategorieModel> cat = new ArrayList<CategorieModel> ();
-		    cat = am.getAllCategories();
-			for(CategorieModel cate : cat) {
-			System.out.println(cate.getNom_categorie());}
-		
-		
-		
-		
-		
-	}
 }

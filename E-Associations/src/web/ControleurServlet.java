@@ -64,11 +64,10 @@ public class ControleurServlet extends HttpServlet {
 			System.out.println("control = "+control);
 		}
 		else  if(path.equals("/association.do")) {
-<<<<<<< HEAD
+
 			request.getRequestDispatcher("Header.jsp").forward(request, response);
-=======
+
 			request.getRequestDispatcher("ProfileAssociation.jsp").forward(request, response);
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 			control = "associationSession";
 			System.out.println("control = "+control);
 		}
