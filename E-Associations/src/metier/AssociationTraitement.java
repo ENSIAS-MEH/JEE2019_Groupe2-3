@@ -7,13 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-=======
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 import dao.AssociationConnection;
 import dao.BenevoleConnection;
 import dao.SingletonConnection;
@@ -25,9 +23,7 @@ import web.ParticiperModel;
 public class AssociationTraitement {
 	
 	private static Connection conx = SingletonConnection.getConnection();
-<<<<<<< HEAD
 	private  AssociationConnection bnconx = new AssociationConnection();
-=======
 	private  AssociationConnection assoconx = new AssociationConnection();
 	
 	
@@ -46,7 +42,6 @@ public class AssociationTraitement {
 	    return result; 
 	}
 	
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 
 	public static void addassociation(AssociationModel assoc, String s) throws FileNotFoundException{
 	    InputStream img = new FileInputStream(new File(s));

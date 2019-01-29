@@ -62,7 +62,6 @@ public class AssociationConnection {
 	}
 	
 	
-<<<<<<< HEAD
 	public static AssociationModel ChercherAssociationIdauthentif(int id_authentif){
 		AssociationModel association = new AssociationModel();
 		
@@ -84,8 +83,7 @@ public class AssociationConnection {
 		}	
 		
 		return association;
-=======
-	
+	}	
 	public static void ajoutAssociation(String nom_assoc,String date_creation,String tele_assoc,String president_assoc,String description_assoc,
 			String fax_assoc,String site_web,String email_assoc,String effectif,int  id_authentif,String  id_categorie ,InputStream imageis){
 		int effect = Integer.parseInt(effectif);
@@ -95,8 +93,6 @@ public class AssociationConnection {
 			
 			PreparedStatement ps;
 			ps = (PreparedStatement) conx.prepareStatement("insert into association values(NULL,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-
 			    
 		     	ps.setString(1,nom_assoc);
 		     	ps.setString(2,date_creation);
@@ -118,7 +114,6 @@ public class AssociationConnection {
 			e.printStackTrace();
 		}	
 		
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 	}
 
 

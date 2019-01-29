@@ -40,13 +40,9 @@ public class CategorieTraitement {
         } 
 
 	
-<<<<<<< HEAD
-	    public static void main(String[] args) {
-=======
 
 	
 	public static void main(String[] args) {
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 		
 		CategorieTraitement am = new CategorieTraitement();
 

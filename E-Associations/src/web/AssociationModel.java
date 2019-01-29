@@ -132,10 +132,7 @@ public class AssociationModel {
 		this.email_assoc = email_assoc;
 		this.id_authentif = id_authentif;
 		this.id_categorie = id_categorie;
-<<<<<<< HEAD
-=======
 		
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 	}
 	public AssociationModel() {
 		super();

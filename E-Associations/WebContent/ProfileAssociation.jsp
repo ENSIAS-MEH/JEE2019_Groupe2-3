@@ -19,8 +19,8 @@
 </head>
 <body>
 
-
-<div class="container">
+ 
+<div class="container" style="padding : 0px 0px 0px ;">
 		
 	<div class="innerwrap">
 		<section class="section1 clearfix">

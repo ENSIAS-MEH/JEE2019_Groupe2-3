@@ -19,9 +19,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-<div class="container">
-		
-	<div class="innerwrap">
+<div class="container" style="padding : 0px 0px 0px ;">
+
+	<div class="innerwrap" >
 	
 		<section class="section1 clearfix">
 
@@ -44,7 +44,7 @@
 		</section>
 		 
   <div class="sttngs">
-    <h2>SETTINGS</h2>
+    <h2>Configuration</h2>
   <div class="tabordion">
   <section id="section1">
     <input class="t" type="radio" name="sections" id="option1" checked>
