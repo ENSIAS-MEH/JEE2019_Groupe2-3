@@ -64,15 +64,10 @@ public class ControleurServlet extends HttpServlet {
 			System.out.println("control = "+control);
 		}
 		else  if(path.equals("/association.do")) {
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 			request.getRequestDispatcher("Header.jsp").forward(request, response);
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
+
 			request.getRequestDispatcher("ProfileAssociation.jsp").forward(request, response);
 			control = "associationSession";
 			System.out.println("control = "+control);
@@ -173,7 +168,6 @@ public class ControleurServlet extends HttpServlet {
 					existe = log.connecterUtilisateur(request);
 					if(!existe) {
 						System.out.println("user pas dans base de donnees");
-						
 						response.setContentType("text/html;charset=ISO-8859-1");
 					    PrintWriter out = response.getWriter();
 						out.println("<script>alert(\"Login ou Mot de passe erroné(s) \")</script>");
@@ -201,7 +195,7 @@ public class ControleurServlet extends HttpServlet {
 					else {
 						System.out.println("je serai redirigé vers mon espace association");
 						System.out.println("sfsfsf");
-						response.sendRedirect("Header.jsp");
+						response.sendRedirect("ProfileAssociation.jsp");
 					}
 				}
 				

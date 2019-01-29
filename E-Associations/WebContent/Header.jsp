@@ -37,7 +37,7 @@
 				
 					<div class="col2 first">
 					
-				<img src="data:image/jpg;base64,<%=association.BlobToString()%>"  height="200" width="200" alt=""/>
+			<img src="data:image/jpg;base64,<%=association.BlobToString()%>"  height="200" width="200" alt=""/> 
 			         	
 				         <h1><%=association.getId_authentif()%></h1>
 						<h1><%=association.getNom_assoc() %></h1>

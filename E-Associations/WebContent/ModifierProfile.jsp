@@ -48,7 +48,7 @@
   <div class="tabordion">
   <section id="section1">
     <input class="t" type="radio" name="sections" id="option1" checked>
-    <label for="option1" class="trr"> Account</label>
+    <label for="option1" class="trr">Account</label>
     <article>
   
     <div class="frm">     

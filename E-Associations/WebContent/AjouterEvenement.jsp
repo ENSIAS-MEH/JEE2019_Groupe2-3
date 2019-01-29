@@ -16,7 +16,7 @@
 <body>
 
 
-  <div class="container">
+<div class="container" style="padding : 0px 0px 0px ;">
 	<div class="innerwrap">
 		<section class="section1 clearfix">
 		
@@ -67,7 +67,7 @@
 			<div class="form-group">
 			<p>date_fin <span>*</span></p>	
 			<span class="icon-case"><i class="fa fa-envelope-o"></i></span>
-                <input type="date" name="fin_event"  data-rule="email" data-msg="Vérifiez votre saisie sur les champs : Le champ 'date fin' est obligatoire."/>
+                <input type="date" name = "fin_event"  data-rule="email" data-msg="Vérifiez votre saisie sur les champs : Le champ 'date fin' est obligatoire."/>
                 <div class="validation"></div>
 			</div>	
 
@@ -108,7 +108,7 @@
       	</div>
 	
 	
-
+</div>
   
 </body>
 </html>

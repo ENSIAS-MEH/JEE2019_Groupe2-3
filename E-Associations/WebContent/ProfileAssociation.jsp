@@ -44,7 +44,6 @@
 			</span>
 			
 		</section>
-		
 		<section class="section2 clearfix">
 			<div class="grid">
 				<div class="col3 first">
