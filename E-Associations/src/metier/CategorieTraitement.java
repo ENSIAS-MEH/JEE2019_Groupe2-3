@@ -32,10 +32,7 @@ public class CategorieTraitement {
              cat.add(c);
             }
             return cat ;
-            }
-			
-			
-		catch (SQLException e) {
+        } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
