@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+
 import dao.SingletonConnection;
 import web.AssociationModel;
 import web.CategorieModel;
@@ -23,15 +26,13 @@ public class CategorieTraitement {
 			rs = ps.executeQuery();
             while(rs.next()){
             	CategorieModel c=new CategorieModel();
-             c.setNom_categorie(rs.getString("nom_categorie"));     
+             c.setNom_categorie(rs.getString("nom_categorie")); 
+             c.setId_categorie(rs.getInt("id_categorie"));
             
              cat.add(c);
             }
             return cat ;
-            }
-			
-			
-		catch (SQLException e) {
+        } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -39,7 +40,13 @@ public class CategorieTraitement {
         } 
 
 	
+<<<<<<< HEAD
 	    public static void main(String[] args) {
+=======
+
+	
+	public static void main(String[] args) {
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 		
 		CategorieTraitement am = new CategorieTraitement();
 

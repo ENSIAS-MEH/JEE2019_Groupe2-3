@@ -7,6 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+=======
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
+
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 import dao.AssociationConnection;
 import dao.BenevoleConnection;
 import dao.SingletonConnection;
@@ -18,15 +25,32 @@ import web.ParticiperModel;
 public class AssociationTraitement {
 	
 	private static Connection conx = SingletonConnection.getConnection();
+<<<<<<< HEAD
 	private  AssociationConnection bnconx = new AssociationConnection();
+=======
+	private  AssociationConnection assoconx = new AssociationConnection();
+	
+	
+	public static String firstWord(String input) {
+	    String result = input;  // if no space found later, input is the first word
+
+	    for(int i = 0; i < input.length(); i++)
+	    {
+	        if(input.charAt(i) == ' ')
+	        {
+	            result = input.substring(0, i);
+	            break;
+	        }
+	    }
+
+	    return result; 
+	}
+	
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 
 	public static void addassociation(AssociationModel assoc, String s) throws FileNotFoundException{
 	    InputStream img = new FileInputStream(new File(s));
-	
-
-		
-
-		try {
+	try {
 			PreparedStatement ps;
 		    	ps = (PreparedStatement) conx.prepareStatement("insert into association values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			
@@ -329,6 +353,50 @@ public static ArrayList<ParticiperModel> getAllParticipants(String type ){
 	}
 	return AM;
 } 
+
+public void ajoutAssoWeb(HttpServletRequest request) throws IOException, ServletException {
+	LoginTraitement lt = new LoginTraitement();
+	InputStream imageis = null;
+
+	String nom_assoc, president_assoc, description_assoc, date_creation, email_assoc, tele_assoc, fax_assoc, login, mdp_login
+	, site_web,id_categorie;
+	int id_authentif;
+	String effectif;							
+	Part filePart = request.getPart("photo");	 						
+    if (filePart != null) {
+    	System.out.println(filePart.getName());
+    	System.out.println(filePart.getSize());
+    	System.out.println(filePart.getContentType());
+		imageis = filePart.getInputStream();
+	}
+    //récuperer les données
+    nom_assoc = request.getParameter("nom_assoc");
+    president_assoc = request.getParameter("president_assoc");
+    description_assoc = request.getParameter("description_assoc");
+    date_creation = request.getParameter("date_creation");
+    email_assoc= request.getParameter("email_assoc");					
+    tele_assoc = request.getParameter("tele_assoc");
+    fax_assoc = request.getParameter("fax_assoc");
+    effectif=request.getParameter("effectif");
+    site_web=request.getParameter("site_web");
+    id_categorie=request.getParameter("id_categorie");
+    mdp_login = request.getParameter("mdp_login");
+    login = request.getParameter("login");
+    id_authentif = lt.creerAuthentificationTr(login, mdp_login, "a");
+    
+    String id_cat = firstWord(id_categorie);
+    
+    	if (imageis != null) {
+    	//insérer les données dans la base de données
+    	AssociationConnection.ajoutAssociation( nom_assoc, date_creation, tele_assoc, president_assoc, description_assoc,
+    			fax_assoc, site_web, email_assoc, effectif, id_authentif, id_cat, imageis);
+    	
+	     } else {
+	    	 System.out.println("image upload error");
+	     }
+}
+
+
 	
 
 

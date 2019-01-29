@@ -433,7 +433,7 @@ nav .mbr-section-btn {
 				  <br>
 				  <br>
 				  <p class="lead">C'est une plateforme gratuite qui assure et facilite la connexion entre associations et autres utilisateurs afin de 
-      collecter les dons et rassembler les benevoles pour des activites caritatives à decrire en precisant 
+      collecter les dons et rassembler les benevoles pour des activites caritatives a decrire en precisant 
       ses details.</p>
       <br>
 				  <hr class="my-4">

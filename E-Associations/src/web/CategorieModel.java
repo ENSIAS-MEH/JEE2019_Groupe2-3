@@ -25,15 +25,17 @@ public class CategorieModel {
 	public void setNom_categorie(String nom_categorie) {
 		this.nom_categorie = nom_categorie;
 	}
+
+	public CategorieModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public CategorieModel(int id_categorie, String nom_categorie) {
 		super();
 		this.id_categorie = id_categorie;
 		this.nom_categorie = nom_categorie;
 	}
-	public CategorieModel() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	
 	

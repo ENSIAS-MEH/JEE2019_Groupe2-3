@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,6 +62,7 @@ public class AssociationConnection {
 	}
 	
 	
+<<<<<<< HEAD
 	public static AssociationModel ChercherAssociationIdauthentif(int id_authentif){
 		AssociationModel association = new AssociationModel();
 		
@@ -82,6 +84,41 @@ public class AssociationConnection {
 		}	
 		
 		return association;
+=======
+	
+	public static void ajoutAssociation(String nom_assoc,String date_creation,String tele_assoc,String president_assoc,String description_assoc,
+			String fax_assoc,String site_web,String email_assoc,String effectif,int  id_authentif,String  id_categorie ,InputStream imageis){
+		int effect = Integer.parseInt(effectif);
+		int id_cat = Integer.parseInt(id_categorie);
+
+		try {
+			
+			PreparedStatement ps;
+			ps = (PreparedStatement) conx.prepareStatement("insert into association values(NULL,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+
+			    
+		     	ps.setString(1,nom_assoc);
+		     	ps.setString(2,date_creation);
+		     	ps.setString(3,tele_assoc);
+		     	ps.setString(4,president_assoc);
+		     	ps.setString(5,description_assoc);
+		     	ps.setInt(6,effect);
+		     	ps.setString(7,fax_assoc);
+		     	ps.setString(8,site_web);
+		     	ps.setString(9,email_assoc);
+		     	ps.setInt(10, id_authentif);
+		     	ps.setInt(11,id_cat);
+                ps.setBlob(12, imageis);
+                
+	        ps.executeUpdate();
+
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 	}
 
 
