@@ -122,7 +122,7 @@ public class AssociationModel {
 	}
 	public AssociationModel(int id_assoc, String nom_assoc, String date_creation, String tele_assoc,
 			String president_assoc, String description_assoc, int effectif, String fax_assoc, String site_web,
-			String email_assoc, int id_authentif, int id_categorie, byte[] logo) {
+			String email_assoc, int id_authentif, int id_categorie) {
 		super();
 		this.id_assoc = id_assoc;
 		this.nom_assoc = nom_assoc;
@@ -136,7 +136,7 @@ public class AssociationModel {
 		this.email_assoc = email_assoc;
 		this.id_authentif = id_authentif;
 		this.id_categorie = id_categorie;
-		this.logo = logo;
+		
 	}
 	public AssociationModel() {
 		super();

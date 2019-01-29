@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+
 import dao.SingletonConnection;
 import web.AssociationModel;
 import web.CategorieModel;
@@ -37,6 +40,8 @@ public class CategorieTraitement {
 		}
 		return cat;
 } 
+
+	
 
 	
 	public static void main(String[] args) {

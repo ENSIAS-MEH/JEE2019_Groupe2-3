@@ -2,7 +2,9 @@ package web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import metier.AssociationTraitement;
 import metier.BenevoleTraitement;
+import metier.CategorieTraitement;
 import metier.LoginTraitement;
 
 
@@ -33,7 +37,22 @@ public class ControleurServlet extends HttpServlet {
 			System.out.println("control = "+control);
 		}
 		else if(path.equals("/association_inscription.do")) {
-			request.getRequestDispatcher("inscription.jsp").forward(request, response);	
+			//==========
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+			ArrayList<CategorieModel> cat = new ArrayList<CategorieModel> ();
+	        CategorieTraitement ct = new CategorieTraitement();	
+			
+			cat = ct.getAllCategories();
+			for(CategorieModel cate : cat) {
+			System.out.println("love");
+			System.out.println(cate.getNom_categorie());}
+		    request.setAttribute("cat",cat);
+		    RequestDispatcher r2;
+		    r2=request.getRequestDispatcher("inscription.jsp");
+			r2.forward(request, response);
+			//=======
+			//request.getRequestDispatcher("inscription.jsp").forward(request, response);	
+			control="associationInscription";
 		} 
 		else if(path.equals("/benevole_inscription.do")) {
 			request.getRequestDispatcher("/benevole/inscriptionb.jsp").forward(request, response);	
@@ -96,6 +115,15 @@ public class ControleurServlet extends HttpServlet {
 			out.println("<script>alert(\"Vous êtes bien inscrit! Bienvenue \")</script>");      
 			
 		}	
+		else if (control.equals("associationInscription")){ 
+			
+			AssociationTraitement asso = new AssociationTraitement();
+			asso.ajoutAssoWeb(request);
+		    response.setContentType("text/html;charset=ISO-8859-1");
+		    PrintWriter out = response.getWriter();
+			out.println("<script>alert(\"Vous êtes bien inscrit! Bienvenue \")</script>");  
+			
+		}
 		else if(control.equals("choisirProfil")) {
 			
 			System.out.println("i am here in choixProfil");
