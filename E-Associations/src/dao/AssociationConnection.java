@@ -14,6 +14,7 @@ public class AssociationConnection {
 	
 	private static Connection conx = SingletonConnection.getConnection();
 	private int totalAssociations;
+	int g;
 	private List<String> associations;
 	
 	
