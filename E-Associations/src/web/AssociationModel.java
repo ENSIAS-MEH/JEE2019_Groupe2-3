@@ -36,7 +36,43 @@ public class AssociationModel {
 	private String email_assoc;
 	private int id_authentif;
 	private int id_categorie;
-	private byte[] logo;
+	private Blob logo;
+	
+	
+	
+	private String base64Image;
+
+	 
+    public String BlobToString() throws SQLException, IOException {
+    	
+        InputStream inputStream = logo.getBinaryStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int bytesRead = -1;
+         
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);                  
+        }
+         
+        byte[] imageBytes = outputStream.toByteArray();
+        String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                     
+        inputStream.close();
+        outputStream.close();
+        return base64Image;
+    }
+    
+    public String getBase64Image() {
+        return base64Image;
+    }
+ 
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
+	
+	
+	
+	
 	
 	public int getId_assoc() {
 		return id_assoc;
@@ -110,10 +146,10 @@ public class AssociationModel {
 	public void setId_categorie(int id_categorie) {
 		this.id_categorie = id_categorie;
 	}
-	public byte[] getLogo() {
+	public Blob getLogo() {
 		return logo;
 	}
-	public void setLogo(byte[] logo) {
+	public void setLogo(Blob logo) {
 		this.logo = logo;
 	}
 	public AssociationModel(int id_assoc, String nom_assoc, String date_creation, String tele_assoc,
@@ -132,7 +168,11 @@ public class AssociationModel {
 		this.email_assoc = email_assoc;
 		this.id_authentif = id_authentif;
 		this.id_categorie = id_categorie;
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 	}
 	public AssociationModel() {
 		super();

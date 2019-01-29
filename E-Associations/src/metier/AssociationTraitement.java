@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +25,13 @@ import web.ParticiperModel;
 
 public class AssociationTraitement {
 	
+<<<<<<< HEAD
 	private static Connection conx = SingletonConnection.getConnection();
 	private  AssociationConnection bnconx = new AssociationConnection();
+=======
+	private static Connection conx = SingletonConnection.getConnection();
+	private  AssociationConnection bnconx = new AssociationConnection();
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 	private  AssociationConnection assoconx = new AssociationConnection();
 	
 	
@@ -42,6 +50,10 @@ public class AssociationTraitement {
 	    return result; 
 	}
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 
 	public static void addassociation(AssociationModel assoc, String s) throws FileNotFoundException{
 	    InputStream img = new FileInputStream(new File(s));
@@ -88,7 +100,7 @@ public class AssociationTraitement {
              c.setPresident_assoc(rs.getString("president_assoc"));   
              c.setDescription_assoc(rs.getString("description_assoc")); 
              c.setDate_creation(rs.getString("date_creation"));
-             c.setLogo(rs.getBytes("logo_assoc"));  
+             c.setLogo(rs.getBlob("logo_assoc"));  
              c.setEmail_assoc(rs.getString("email_assoc"));  
              c.setTele_assoc(rs.getString("tele_assoc"));
              c.setFax_assoc(rs.getString("fax_assoc")); 
@@ -121,7 +133,7 @@ public class AssociationTraitement {
              c.setPresident_assoc(rs.getString("president_assoc"));   
              c.setDescription_assoc(rs.getString("description_assoc")); 
              c.setDate_creation(rs.getString("date_creation"));
-             c.setLogo(rs.getBytes("logo_assoc"));  
+             c.setLogo(rs.getBlob("logo_assoc"));  
              c.setEmail_assoc(rs.getString("email_assoc"));  
              c.setTele_assoc(rs.getString("tele_assoc"));
              c.setFax_assoc(rs.getString("fax_assoc")); 
@@ -150,7 +162,7 @@ public class AssociationTraitement {
 
 		
 		try {
-			ps = (PreparedStatement) conx.prepareStatement("select * from association where id_assoc ="+id_authentif);
+			ps = (PreparedStatement) conx.prepareStatement("select * from association where id_authentif ="+id_authentif);
 			   ps.executeQuery();
 			   rs=ps.getResultSet();
 				AssociationModel am =new AssociationModel();
@@ -160,7 +172,7 @@ public class AssociationTraitement {
 				  am.setPresident_assoc(rs.getString("president_assoc"));   
 				  am.setDescription_assoc(rs.getString("description_assoc")); 
 				  am.setDate_creation(rs.getString("date_creation"));
-				  am.setLogo(rs.getBytes("logo_assoc"));  
+				  am.setLogo(rs.getBlob("logo"));  
 				  am.setEmail_assoc(rs.getString("email_assoc"));  
 				  am.setTele_assoc(rs.getString("tele_assoc"));
 				  am.setFax_assoc(rs.getString("fax_assoc")); 
@@ -169,9 +181,7 @@ public class AssociationTraitement {
 				  am.setId_assoc(rs.getInt("id_assoc"));
 				  am.setId_authentif(rs.getInt("id_authentif"));
 				  am.setId_categorie(rs.getInt("id_categorie"));
-				  
-				  System.out.println("salma");
-				  
+				  				  
 			  } 
 			  
 			  ps.close();
@@ -391,23 +401,4 @@ public void ajoutAssoWeb(HttpServletRequest request) throws IOException, Servlet
 	     }
 }
 
-
-	
-
-
-	public static void main(String[] args) throws FileNotFoundException {
-		
-		AssociationModel am = new AssociationModel();
-		AssociationTraitement at = new AssociationTraitement();
-		
-	//	am = at.ChercherAssociationIdauthentif(2);
-		
-		System.out.println(am.getDate_creation());
-		//at.addassociation(am, "logo_CINDH.png");
-	//	at.upadatAssociation(am, 2, "logo_CINDH.png");
-		//at.upadatPic(2,  "IMG-20180903-WA0028.jpg");
-		am=at.Association(1);	
-		System.out.println(am);
-		
-	}
 }

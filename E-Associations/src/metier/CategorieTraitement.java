@@ -39,8 +39,12 @@ public class CategorieTraitement {
 		return cat;
         } 
 
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 
+<<<<<<< HEAD
 	
 	public static void main(String[] args) {
 		
@@ -58,4 +62,6 @@ public class CategorieTraitement {
 		
 		
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
 }

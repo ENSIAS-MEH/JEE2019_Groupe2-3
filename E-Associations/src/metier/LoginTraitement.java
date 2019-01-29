@@ -52,6 +52,7 @@ public class LoginTraitement {
         	HttpSession session=request.getSession();
             session.setAttribute("login",login); 
             session.setAttribute("mdp_login", mdp);
+            System.out.println("association existe is not null");
         }
         return existe;
 	}
