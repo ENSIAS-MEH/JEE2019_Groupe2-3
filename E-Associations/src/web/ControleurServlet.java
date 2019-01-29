@@ -64,7 +64,7 @@ public class ControleurServlet extends HttpServlet {
 			System.out.println("control = "+control);
 		}
 		else  if(path.equals("/association.do")) {
-			request.getRequestDispatcher("/association/ProfileAssociation.jsp").forward(request, response);
+			request.getRequestDispatcher("ProfileAssociation.jsp").forward(request, response);
 			control = "associationSession";
 			System.out.println("control = "+control);
 		}
