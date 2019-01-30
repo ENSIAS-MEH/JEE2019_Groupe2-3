@@ -97,26 +97,31 @@ b.italic {
            </header> 		
        </section>   
        <br><br><br>
+       
+       
        <ul class="ul">
-  		<li class="li"><a class="active" href="/E-Associations/profil.do">Consulter le Profil</a></li>
+  		<li class="li"><a class="active" href="/E-Associations/benevole.do">Consulter le Profil</a></li>
   		<li class="li"><a href="/E-Associations/activites.do">Consulter vos activites</a></li>
   		<li class="li"><a href="/E-Associations/participations.do">Participer un projet</a></li>
   		<li class="li"><a href="#messagerie">Messagerie</a></li>
-  		  		<li class="li"><a href="#messagerie">  
-  		  		   <form class="form-inline my-2 my-lg-0"> 
+  		<li class="li"><a href="#messagerie">  
+  		  		 <form class="form-inline my-2 my-lg-0"> 
                        <input class="form-control mr-sm-2" type="text" id="associ" name="associ"/> 
                        
                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> 
                        Recherche</button> 
                        
                                       
-                   </form>  </a></li>
-  		
-  		<li class="li"><a href="#reussites">Calendrier</a></li>
+                   </form>   </a></li>
+ 
   		<li class="li"><a href="/E-Associations/modifierprofilebenevole.do" >Modifier Profil</a></li>
   		<li class="li"><a href="/E-Associations/index.do" style="color: red;">Se Deconnecter</a></li>
   		<li style="border-bottom: 10px" class="li"><a href="">ENSIAS &copy; AL Irfane Rabat 2018</a></li>
 	  </ul>
+	 
+	 
+	 
+	 
 	 
 	  <div style="margin-left:25%;padding:1px 16px;height:1000px;">
 	  <br>

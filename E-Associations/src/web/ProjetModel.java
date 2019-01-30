@@ -58,7 +58,7 @@ public class ProjetModel {
 	
 	
 	public String getType_event() {
-		return nom_projet;
+		return type_event;
 	}
 	public void setType_event(String type_event) {
 		this.type_event = type_event;

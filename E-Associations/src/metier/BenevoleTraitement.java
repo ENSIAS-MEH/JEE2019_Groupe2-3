@@ -13,6 +13,8 @@ import javax.servlet.http.Part;
 
 import dao.BenevoleConnection;
 import web.BenevoleModel;
+import web.ParticiperModel;
+import web.ProjetModel;
 
 
 @MultipartConfig(maxFileSize = 16177215) 
@@ -101,15 +103,49 @@ public class BenevoleTraitement {
 		
 	}
 
-	public  static void upadatPicBenevole(String cin, InputStream photo ) {
+	
+
+	public  static void upadatPicBenevole(HttpServletRequest request,String cin) {
 		try {
-			bnconx.upadatPicBenevole(cin,photo);
+			InputStream image = null;
+			
+			Part filePart = request.getPart("photo");
+			
+		    if (filePart != null) {
+		    	System.out.println(filePart.getName());
+		    	System.out.println(filePart.getSize());
+		    	System.out.println(filePart.getContentType());
+				image = filePart.getInputStream();
+			}
+		    
+			BenevoleConnection.upadatPicBenevole(cin,image);
+			
+			
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServletException e) {
 			e.printStackTrace();
 		}
 
 
 	}
+		
+
+	public static ParticiperModel getBenevoleParticipation(String cin, int id_projet){
+		ParticiperModel paticipation =bnconx.getBenevoleParticipation(cin, id_projet);
+		return paticipation;
+	}
+	
+	public static ArrayList<ProjetModel> getBenevoleProjets(String cin){
+		ArrayList<ProjetModel> projets=bnconx.getBenevoleProjetsinfo(cin);
+		return projets;
+		
+		
+	}
+
+
 	
 
 }

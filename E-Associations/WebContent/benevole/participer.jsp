@@ -96,21 +96,20 @@ tr:nth-child(even) {background-color: #f2f2f2;}
        </section>   
        <br><br><br>
      <ul class="ul">
-  		<li class="li"><a  href="/E-Associations/profil.do">Consulter le Profil</a></li>
+  		<li class="li"><a  href="/E-Associations/benevole.do">Consulter le Profil</a></li>
   		<li class="li"><a  href="/E-Associations/activites.do">Consulter vos activites</a></li>
   		<li class="li"><a class="active"  href="/E-Associations/participations.do">Participer un projet</a></li>
   		<li class="li"><a href="#messagerie">Messagerie</a></li>
   		  		<li class="li"><a href="#messagerie">  
-  		  		   <form class="form-inline my-2 my-lg-0"> 
+  		  		 <form class="form-inline my-2 my-lg-0"> 
                        <input class="form-control mr-sm-2" type="text" id="associ" name="associ"/> 
                        
                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> 
                        Recherche</button> 
                        
                                       
-                   </form>  </a></li>
+                   </form>   </a></li>
   		
-  		<li class="li"><a href="#reussites">Calendrier</a></li>
   		<li class="li"><a href="/E-Associations/modifierprofilebenevole.do" >Modifier Profil</a></li>
   		<li class="li"><a href="/E-Associations/index.do" style="color: red;">Se Deconnecter</a></li>
   		<li style="border-bottom: 10px" class="li"><a href="">ENSIAS &copy; AL Irfane Rabat 2018</a></li>
@@ -118,21 +117,22 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 	 
 	  <div style="margin-left:25%;padding:1px 16px;height:1000px;">
 	  <br>
-	  <h3 style="text-align: center;">Vos activites</h3>
+	  <h3 style="text-align: center;">Participer à un projet</h3>
 	  	<section>
 	  	<!-- Section nombre de participations -->
 	  	    <h4>Nombre de participation aux projets : </h4><b><%= bt.getBnconx().savoirNombreParticipations(bm.getCin()) %> fois</b> 
 	  		<br>
 	  		<br>Rechercher un projet ?
-	  		<form action="">
+	  		<form action="ControleurServlet" method="post">
 	  		<br><input type="text" name="projet" id="projet" />
+	  		 
+	  		<button type="submit" name="detailsProjet" value="detailsProjet">Rechercher</button>
+	  		</form>
 	  		<script>
 				$("#projet").autocomplete("getdataProjet.jsp");
-			</script> 
-	  		<button type="button" name="detaisProjet" id="detailsProjet">Rechercher</button>
-	  		</form>
+			</script>
 	  		<br>
-	  		<br><button onclick="myFunction()">Cacher la liste des projets</button>
+	  		<br><button onclick="myFunction()">la liste de tous les  projets</button>
 	  		<div id="show" style="display:none">
 	  		<p><h4>Liste de tous les projets existants:</h4></p>
 	  		<p>
@@ -142,37 +142,23 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 	  			<table id="table1">
   					<tr>
  				    <th>Projet</th>
- 					<th>Details du projet</th>
- 					
+ 					<th>Durée</th>
+ 					<th>Lieu</th>
+ 					<th>Description</th>
   					</tr>
   					<%for(int i=0;i<listePj.size();i++){ 
   					  pm = listePj.get(i);
   					%>
   					<tr>
  				    <th><%= pm.getNom_projet() %></th>
- 				    <!--  <th><b>Du </b><br><%= pm.getDate_debut() %><br><b> Au</b><br><%= pm.getDate_fin() %></th>
+ 				    <th><b>Du </b><br><%= pm.getDate_debut() %><br><b> Au</b><br><%= pm.getDate_fin() %></th>
  					<th><%= pm.getLieu_projet() %></th>
- 					-->
  					<% String url ="/E-Associations/projet.do?id_project="+(i+1) ;%>
- 					<th><a href=<%=url %> id="<%=i%>">Voir details</a></th>
+ 					<th><%= pm.getDescription_projet() %></th>
   					</tr>
   					<%} %>
 				</table>
 	  		</p>
-	  		<%for(int i=0;i<listePj.size();i++){ %>
-	  		<script>
-	  				$("a").each(function ()
-	  				{
-	  				   $(this).trigger('click');//for clicking element
-	  				   var id = $(this).attr("id");
-	  				 <%session.setAttribute("id_projectt", ""+i+"");%>
-	  				});
-				<%//document.getElementById(<%=i).addEventListener("click", fct() {%>
-				<%//System.out.println("yess, clicked");%>
-				
-				<%//});%>
-			</script>
-			<%}%>
 	  		</div>
 	  		
 	  		<script type="text/javascript">

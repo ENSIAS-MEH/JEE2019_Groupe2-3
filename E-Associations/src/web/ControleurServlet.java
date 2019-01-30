@@ -90,14 +90,17 @@ public class ControleurServlet extends HttpServlet {
 			System.out.println("control = "+control);
 		} else if(path.equals("/activites.do")) {
 			request.getRequestDispatcher("/benevole/activites.jsp").forward(request, response);
+		
 	
 		}	else if(path.startsWith("/projet.do")) {
 			request.getRequestDispatcher("/projet/projet.jsp").forward(request, response);
 			
 		}	else if(path.equals("/participations.do")) {
-			request.getRequestDispatcher("/benevole/participer.jsp").forward(request, response);
-		
-		}	else if (path.equals("/modifierprofilebenevole.do")) {
+				request.getRequestDispatcher("/benevole/participer.jsp").forward(request, response);
+				control = "rechercherProjet";
+				System.out.println("------------------------------  control= "+control);
+				
+			}	else if (path.equals("/modifierprofilebenevole.do")) {
 			
 			request.getRequestDispatcher("/benevole/ModifierProfileBenevole.jsp").forward(request, response);
 			control = "modifierprofil";
@@ -252,7 +255,7 @@ public class ControleurServlet extends HttpServlet {
 					            image = new FileInputStream(new File(request.getParameter("photo")));
 			
 					            
-					            ben.upadatPicBenevole(bm.getCin(), image);
+					            ben.upadatPicBenevole(request, bm.getCin());
 						    
 						    }
 				
@@ -277,7 +280,19 @@ public class ControleurServlet extends HttpServlet {
 					response.sendRedirect("ProfileAssociation.jsp");
 	            
 			    }
-			}
+			}else if (control.equals("rechercherProjet")) {
+				System.out.println("-------------------------------------------------------------------------");
+				System.out.println("-----je suis dans poste");
+				if (request.getParameter("detailsProjet") != null){
+					System.out.println("--------------je suis dans projetServlet!!!!!!!");
+					String recupererTitre = (String) request.getParameter("projet");
+					System.out.println("_________ val recuperee = "+recupererTitre);
+					HttpSession session = request.getSession();
+					session.setAttribute("recupererTitre", recupererTitre);
+					
+					response.sendRedirect("/E-Associations/projet.do");
+				}
+			}  
 	   }
 	}
 

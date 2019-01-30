@@ -154,7 +154,8 @@ public class ProjetConnection {
 	
 	
 	public ArrayList<ProjetModel> getEvents(int id_assoc) {
-		ArrayList<ProjetModel>  projects = null;
+		ArrayList<ProjetModel> projects = new ArrayList<ProjetModel>();
+
 		ProjetModel projet = null;
 		
 		int id_projet = 0;
@@ -167,23 +168,8 @@ public class ProjetConnection {
 			while (rs.next()) {
 				System.out.println("il affiche des resultats");
 				id_projet = rs.getInt("id_projet");
-				
-				PreparedStatement pss = null;
-				try {
-					ps = (PreparedStatement) conx.prepareStatement("select * from projet where id_projet = ? ");
-					ps.setInt(1, id_projet);
-					ResultSet rss = pss.executeQuery();
-					while (rss.next()) {
-						projet = new ProjetModel(rss.getInt("id_projet"), rss.getString("nom_projet"), rss.getString("description_projet"),
-								rss.getString("date_debut"), rss.getString("date_fin"), rss.getString("lieu_projet"), 
-								rss.getString("type_event"), rss.getBlob("photo"));			
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				
+				projet = getprojet(id_projet);
+				projects.add(projet);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -191,8 +177,36 @@ public class ProjetConnection {
 		}
 		return projects;
 	}
-		
 	
+	public ProjetModel getprojet(int id_projet) {
+		ProjetModel projet = null;
+		PreparedStatement ps;
+		try {
+			ps = (PreparedStatement) conx.prepareStatement("select * from projet where id_projet = ? ");
+			ps.setInt(1, id_projet);
+			ResultSet rss = ps.executeQuery();
+			while (rss.next()) {
+				projet = new ProjetModel(rss.getInt("id_projet"), rss.getString("nom_projet"), rss.getString("description_projet"),
+						rss.getString("date_debut"), rss.getString("date_fin"), rss.getString("lieu_projet"), 
+						rss.getString("type_event"), rss.getBlob("photo"));			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return projet;
+	}
+		
+	public static void main(String args[]) {
+		ProjetConnection Pc = new ProjetConnection();
+		ArrayList<ProjetModel> projects = Pc.getEvents(1);
+
+			for(ProjetModel pm : projects){
+				String nom = pm.getNom_projet();
+				System.out.println("  " + nom);
+			}
+			
+	}
 	
 	
 	

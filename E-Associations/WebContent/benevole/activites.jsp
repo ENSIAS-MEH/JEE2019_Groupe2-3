@@ -22,8 +22,11 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 	<script src="js/jquery.autocomplete.js"></script> 
 	<title>Espace Bénévole</title>
+
+
 	
 </head>
+
 <style>
 body {
   margin: 0;
@@ -35,7 +38,7 @@ ul.ul {
   padding: 0;
   width: 25%;
   background-color: #f1f1f1;
-  position: fixed;
+  position:absolute;
   height: 100%;
   overflow: auto;
 }
@@ -94,9 +97,11 @@ tr:nth-child(even) {background-color: #f2f2f2;}
            </nav> 
            </header> 		
        </section>   
+       
        <br><br><br>
+       
            <ul class="ul">
-  		<li class="li"><a  href="/E-Associations/profil.do">Consulter le Profil</a></li>
+  		<li class="li"><a  href="/E-Associations/benevole.do">Consulter le Profil</a></li>
   		<li class="li"><a class="active"  href="/E-Associations/activites.do">Consulter vos activites</a></li>
   		<li class="li"><a href="/E-Associations/participations.do">Participer un projet</a></li>
   		<li class="li"><a href="#messagerie">Messagerie</a></li>
@@ -110,102 +115,99 @@ tr:nth-child(even) {background-color: #f2f2f2;}
                                       
                    </form>  </a></li>
   		
-  		<li class="li"><a href="#reussites">Calendrier</a></li>
   		<li class="li"><a href="/E-Associations/modifierprofilebenevole.do" >Modifier Profil</a></li>
   		<li class="li"><a href="/E-Associations/index.do" style="color: red;">Se Deconnecter</a></li>
   		<li style="border-bottom: 10px" class="li"><a href="">ENSIAS &copy; AL Irfane Rabat 2018</a></li>
 	  </ul>
 	 
+	 
+	 
 	  <div style="margin-left:25%;padding:1px 16px;height:1000px;">
 	  <br>
+	  
 	  <h3 style="text-align: center;">Vos activites</h3>
-	  	<section>
-	  	<!-- Section nombre de participations -->
-	  	    <h4>Nombre de participation aux projets : </h4><b><%= bt.getBnconx().savoirNombreParticipations(bm.getCin()) %> fois</b> 
-	  		<br>
-	  		<br>Rechercher un projet ?
-	  		<form action="">
-	  		<br><input type="text" name="projet" id="projet" />
-	  		<script>
-				$("#projet").autocomplete("getdataProjet.jsp");
-			</script> 
-	  		<button type="button" name="detaisProjet" id="detailsProjet">Rechercher</button>
-	  		</form>
-	  		<br>
-	  		<br><button onclick="myFunction()">Cacher la liste des projets</button>
-	  		<div id="show" style="display:none">
-	  		<p><h4>Liste de tous les projets existants:</h4></p>
-	  		<p>
-	  			<%listePj = new ArrayList<>();
-	  			  listePj = pc.getProjets();
-	  			%>
-	  			<table id="table1">
-  					<tr>
- 				    <th>Projet</th>
- 					<th>Details du projet</th>
- 					
-  					</tr>
-  					<%for(int i=0;i<listePj.size();i++){ 
-  					  pm = listePj.get(i);
-  					%>
-  					<tr>
- 				    <th><%= pm.getNom_projet() %></th>
- 				    <!--  <th><b>Du </b><br><%= pm.getDate_debut() %><br><b> Au</b><br><%= pm.getDate_fin() %></th>
- 					<th><%= pm.getLieu_projet() %></th>
- 					-->
- 					<% String url ="/E-Associations/projet.do?id_project="+(i+1) ;%>
- 					<th><a href=<%=url %> id="<%=i%>">Voir details</a></th>
-  					</tr>
-  					<%} %>
-				</table>
-	  		</p>
-	  		<%for(int i=0;i<listePj.size();i++){ %>
-	  		<script>
-	  				$("a").each(function ()
-	  				{
-	  				   $(this).trigger('click');//for clicking element
-	  				   var id = $(this).attr("id");
-	  				 <%session.setAttribute("id_projectt", ""+i+"");%>
-	  				});
-				<%//document.getElementById(<%=i).addEventListener("click", fct() {%>
-				<%//System.out.println("yess, clicked");%>
-				
-				<%//});%>
-			</script>
-			<%}%>
-	  		</div>
-	  		
-	  		<script type="text/javascript">
-	  		function myFunction() {
-	  		  var x = document.getElementById("show");
-	  		  if (x.style.display === "none") {
-	  		    x.style.display = "block";
-	  		  } else {
-	  		    x.style.display = "none";
-	  		  }
-	  		}
-	  		</script>
-	  	</section>
-	  	<section>
-	  	<!-- Section nombre de competences -->
-	  	<br><br>
-	  	
-	
-	  	</section>
-	  	<section>
-	  	<!-- Section calendrier -->
-	  	
-	  	</section>
+
+			<% 
+								String cin =bm.getCin();
+							ArrayList<ProjetModel> projets = bt.getBenevoleProjets(cin);
+	   	 
+	    %>
+	  	   <div class="accordion" id="accordionExample">
+	    	
+		<% for (ProjetModel proj : projets) { %>
+		
+		  <div class="card">
+		    <div class="card-header" id="headingOne">
+		      <h2 class="mb-0">
+		        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+		          <%=proj.getNom_projet()%>
+		        </button>
+		      </h2>
+		    </div>
+		
+		    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+		      <div class="card-body">
+		      
+		      
+		      	                <div class=" col-md-9 col-lg-9 "> 
+	                  <table class="table table-user-information">
+	                    <tbody>
+	                    	
+	                	
+		            	<tr>
+	                        <td style="font-size: 14px ;"><b> Description : </b></td>
+	                        <td style="font-size: 14px ;"><%=proj.getDescription_projet()%></td>
+	                      </tr>
+	                  
+	                   
+	                       <tr>
+			                     <td style="font-size: 14px ;"><b>Date début : </b></td>
+			                     <td style="font-size: 14px ;"><%= proj.getDate_debut()%></td>
+	                     </tr>
+
+								 <tr>
+			                     <td style="font-size: 14px ;"><b>Date fin: </b></td>
+			                     <td style="font-size: 14px ;"><%=proj.getDate_fin()%></td>
+	                     </tr>
+	                     <tr>
+	                        <td style="font-size: 14px ;"><b> Lieu : </b></td>
+	                        <td style="font-size: 14px ;"><%=proj.getLieu_projet()%></td>
+	                      </tr>
+	                      <% ParticiperModel participation = bt.getBenevoleParticipation(bm.getCin(), proj.getId_projet()); %>
+	                       <tr>
+	                        <td style="font-size: 14px ;"><b> Type de Participation: </b></td>
+	                        <td style="font-size: 14px ;"><%=participation.getType_participation()%>
+	                        </td>
+	                      </tr>
+	                      
+	                        <tr>
+	                        <td style="font-size: 14px ;"><b> Montant : </b></td>
+	                        <td style="font-size: 14px ;"><%=participation.getMontant()%></td>
+	                      </tr>
+	                     
+	                    </tbody>
+	                  </table>
+		      </div>
+		      
+		      
+		      
+		      </div>
+		    </div>
+		  </div>
+	  
+	  
+	  <%} %>
 	  </div>
 
-
-       
-       
-       
-       
-       
-       
-       
-          
+     </div>  
+     
+     
+     
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
 </body>
 </html>

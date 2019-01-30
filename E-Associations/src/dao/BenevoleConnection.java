@@ -16,6 +16,8 @@ import java.util.Base64;
 import javax.servlet.http.Part;
 
 import web.BenevoleModel;
+import web.ParticiperModel;
+import web.ProjetModel;
 
 public class BenevoleConnection {
 	
@@ -203,6 +205,99 @@ public  static void upadatPicBenevole (String cin , InputStream photo) throws Fi
 		}
 
 }
+
+
+
+
+public static ArrayList<Integer> returnidprojets(String cin){
+	ArrayList<Integer> ids=new ArrayList<Integer>();
+	int id;
+	java.sql.PreparedStatement ps;
+	try {
+		
+		ps = (PreparedStatement) conx.prepareStatement("select id_projet from participer where cin = ?");
+		ps.setString(1, cin);
+		ResultSet rs = 	ps.executeQuery();
+		while(rs.next()) {
+			id = rs.getInt("id_projet")	;
+			ids.add(id);
+		}
+		
+		ps.close();}
+
+	         catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+	
+	
+	return ids;
+	
+	
+}
+
+
+public static ArrayList<ProjetModel> getBenevoleProjetsinfo(String cin){
+	
+	
+	ArrayList<Integer> ids = returnidprojets( cin);
+	ArrayList<ProjetModel> projets=new ArrayList<ProjetModel> ();
+	ProjetModel projet = null;
+	java.sql.PreparedStatement ps;
+	try {
+		for(int id:ids) {
+		ps = (PreparedStatement) conx.prepareStatement("select * from projet WHERE id_projet =?");
+		ps.setInt(1, id);
+		ResultSet rs = 	ps.executeQuery();
+		while(rs.next()) {
+			projet = new ProjetModel(rs.getInt("id_projet"), rs.getString("nom_projet"), rs.getString("description_projet"),
+					rs.getString("date_debut"), rs.getString("date_fin"), rs.getString("lieu_projet"), 
+					rs.getString("type_event"), rs.getBlob("photo"));			
+			
+			projets.add(projet);
+		}
+		
+		ps.close();}
+	}
+
+	         catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+	
+	
+	return projets;
+	
+	
+}
+
+public static ParticiperModel getBenevoleParticipation(String cin, int id_projet){
+
+	ParticiperModel participation = new ParticiperModel();
+	
+	java.sql.PreparedStatement ps;
+	try {
+		
+		ps = (PreparedStatement) conx.prepareStatement("select * from participer WHERE cin= ? and id_projet=?");
+		ps.setString(1, cin);
+		ps.setInt(2, id_projet);
+		
+		ResultSet rs = 	ps.executeQuery();
+		while(rs.next()) {
+			participation = new ParticiperModel(rs.getString("cin"), rs.getInt("id_projet")	,rs.getString("type_participation"),rs.getFloat("montant"));
+			
+		}
+		ps.executeUpdate(); 
+		ps.close();}
+
+	         catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	return participation;
+	
+}
+
 
 
 
