@@ -96,7 +96,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
        </section>   
        <br><br><br>
            <ul class="ul">
-  		<li class="li"><a  href="/E-Associations/profil.do">Consulter le Profil</a></li>
+  		<li class="li"><a  href="/E-Associations/benevole.do">Consulter le Profil</a></li>
   		<li class="li"><a class="active"  href="/E-Associations/activites.do">Consulter vos activites</a></li>
   		<li class="li"><a href="/E-Associations/participations.do">Participer un projet</a></li>
   		<li class="li"><a href="#messagerie">Messagerie</a></li>
