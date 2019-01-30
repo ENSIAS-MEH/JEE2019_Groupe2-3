@@ -27,6 +27,9 @@
 	  association = AssociationTraitement.Association(id_authen);
 	  
 	%>
+	
+	
+	
 <div class="container" style="padding :10px 0px 30px 0px ;">
 		
 	<div class="innerwrap">

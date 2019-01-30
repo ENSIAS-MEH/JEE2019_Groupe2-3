@@ -8,12 +8,12 @@
 <link rel="stylesheet" type="text/css" href="Ajout.css">
 <jsp:include page="Header.jsp" />
 
-
-    <script src="jquery.js"></script> 
-    
+    <script src="jquery.js"></script>     
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
+
+
 
 
 <div class="container" style="padding : 0px 0px 0px ;">
