@@ -142,7 +142,7 @@ b.italic {
                                       
                    </form>  </a></li>
   		
-  		<li class="li"><a href="#reussites">Calendrier</a></li>
+  		
   		<li class="li"><a class="active" href="/E-Associations/modifierprofilebenevole.do" >Modifier Profil</a></li>
   		<li class="li"><a href="/E-Associations/index.do" style="color: red;">Se Deconnecter</a></li>
   		<li style="border-bottom: 10px" class="li"><a href="">ENSIAS &copy; AL Irfane Rabat 2018</a></li>
@@ -166,6 +166,7 @@ b.italic {
     <article>
   
     <div class="frm">   
+<<<<<<< HEAD
             	        <form method="post" action="ControleurServlet" enctype="multipart/form-data">        
 <div id='profile-upload'>
 
@@ -189,6 +190,27 @@ b.italic {
       <button value = "modifier_pic" name ="modifier_pic" class="btn btn-sm" style="margin-left: 200px;"> modifier </button>
    </div>
     </form>
+=======
+  <form method="post" action="ControleurServlet" enctype="multipart/form-data">        
+				<div id='profile-upload'>
+								<div class="hvr-profile-img">
+								  
+								  			<input type="file" name="photo" class="upload"  id="imag">
+								  
+								  			<div class="icon">
+								  					<div class="camera4"><span> </span></div>
+								  
+								  			</div>
+								
+								  </div>
+				  </div>
+				  
+				  <div>
+				      <button value = "modifier_pic" name ="modifier_pic" class="btn btn-sm" style="margin-left: 200px;"> modifier </button>
+				   </div>
+   
+ </form>
+>>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
     
     
     <div>

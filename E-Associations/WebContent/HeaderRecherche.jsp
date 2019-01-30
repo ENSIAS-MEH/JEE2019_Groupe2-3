@@ -10,15 +10,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <title>Insert title here</title>
 </head>
 <body>
+
 <%
 
       AssociationModel association = new AssociationModel();
       AssociationTraitement at =  new AssociationTraitement();
-	 // association = AssociationTraitement.Association1(id_authen);
-	  
+	 String name = (String)request.getAttribute("name");
+	  association = AssociationTraitement.Association1(name);
+
 	%>
 
 <div class="container">
@@ -32,9 +35,10 @@
 				
 					<div class="col2 first">
 					
-			<img src="data:image/jpg;base64,<%=association.BlobToString()%>"  height="200" width="200" alt=""/> 
+			     <img src="data:image/jpg;base64,<%=association.BlobToString()%>"  height="200" width="200" alt=""/> 
 			         	
 						<h1><%=association.getNom_assoc() %></h1>
+						
 						<p><%=association.getDescription_assoc() %></p>
 				    	</div>
 					    <div class="col2 last">

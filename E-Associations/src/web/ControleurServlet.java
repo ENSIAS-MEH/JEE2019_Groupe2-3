@@ -132,7 +132,7 @@ public class ControleurServlet extends HttpServlet {
 			control = "ConsulterDon";
 			System.out.println("control = "+control);	
 			
-		}  else {
+		} else {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
 	
@@ -158,7 +158,8 @@ public class ControleurServlet extends HttpServlet {
 					    PrintWriter out = response.getWriter();
 						out.println("<script>alert(\"Vous êtes bien inscrit! Bienvenue \")</script>");  
 			
-		}	else if(control.equals("choisirProfil")) {
+		}	
+		else if(control.equals("choisirProfil")) {
 			
 							System.out.println("i am here in choixProfil");
 							
@@ -240,25 +241,30 @@ public class ControleurServlet extends HttpServlet {
 					            
 					            ben.updateB(request, bm.getCin());
 					            
-					            
+					            //rediriger vers 
 								response.sendRedirect("/E-Associations/benevole.do");	            
 						    }
 						    
 						    
 						  
 							if(request.getParameter("modifier_pic") != null) {
-			
-							    
-						    	BenevoleModel bm = new BenevoleModel();
-					            BenevoleTraitement ben = new BenevoleTraitement();
-					            InputStream image = null;
-					            image = new FileInputStream(new File(request.getParameter("photo")));
-			
-					            
-					            ben.upadatPicBenevole(request, bm.getCin());
-						    
+		
+					         
+
+					            HttpSession session = request.getSession();
+						      	  LoginConnection lc = new LoginConnection(); 
+						      	  BenevoleModel bm = new BenevoleModel();
+						      	  BenevoleTraitement bt =  new BenevoleTraitement();
+						      	  int id_bene = lc.savoirIdUser((String)session.getAttribute("login"),(String)session.getAttribute("mdp_login"),"b");
+						      	  bm = bt.ChercherBenevoleparIdauthentif(id_bene);
+					           
+						      	  
+						      	  bt.upadatPicBenevole(request,bm.getCin());
+						      	  
+						      	response.sendRedirect("/E-Associations/benevole.do");
+
 						    }
-				
+			
 			} else if(control.equals("AjouterEvenement")) {
 				// ajouter_event
 				System.out.println("post du servlet control = ajouterEvent");
@@ -291,8 +297,9 @@ public class ControleurServlet extends HttpServlet {
 					session.setAttribute("recupererTitre", recupererTitre);
 					
 					response.sendRedirect("/E-Associations/projet.do");
-				}
+				
 			}  
+			}     
 	   }
 	}
 

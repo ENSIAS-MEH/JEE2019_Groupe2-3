@@ -174,7 +174,7 @@
 	<input class="input e" type="text" id="input" name = "email_actuel">
 	<input  type ="hidden" name="ass" value=<%=association.getId_assoc() %> ></input>
 
-    <label class="label" for="input">Nuveau Email</label>	
+    <label class="label" for="input">Nouveau Email</label>	
 	<input class="input e" type="email" id="input" name="nv_email">
           
   

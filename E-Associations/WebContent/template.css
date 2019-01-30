@@ -82,7 +82,7 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 .section1 .col2.first img {
 	border-radius: 50%;
 	margin: 0 20px;
-	width: 120px;
+	width: 90px;
 	border:2px solid #f1f1f1;
 	padding: 2px;
 	float: left;

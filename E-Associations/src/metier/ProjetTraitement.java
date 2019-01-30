@@ -8,7 +8,9 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,9 @@ import dao.ProjetConnection;
 import dao.SingletonConnection;
 import web.AlbumModel;
 import web.AssociationModel;
+
+import web.ParticiperModel;
+
 import web.ProjetModel;
 
 public class ProjetTraitement {
@@ -60,8 +65,7 @@ public class ProjetTraitement {
 
 			    ps.setInt(1,album.getId_album());
 		     	ps.setString(2,album.getNom_album());
-		       ps.setInt(3, id_projet);
-
+		        ps.setInt(3, id_projet);
 	            ps.executeUpdate();
 	            ps.close();
 
@@ -88,6 +92,7 @@ public class ProjetTraitement {
 		    	System.out.println(filePart.getContentType());
 				imageis = filePart.getInputStream();
 			}
+
 		    type_event = request.getParameter("type_event");
 		    lieu_event = request.getParameter("lieu_event");
 		    fin_event = request.getParameter("fin_event");
@@ -104,6 +109,31 @@ public class ProjetTraitement {
 			 Pc.organiser(id_projet, id_assoc);
 		    
 		}
+
+		
 	
+
+	public static void adddon(ParticiperModel model ) throws FileNotFoundException{
+
+		try {
+			PreparedStatement ps;
+			ps = (PreparedStatement) conx.prepareStatement("insert into participer values(?,?,?,?)");
+
+
+			    ps.setString(1,model.getCin());
+		     	ps.setInt(2,model.getId_projet());
+		        ps.setString(3, model.getType_participation());
+		        ps.setFloat(4, model.getMontant());
+	            ps.executeUpdate();
+	            ps.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+	
+		
 	
 }
