@@ -96,7 +96,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
        </section>   
        <br><br><br>
      <ul class="ul">
-  		<li class="li"><a  href="/E-Associations/profil.do">Consulter le Profil</a></li>
+  		<li class="li"><a  href="/E-Associations/benevole.do">Consulter le Profil</a></li>
   		<li class="li"><a  href="/E-Associations/activites.do">Consulter vos activites</a></li>
   		<li class="li"><a class="active"  href="/E-Associations/participations.do">Participer un projet</a></li>
   		<li class="li"><a href="#messagerie">Messagerie</a></li>
@@ -110,7 +110,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
                                       
                    </form>  </a></li>
   		
-  		<li class="li"><a href="#reussites">Calendrier</a></li>
+  		
   		<li class="li"><a href="/E-Associations/modifierprofilebenevole.do" >Modifier Profil</a></li>
   		<li class="li"><a href="/E-Associations/index.do" style="color: red;">Se Deconnecter</a></li>
   		<li style="border-bottom: 10px" class="li"><a href="">ENSIAS &copy; AL Irfane Rabat 2018</a></li>

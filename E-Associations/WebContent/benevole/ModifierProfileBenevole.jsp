@@ -31,6 +31,21 @@
 
 <title>Modifier Profil</title>
 </head>
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css"> 
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"> 
+  	<link rel="stylesheet" href="tether/tether.min.css">
+  	<link rel="stylesheet" href="css/bootstrap-grid.min.css">
+  	<link rel="stylesheet" href="css/bootstrap-reboot.min.css"> 
+  	<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script src="js/jquery.autocomplete.js"></script> 
+	
+	
+</head>
 
 <style>
 body {
@@ -41,7 +56,7 @@ ul.ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 25%;
+  width: 20%;
   background-color: #f1f1f1;
   position: fixed;
   height: 100%;
@@ -92,10 +107,10 @@ b.italic {
 	  bm = bt.ChercherBenevoleparIdauthentif(id_bene);
 	%>
 
-<div class="container">
+
 		
-	<div class="innerwrap">
 	
+	<section class="hero"> 
 		   <header> 
            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">    
                <a class="navbar-brand" href="#">E-Associations<img src="images/icon (3).png" alt="line"></a>       
@@ -105,9 +120,15 @@ b.italic {
                </button>                                     
            </nav> 
            </header> 
+	</section>
 				
-					 <ul class="ul">
-  		<li class="li"><a  href="/E-Associations/profil.do">Consulter le Profil</a></li>
+				<br><br><br>
+				
+		
+				
+				
+		 <ul class="ul">
+  		<li class="li"><a  href="/E-Associations/benevole.do">Consulter le Profil</a></li>
   		<li class="li"><a  href="/E-Associations/activites.do">Consulter vos activites</a></li>
   		<li class="li"><a   href="/E-Associations/participations.do">Participer un projet</a></li>
   		<li class="li"><a href="#messagerie">Messagerie</a></li>
@@ -121,23 +142,20 @@ b.italic {
                                       
                    </form>  </a></li>
   		
-  		<li class="li"><a href="#reussites">Calendrier</a></li>
+  		
   		<li class="li"><a class="active" href="/E-Associations/modifierprofilebenevole.do" >Modifier Profil</a></li>
   		<li class="li"><a href="/E-Associations/index.do" style="color: red;">Se Deconnecter</a></li>
   		<li style="border-bottom: 10px" class="li"><a href="">ENSIAS &copy; AL Irfane Rabat 2018</a></li>
 	  </ul>
 					
-						<span class="smalltri">
-				
+						<div class="innerwrap">
+		<span class="smalltri">	
 			<i class="fa fa-star"></i>
 			</span>
-	<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+ <div style="margin-left:25%; padding:1px ; height:3000px;">				
+					
 	
-		
-			
-		
-		
-	<section>
+	<section class="hero">
 		 
   <div class="sttngs">
     <h2>SETTINGS</h2>
@@ -148,68 +166,67 @@ b.italic {
     <article>
   
     <div class="frm">   
-            	        <form method="post" action="ControleurServlet" enctype="multipart/form-data">        
-<div id='profile-upload'>
-
-<div class="hvr-profile-img">
-  
-  <input type="file" name="photo" class="upload"  id="imag">
-  
-  <div class="icon">
-  <div class="camera4"><span></span></div>
-  
-  </div>
-  
-  <div>
-  </div>
-  
-  </div>
-  
- 
-  </div>
-      <button value = "modifier_pic" name ="modifier_pic"> modifier </button>
-    </form>
+  <form method="post" action="ControleurServlet" enctype="multipart/form-data">        
+				<div id='profile-upload'>
+								<div class="hvr-profile-img">
+								  
+								  			<input type="file" name="photo" class="upload"  id="imag">
+								  
+								  			<div class="icon">
+								  					<div class="camera4"><span> </span></div>
+								  
+								  			</div>
+								
+								  </div>
+				  </div>
+				  
+				  <div>
+				      <button value = "modifier_pic" name ="modifier_pic" class="btn btn-sm" style="margin-left: 200px;"> modifier </button>
+				   </div>
+   
+ </form>
     
     
     <div>
   
         	        <form method="post" action="ControleurServlet" enctype="multipart/form-data">
 <div class="tr">
-
+<div class="row">
+<div class="col">
 
 	<label class="label" for="input">Nom :</label>
-	<input class="input" type="text" id="input" name ="nom_ben" >
-	
-	
-		<label class="label" for="input">Prénom :</label>
-		  
-      
-	<input class="input texte"  type="text" id="input" name="prenom_ben">
-  
-  	<label class="label" for="input">Profession : </label>	
-	<input class="input" type="text" id="input" name = "profession_ben">
-  
-  <label class="label" for="input">Cin :</label>
-	<label class="label" id="input" name ="cin">  <%=bm.getCin() %> </label>
-	
-	
-		<label class="label" for="input">Sexe :</label>
-	<label class="label"  id="input" name ="sexe">  <%=bm.getSexe_ben()%> </label>
-	
-  
-	<label class="hidden" type="text" id="input" name ="sexe">  <%=bm.getId_authentif() %> </label>
-  
+	<input class="form-control" type="text" id="input" name ="nom_ben" >
+</div>
+<div class="col">
+	<label class="label" for="input">Prénom :</label>  
+	<input class="form-control "  type="text" id="input" name="prenom_ben">
   </div>
  
-  <br>
-  <label class="label" for="select">E-mail :</label>
-		<input class="input" type="text" id="input" name = "email_ben">	
+ </div>
+ <br>
+  	<label class="label" for="input">Profession : </label>	
+	<input class="form-control " type="text" id="input" name = "profession_ben">
  
-  <label class="label" for="select">Téléphone :</label>
-		<input class="input" type="text" id="input" name = "tele_ben">	
-	
+  <div>
+  
+	<label class="label" id="input" hidden="cin">  <%=bm.getCin() %> </label>
 
-  <button value = "modifier_profile" name ="modifier_profile">modifier</button>
+	<label class="label"  id="input" hidden ="sexe">  <%=bm.getSexe_ben()%> </label>
+	
+	
+  </div>
+  
+	<label class="label" id="input" hidden ="sexe">  <%=bm.getId_authentif() %> </label>
+  
+ <br>
+  <label class="label" for="select">E-mail :</label>
+		<input class="form-control" type="text" id="input" name = "email_ben">	
+  <br>
+  <label class="label" for="select">Téléphone :</label>
+		<input class="form-control " type="text" id="input" name = "tele_ben">	
+  </div>	
+
+  <button value = "modifier_profile" name ="modifier_profile" class="btn btn-sm">modifier</button>
       </form>
       
       </div>
@@ -217,13 +234,10 @@ b.italic {
       
       </article>
         </section>
-      
-      
+  
   
   <section id="section2">
-    
-   
-    
+
     <input class="t" type="radio" name="sections" id="option2">
     
    
@@ -267,23 +281,12 @@ b.italic {
   </section>
  
 </div>
-  
-  
-  </div>
     
-
+  </div>
 
 </section>
 
-
-
-
 </div>
-
-
-
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -291,10 +294,6 @@ b.italic {
 	
 	</script>
 	</div>
-</div>
-
-
-
 
 
 </body>
