@@ -166,29 +166,25 @@ b.italic {
     <article>
   
     <div class="frm">   
-            	        <form method="post" action="ControleurServlet" enctype="multipart/form-data">        
-<div id='profile-upload'>
-
-<div class="hvr-profile-img">
-  
-  <input type="file" name="photo" class="upload"  id="imag">
-  
-  <div class="icon">
-  <div class="camera4"><span></span></div>
-  
-  </div>
-  
-  <div>
-  </div>
-  
-  </div>
-  
- 
-  </div>
-  <div>
-      <button value = "modifier_pic" name ="modifier_pic" class="btn btn-sm" style="margin-left: 200px;"> modifier </button>
-   </div>
-    </form>
+  <form method="post" action="ControleurServlet" enctype="multipart/form-data">        
+				<div id='profile-upload'>
+								<div class="hvr-profile-img">
+								  
+								  			<input type="file" name="photo" class="upload"  id="imag">
+								  
+								  			<div class="icon">
+								  					<div class="camera4"><span> </span></div>
+								  
+								  			</div>
+								
+								  </div>
+				  </div>
+				  
+				  <div>
+				      <button value = "modifier_pic" name ="modifier_pic" class="btn btn-sm" style="margin-left: 200px;"> modifier </button>
+				   </div>
+   
+ </form>
     
     
     <div>

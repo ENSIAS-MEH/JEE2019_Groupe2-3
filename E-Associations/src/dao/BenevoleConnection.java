@@ -185,14 +185,14 @@ public void updateB(String cin, String nomb, String prenomb, String professionb,
 	
 }
 
-public  static void upadatPicBenevole (String cin , InputStream photo) throws FileNotFoundException {
+public  static void upadatPicBenevole (String cin , InputStream image) throws FileNotFoundException {
 	
 	java.sql.PreparedStatement ps;
 	try {
 		
 		ps = (PreparedStatement) conx.prepareStatement("UPDATE benevole SET image_b= ?  WHERE cin= ?");
 	
-		ps.setBlob(1, photo);
+		ps.setBlob(1, image);
 		ps.setString(2, cin);
 		
 		ps.executeUpdate(); 

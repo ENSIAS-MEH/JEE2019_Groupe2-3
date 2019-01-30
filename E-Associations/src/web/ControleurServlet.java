@@ -218,26 +218,30 @@ public class ControleurServlet extends HttpServlet {
 					            
 					            ben.updateB(request, bm.getCin());
 					            
-					            
+					            //rediriger vers 
 								response.sendRedirect("/E-Associations/benevole.do");	            
 						    }
 						    
 						    
 						  
 							if(request.getParameter("modifier_pic") != null) {
-			
-							    
-						    	BenevoleModel bm = new BenevoleModel();
+		
 					            BenevoleTraitement ben = new BenevoleTraitement();
-					            InputStream image = null;
-					            image = new FileInputStream(new File(request.getParameter("photo")));
-			
-					            
-					            ben.upadatPicBenevole(bm.getCin(), image);
+					            HttpSession session = request.getSession();
+						      	  LoginConnection lc = new LoginConnection(); 
+						      	  BenevoleModel bm = new BenevoleModel();
+						      	  BenevoleTraitement bt =  new BenevoleTraitement();
+						      	  int id_bene = lc.savoirIdUser((String)session.getAttribute("login"),(String)session.getAttribute("mdp_login"),"b");
+						      	  bm = bt.ChercherBenevoleparIdauthentif(id_bene);
+					           
+						      	  
+						      	  ben.upadatPicBenevole(request,bm.getCin());
+						      	  
+						      	response.sendRedirect("/E-Associations/benevole.do");
 						    
 						    }
 				
-			}     ////
+			}     
 	   }
 	}
 

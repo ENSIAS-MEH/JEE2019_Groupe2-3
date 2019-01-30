@@ -1,6 +1,8 @@
 
 package metier;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -101,10 +103,27 @@ public class BenevoleTraitement {
 		
 	}
 
-	public  static void upadatPicBenevole(String cin, InputStream photo ) {
+	public  static void upadatPicBenevole(HttpServletRequest request,String cin) {
 		try {
-			bnconx.upadatPicBenevole(cin,photo);
+			InputStream image = null;
+			
+			Part filePart = request.getPart("photo");
+			
+		    if (filePart != null) {
+		    	System.out.println(filePart.getName());
+		    	System.out.println(filePart.getSize());
+		    	System.out.println(filePart.getContentType());
+				image = filePart.getInputStream();
+			}
+		    
+			BenevoleConnection.upadatPicBenevole(cin,image);
+			
+			
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServletException e) {
 			e.printStackTrace();
 		}
 
