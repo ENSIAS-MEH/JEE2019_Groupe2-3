@@ -22,10 +22,10 @@
 		
 				<div class="row clearfix">
 				<ul class="row2tab clearfix">
-						<li ><i  class="fa fa-list-alt"></i> <a href = "ProfileAssociation.jsp"  style="text-decoration: none"> Mes Evenements </a> </li>
-						<li><i class="fa fa-heart"></i><a href = "ModifierProfile.jsp"  style="text-decoration: none" > Modifier mon profile</a> </li>
-						<li><i class="fa fa-check"></i><a href = "AjouterEvenement.jsp"  style="text-decoration: none" class="active" > Ajouter un evenement</a> </li>
-						<li><i class="fa fa-thumbs-o-up "></i><a href = "ConsulterDon.jsp"  style="text-decoration: none" >  Consulter mes dons</a> </li>
+						<li ><i  class="fa fa-list-alt"></i> <a href = "/E-Associations/ProfileAssociation.do"  style="text-decoration: none"> Mes Evenements </a> </li>
+						<li><i class="fa fa-heart"></i><a href = "/E-Associations/ModifierProfile.do"  style="text-decoration: none" > Modifier mon profile</a> </li>
+						<li><i class="fa fa-check"></i><a href = "/E-Associations/AjouterEvenement.do"  style="text-decoration: none" class="active" > Ajouter un evenement</a> </li>
+						<li><i class="fa fa-thumbs-o-up "></i><a href = "/E-Associations/ConsulterDon.do"  style="text-decoration: none" >  Consulter mes dons</a> </li>
 				
 					</ul>
 				</div>
@@ -36,15 +36,14 @@
 			</span>
 			
 		</section>  
-		<div style = "width:2000px; margin: auto;" >
-  <form action = "AssociationServlet" method="post">
+		<div style = "width:1000px; margin: auto;" >
+		
+      <form method="post" action="ControleurServlet" enctype="multipart/form-data">
 	    <h1>Ajouter des informations sur l'evenement  :</h1>
 	    
     <div class="contentform">
     	<div id="sendmessage">  </div>
 
-
-    	<div class="leftcontact">
 			      <div class="form-group">
 			        <p> Nom de l'evenement : <span>*</span></p>
 			        <span class="icon-case"><i class="fas fa-allergies	" style=" vertical-align: middle;"></i></span>
@@ -66,7 +65,7 @@
 			</div>
 
 			<div class="form-group">
-			<p>date_fin <span>*</span></p>	
+			<p>Date fin <span>*</span></p>	
 			<span class="icon-case"><i class="fa fa-envelope-o"></i></span>
                 <input type="date" name = "fin_event"  data-rule="email" data-msg="Vérifiez votre saisie sur les champs : Le champ 'date fin' est obligatoire."/>
                 <div class="validation"></div>
@@ -84,31 +83,19 @@
                 <input type="text" name="type_event"  value="Ajouter" data-msg="Vérifiez votre saisie sur les champs : Le champ 'type' est obligatoire."/>
                 <div class="validation"></div>
 			</div>	
-
-<button type="submit" name="action" value="ajouter_event" class="bouton-contact">Ajouter</button>
+			
+				<div class="form-group">
+							<p>choisir image : </p>	
+				
+            <input type="file" name="logo" multiple>
+            			</div>	
+	      <button class="bouton-contact" name="ajouter_event" value="ajouter_event" >Ajouter</button>
+	
 	</div>
 	
 	</form>	
 	
 
-	<div class="rightcontact">	
-	  <form action = "AssociationServlet" method="post">
-	
-            <div class="form-group">
-			<p>Nom de l'ablum  :  <span>*</span></p>
-			<span class="icon-case"><i class="fa fa-home" style=" vertical-align: middle;"></i></span>
-				<input type="text" name="nom_album"  data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'nom d'album' doit être renseigné."/>
-                <div class="validation"></div>
-			</div>
-			<div class="form-group">
-            choisir images : <input type="file" name="logo" multiple>
-            <input class="bouton-contact" name ="action" value ="ajouter_pic" type="submit">
-            			</div>	
-            
-           </form>
-      	</div>
-	
-	
 </div>
   
 </body>

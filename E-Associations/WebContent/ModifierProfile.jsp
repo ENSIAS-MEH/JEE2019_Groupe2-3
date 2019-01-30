@@ -38,10 +38,10 @@
 				<div class="row clearfix">
 				
 		    <ul class="row2tab clearfix">
-			<li ><i  class="fa fa-check"></i> <a href = "ProfileAssociation.jsp"  style="text-decoration: none"> Mes Evenements </a> </li>
-			<li><i class="fa fa-list-alt"></i><a href = "ModifierProfile.jsp" class="active" style="text-decoration: none"> modifier mon profile</a> </li>
-			<li><i class="fa fa-check">   </i><a href = "AjouterEvenement.jsp" style="text-decoration: none" > Ajouter un evenement</a> </li>
-			<li><i class="fa fa-thumbs-o-up "></i><a href = "ConsulterDon.jsp" style="text-decoration: none" >  Consulter mes dons</a> </li>
+			<li ><i  class="fa fa-check"></i> <a href = "/E-Associations/ProfileAssociation.do"  style="text-decoration: none"> Mes Evenements </a> </li>
+			<li><i class="fa fa-list-alt"></i><a href = "/E-Associations/ModifierProfile.do" class="active" style="text-decoration: none"> modifier mon profile</a> </li>
+			<li><i class="fa fa-check">   </i><a href = "/E-Associations/AjouterEvenement.do" style="text-decoration: none" > Ajouter un evenement</a> </li>
+			<li><i class="fa fa-thumbs-o-up "></i><a href = "/E-Associations/ConsulterDon.do" style="text-decoration: none" >  Consulter mes dons</a> </li>
 			</ul>
 		    </div>
 			</div>

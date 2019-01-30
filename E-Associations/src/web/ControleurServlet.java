@@ -19,6 +19,7 @@ import metier.AssociationTraitement;
 import metier.BenevoleTraitement;
 import metier.CategorieTraitement;
 import metier.LoginTraitement;
+import metier.ProjetTraitement;
 
 
 @WebServlet(urlPatterns = {"/ControleurServlet","*.do"})
@@ -37,8 +38,7 @@ public class ControleurServlet extends HttpServlet {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			control = "choisirProfil";
 			System.out.println("control = "+control);
-		}
-		else if(path.equals("/association_inscription.do")) {
+		}	else if(path.equals("/association_inscription.do")) {
 			//==========
 			response.getWriter().append("Served at: ").append(request.getContextPath());
 			ArrayList<CategorieModel> cat = new ArrayList<CategorieModel> ();
@@ -55,17 +55,19 @@ public class ControleurServlet extends HttpServlet {
 			//=======
 			//request.getRequestDispatcher("inscription.jsp").forward(request, response);	
 			control="associationInscription";
-		} 
-		else if(path.equals("/benevole_inscription.do")) {
+		
+		
+		} 	else if(path.equals("/benevole_inscription.do")) {
 			request.getRequestDispatcher("/benevole/inscriptionb.jsp").forward(request, response);	
 			control = "benevoleInscription"; 
-		}
-		else  if(path.equals("/connecter.do")) {
+		
+		
+		}	else  if(path.equals("/connecter.do")) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			control = "login";
 			System.out.println("control = "+control);
-		}
-		else  if(path.equals("/association.do")) {
+		
+		}	else  if(path.equals("/association.do")) {
 
 			request.getRequestDispatcher("Header.jsp").forward(request, response);
 
@@ -73,8 +75,8 @@ public class ControleurServlet extends HttpServlet {
 			request.getRequestDispatcher("ProfileAssociation.jsp").forward(request, response);
 			control = "associationSession";
 			System.out.println("control = "+control);
-		}
-		else  if(path.equals("/benevole.do")) {
+	
+		}	else  if(path.equals("/benevole.do")) {
 			
 			/*HttpSession session = request.getSession(true); 
 			String loginB = (String) session.getAttribute("login");
@@ -86,34 +88,51 @@ public class ControleurServlet extends HttpServlet {
 			//System.out.println("login session = "+loginB);
 			control = "benevoleSession";
 			System.out.println("control = "+control);
-		}
-		else if(path.equals("/activites.do")) {
+		} else if(path.equals("/activites.do")) {
 			request.getRequestDispatcher("/benevole/activites.jsp").forward(request, response);
-		}
-		else if(path.startsWith("/projet.do")) {
+	
+		}	else if(path.startsWith("/projet.do")) {
 			request.getRequestDispatcher("/projet/projet.jsp").forward(request, response);
 			
-		}
-		else if(path.equals("/participations.do")) {
+		}	else if(path.equals("/participations.do")) {
 			request.getRequestDispatcher("/benevole/participer.jsp").forward(request, response);
-		}
 		
-		else if (path.equals("/modifierprofilebenevole.do")) {
+		}	else if (path.equals("/modifierprofilebenevole.do")) {
 			
 			request.getRequestDispatcher("/benevole/ModifierProfileBenevole.jsp").forward(request, response);
 			control = "modifierprofil";
+			System.out.println("control = "+control);	
+			
+		} else if(path.equals("/AjouterEvenement.do")) {
+			
+			request.getRequestDispatcher("AjouterEvenement.jsp").forward(request, response);
+			control = "AjouterEvenement";
 			System.out.println("control = "+control);
 			
-		}
-		
-		else {
+			
+		} else if(path.equals("/ProfileAssociation.do")) {
+			
+			request.getRequestDispatcher("ProfileAssociation.jsp").forward(request, response);
+			control = "ProfileAssociation";
+			System.out.println("control = "+control);	
+			
+			
+		} else if(path.equals("/ModifierProfile.do")) {
+			
+			request.getRequestDispatcher("ModifierProfile.jsp").forward(request, response);
+			control = "ModifierProfile";
+			System.out.println("control = "+control);	
+			
+		} else if(path.equals("/ConsulterDon.do")) {
+			
+			request.getRequestDispatcher("ConsulterDon.jsp").forward(request, response);
+			control = "ConsulterDon";
+			System.out.println("control = "+control);	
+			
+		}  else {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
 	
-		
-		
-		
-		
 		
 	}
 
@@ -237,7 +256,28 @@ public class ControleurServlet extends HttpServlet {
 						    
 						    }
 				
-			}     ////
+			} else if(control.equals("AjouterEvenement")) {
+				// ajouter_event
+				System.out.println("post du servlet control = ajouterEvent");
+				
+				if(request.getParameter("ajouter_event") != null){
+					
+		            ProjetTraitement ben = new ProjetTraitement();
+
+		            HttpSession session = request.getSession();
+		            
+		            LoginConnection lc = new LoginConnection(); 
+		            AssociationModel association = new AssociationModel();
+		            AssociationTraitement at =  new AssociationTraitement();
+		      	  int id_authen = lc.savoirIdUser((String)session.getAttribute("login"),(String)session.getAttribute("mdp_login"),"a");
+		      	  association = AssociationTraitement.Association(id_authen);
+		            
+		            ben.ajouterEvent(request, association.getId_assoc());
+
+					response.sendRedirect("ProfileAssociation.jsp");
+	            
+			    }
+			}
 	   }
 	}
 
