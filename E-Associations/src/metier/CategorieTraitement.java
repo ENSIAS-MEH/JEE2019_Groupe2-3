@@ -39,22 +39,4 @@ public class CategorieTraitement {
 		return cat;
         } 
 
-
-	
-	public static void main(String[] args) {
-		
-		CategorieTraitement am = new CategorieTraitement();
-
-		
-		
-	     	ArrayList<CategorieModel> cat = new ArrayList<CategorieModel> ();
-		    cat = am.getAllCategories();
-			for(CategorieModel cate : cat) {
-			System.out.println(cate.getNom_categorie());}
-		
-		
-		
-		
-		
-	}
 }

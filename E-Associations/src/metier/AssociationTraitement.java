@@ -431,12 +431,6 @@ public void ajoutAssoWeb(HttpServletRequest request) throws IOException, Servlet
 	     }
 }
 
-public static void main(String[] args) {
-	
-	AssociationModel am = new AssociationModel();
-	AssociationTraitement at= new AssociationTraitement();
-	at.Association1("dd");
-	System.out.println(at.Association1("dd"));
 
-}
+
 }

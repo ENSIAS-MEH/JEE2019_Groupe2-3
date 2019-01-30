@@ -197,17 +197,6 @@ public class ProjetConnection {
 		return projet;
 	}
 		
-	public static void main(String args[]) {
-		ProjetConnection Pc = new ProjetConnection();
-		ArrayList<ProjetModel> projects = Pc.getEvents(1);
-
-			for(ProjetModel pm : projects){
-				String nom = pm.getNom_projet();
-				System.out.println("  " + nom);
-			}
-			
-	}
-	
 	
 	
 }

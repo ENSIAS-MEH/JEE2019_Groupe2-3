@@ -41,8 +41,7 @@ public class CategorieConnection {
 	// ajouter method for searching a cat 
 	
 	public static void addCategorie() {
-		// to do 
-		
+		// to do 		
 		
 	}
 	

@@ -25,13 +25,7 @@
 <link rel="stylesheet" type="text/css" href="Modifier.css">
 
 
-    <script src="jquery.js"></script> 
-    
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Modifier Profil</title>
-</head>
-<head>
 	<meta charset="ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> 
@@ -166,7 +160,7 @@ b.italic {
     <article>
   
     <div class="frm">   
-<<<<<<< HEAD
+
             	        <form method="post" action="ControleurServlet" enctype="multipart/form-data">        
 <div id='profile-upload'>
 
@@ -190,27 +184,8 @@ b.italic {
       <button value = "modifier_pic" name ="modifier_pic" class="btn btn-sm" style="margin-left: 200px;"> modifier </button>
    </div>
     </form>
-=======
-  <form method="post" action="ControleurServlet" enctype="multipart/form-data">        
-				<div id='profile-upload'>
-								<div class="hvr-profile-img">
-								  
-								  			<input type="file" name="photo" class="upload"  id="imag">
-								  
-								  			<div class="icon">
-								  					<div class="camera4"><span> </span></div>
-								  
-								  			</div>
-								
-								  </div>
-				  </div>
-				  
-				  <div>
-				      <button value = "modifier_pic" name ="modifier_pic" class="btn btn-sm" style="margin-left: 200px;"> modifier </button>
-				   </div>
-   
- </form>
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
+
+
     
     
     <div>

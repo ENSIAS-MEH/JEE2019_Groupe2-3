@@ -110,10 +110,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
                                       
                    </form>   </a></li>
   		
-<<<<<<< HEAD
-=======
-  		
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
+
   		<li class="li"><a href="/E-Associations/modifierprofilebenevole.do" >Modifier Profil</a></li>
   		<li class="li"><a href="/E-Associations/index.do" style="color: red;">Se Deconnecter</a></li>
   		<li style="border-bottom: 10px" class="li"><a href="">ENSIAS &copy; AL Irfane Rabat 2018</a></li>

@@ -105,31 +105,22 @@ b.italic {
   		<li class="li"><a href="/E-Associations/activites.do">Consulter vos activites</a></li>
   		<li class="li"><a href="/E-Associations/participations.do">Participer un projet</a></li>
   		<li class="li"><a href="#messagerie">Messagerie</a></li>
-<<<<<<< HEAD
+
   		<li class="li"><a href="#messagerie">  
   		  		 <form class="form-inline my-2 my-lg-0"> 
                        <input class="form-control mr-sm-2" type="text" id="associ" name="associ"/> 
-=======
   		  		<li class="li"><a href="#messagerie">  
   		  		
                     <form  class="form-inline my-2 my-lg-0" action = "AssociationServlet" method = "post"> 
-                    <input class="form-control mr-sm-2" type="text" id="associ" name="associ"/> 
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
                        
                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name ="action" value = "recherche">
                        <i class="fa fa-search" aria-hidden="true"></i> 
                        Recherche</button> 
                        
-<<<<<<< HEAD
                                       
-                   </form>   </a></li>
- 
-=======
-                                     
+                   </form>   </a></li>                                    
                    </form> </a></li>
-  		
-  		<li class="li"><a href="#reussites">Calendrier</a></li>
->>>>>>> branch 'master' of https://github.com/ENSIAS-MEH/JEE2019_Groupe2-3.git
+  	
   		<li class="li"><a href="/E-Associations/modifierprofilebenevole.do" >Modifier Profil</a></li>
   		<li class="li"><a href="/E-Associations/index.do" style="color: red;">Se Deconnecter</a></li>
   		<li style="border-bottom: 10px" class="li"><a href="">ENSIAS &copy; AL Irfane Rabat 2018</a></li>
