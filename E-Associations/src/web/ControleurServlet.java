@@ -105,7 +105,7 @@ public class ControleurServlet extends HttpServlet {
 			System.out.println("control = "+control);
 			
 		}
-		
+	
 		else {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
@@ -136,7 +136,8 @@ public class ControleurServlet extends HttpServlet {
 					    PrintWriter out = response.getWriter();
 						out.println("<script>alert(\"Vous êtes bien inscrit! Bienvenue \")</script>");  
 			
-		}	else if(control.equals("choisirProfil")) {
+		}	
+		else if(control.equals("choisirProfil")) {
 			
 							System.out.println("i am here in choixProfil");
 							
