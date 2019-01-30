@@ -350,16 +350,15 @@ public static ArrayList<ParticiperModel> getAllParticipants(String type ){
 
 public static  AssociationModel  Association1(String nom_assoc) {
 
-java.sql.ResultSet rs;
 java.sql.PreparedStatement ps;
 AssociationModel Cl=new AssociationModel();
    int l = 0;
 
 
 try {
-	ps = (PreparedStatement) conx.prepareStatement("select * from association where nom_assoc ="+nom_assoc);
-	   ps.executeQuery();
-	   rs=ps.getResultSet();
+	ps = (PreparedStatement) conx.prepareStatement("select * from association where nom_assoc = ?");
+	ps.setString(1, nom_assoc);		
+	ResultSet rs = 	ps.executeQuery();
 		AssociationModel am =new AssociationModel();
 	  while(rs.next()){
 		  
@@ -432,4 +431,12 @@ public void ajoutAssoWeb(HttpServletRequest request) throws IOException, Servlet
 	     }
 }
 
+public static void main(String[] args) {
+	
+	AssociationModel am = new AssociationModel();
+	AssociationTraitement at= new AssociationTraitement();
+	at.Association1("dd");
+	System.out.println(at.Association1("dd"));
+
+}
 }

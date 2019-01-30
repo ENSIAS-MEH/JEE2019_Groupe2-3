@@ -1,22 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+   
+<%@page import="java.util.ArrayList" %>
+<%@page import="web.*"%>
+<%@page import="metier.*"%>
+<%@page import="dao.*"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+         
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Faire un don</title>
+<link rel="stylesheet" type="text/css" href="template.css">
+<link rel="stylesheet" type="text/css" href="popup.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="css/demo.css">
 
 </head>
-
 <body>
-
-
+<div class="container" style="padding :10px 0px 30px 0px ;">
+		
+	<div class="innerwrap">
+		
+			
+				<div class="row clearfix">
+				
+					<ul class="row2tab clearfix">
+					
+<li ><i  class="fa fa-list-alt"></i> <a href = "ResultatRecherche.jsp"  style="text-decoration: none" > Les Evenements </a> </li>
+<li ><i  class="fa fa-list-alt"></i> <a href = "creditCard.jsp"  style="text-decoration: none" class="active"> donner un don </a> </li>
+				
+					</ul>
+				</div>
+			</div>
+			</div>
 <div class="creditCardForm">
     <div class="heading">
         <h1>Ajouter vos donnees</h1>
@@ -80,4 +100,5 @@
     <script src="js/jquery.payform.min.js" charset="utf-8"></script>
     <script src="js/scriptc.js"></script>
 </body>
+
 </html>

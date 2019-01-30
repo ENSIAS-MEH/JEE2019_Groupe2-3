@@ -6,11 +6,14 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import dao.SingletonConnection;
 import web.AlbumModel;
 import web.AssociationModel;
+import web.ParticiperModel;
 import web.PhotoModel;
 import web.ProjetModel;
 
@@ -54,8 +57,7 @@ public class ProjetTraitement {
 
 			    ps.setInt(1,album.getId_album());
 		     	ps.setString(2,album.getNom_album());
-		       ps.setInt(3, id_projet);
-
+		        ps.setInt(3, id_projet);
 	            ps.executeUpdate();
 	            ps.close();
 
@@ -85,6 +87,31 @@ public class ProjetTraitement {
 			}
 		
 	}
+
+	public static void adddon(ParticiperModel model ) throws FileNotFoundException{
+
+		try {
+			PreparedStatement ps;
+			ps = (PreparedStatement) conx.prepareStatement("insert into participer values(?,?,?,?)");
+
+
+			    ps.setString(1,model.getCin());
+		     	ps.setInt(2,model.getId_projet());
+		        ps.setString(3, model.getType_participation());
+		        ps.setFloat(4, model.getMontant());
+	            ps.executeUpdate();
+	            ps.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+	
+	
+
+	
 	
 	
 }

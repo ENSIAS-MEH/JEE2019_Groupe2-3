@@ -74,6 +74,7 @@ b.italic {
 }
 </style>
 <body>
+
 	<%
 	  LoginConnection lc = new LoginConnection(); 
 	  BenevoleModel bm = new BenevoleModel();
@@ -103,14 +104,16 @@ b.italic {
   		<li class="li"><a href="/E-Associations/participations.do">Participer un projet</a></li>
   		<li class="li"><a href="#messagerie">Messagerie</a></li>
   		  		<li class="li"><a href="#messagerie">  
-  		  		   <form class="form-inline my-2 my-lg-0"> 
-                       <input class="form-control mr-sm-2" type="text" id="associ" name="associ"/> 
+  		  		
+                    <form  class="form-inline my-2 my-lg-0" action = "AssociationServlet" method = "post"> 
+                    <input class="form-control mr-sm-2" type="text" id="associ" name="associ"/> 
                        
-                       <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> 
+                       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name ="action" value = "recherche">
+                       <i class="fa fa-search" aria-hidden="true"></i> 
                        Recherche</button> 
                        
-                                      
-                   </form>  </a></li>
+                                     
+                   </form> </a></li>
   		
   		<li class="li"><a href="#reussites">Calendrier</a></li>
   		<li class="li"><a href="/E-Associations/modifierprofilebenevole.do" >Modifier Profil</a></li>

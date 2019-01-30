@@ -13,13 +13,159 @@
 <link rel="stylesheet" type="text/css" href="template.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
+<style>
 
 
-<div class="container" style="padding :10px 0px 30px 0px ;">
+@charset "ISO-8859-1";
+body {
+  font-family: Arial, sans-serif;
+  background: url(http://www.shukatsu-note.com/wp-content/uploads/2014/12/computer-564136_1280.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+
+
+</style>
+
+
+
+<%
+
+      AssociationModel association = new AssociationModel();
+      AssociationTraitement at =  new AssociationTraitement();
+	 String name = (String)request.getAttribute("name");
+	  association = AssociationTraitement.Association1(name);
+
+	%>
+
+<div class="container">
+	
+	<div class="innerwrap">
+		<section class="section1 clearfix">
 		
+			<div>
+				<div class="row grid clearfix">
+				
+					<div class="col2 first">
+					
+			     <img src="data:image/jpg;base64,<%=association.BlobToString()%>"  height="200" width="200" alt=""/> 
+			         	
+						<h1><%=association.getNom_assoc() %></h1>
+						
+						<p><%=association.getDescription_assoc() %></p>
+				    	</div>
+					    <div class="col2 last">
+						<div class="grid clearfix">
+					    <div class="col3 first">
+								<h1><%=association.getTele_assoc()%></h1>
+								<span>telephone</span>
+							</div>
+							<div class="col3"><h1><%=association.getSite_web()%></h1>
+							<span >site web</span></div>
+							<div class="col3 last"><h1><%=association.getEmail_assoc()%></h1>
+							<span>email</span></div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</section>
+				</div>
+				</div>
+<div class="container" style="padding :10px 0px 30px 0px ;">
+	
+
 	<div class="innerwrap">
 		<section class="section1 clearfix">
 		
@@ -33,10 +179,7 @@
 					</ul>
 				</div>
 			</div>
-			<span class="smalltri">
-				
-			<i class="fa fa-star"></i>
-			</span>
+			
 			
 		</section>
 		<section class="section2 clearfix " style = "padding : 10px 250px 40px 200px">
@@ -74,6 +217,83 @@
 		</section>
 	</div>
 </div>	
-</body>
+<h1>Faire un Don </h1>
+<div class="box">
+	<a class="button" href="#popup1">faire le Don </a>
+</div>
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+<div class="creditCardForm">
+    <div class="heading">
+        <h1>Ajouter vos donnees</h1>
+    </div>
+    <div class="payment">
+        <form action = "AssociationServlet" method = "post">
+            <div class="form-group owner">
+                <label for="owner">Cin Proprietaire</label>
+                <input type="text" class="form-control" name = "proprietaire" id="owner">
+            </div>
+            <div class="form-group CVV">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control"  name = "cvv"id="cvv">
+            </div>
+            <div class="form-group" id="card-number-field">
+                <label for="cardNumber">Numero de carte</label>
+                <input type="text" class="form-control" name = "num_carte"id="cardNumber">
+            </div>
+            <div class="form-group" id="card-number-field">
+                <label for="cardNumber">Montant</label>
+                <input type="number" class="form-control" name = "montant"id="montant">
+            </div>
+          
+            <div class="form-group" id="expiration-date">
+                <label>Date d'expiration</label>
+                <select >
+                    <option value="01">January</option>
+                    <option value="02">February </option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <select>     
+                	<option value="19"> 2019</option>               	              
+                    <option value="20"> 2020</option>
+                    <option value="21"> 2021</option>
+                    <option value="22"> 2022</option>
+                    <option value="23"> 2023</option>
+                    <option value="24"> 2024</option>
+                    <option value="25"> 2025</option>
+                    <option value="25"> 2026</option>
+                </select>
+            </div>
+            <div class="form-group" id="credit_cards">
+                <img src="images/visa.jpg" id="visa">
+                <img src="images/mastercard.jpg" id="mastercard">
+                <img src="images/amex.jpg" id="amex">
+            </div>
+            <div class="form-group" id="pay-now">
+                <button type="submit" class="btn btn-default" id="confirm-purchase" name ="confirm"  value = "confirm_don">Confirmer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <!-- The HTML for our form will go here -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/jquery.payform.min.js" charset="utf-8"></script>
+    <script src="js/scriptc.js"></script>		<a class="close" href="#">&times;</a>
+		<div class="content">
+ 		</div>
+	</div>
+</div>
 </body>
 </html>

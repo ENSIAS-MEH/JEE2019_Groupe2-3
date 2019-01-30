@@ -119,10 +119,28 @@ public class AssociationServlet extends HttpServlet {
 	    }
        
        if (action.equals("recherche")){
-		    
+    	   
 			AssociationModel am = new AssociationModel();
             String name ;
-            name = request.getParameter("");
+            name = request.getParameter("associ");
+            System.out.println(name);
+            System.out.println("lllllllllllllllllllllllll");
+            request.setAttribute("name", name);
+			RequestDispatcher r2;
+		    r2=request.getRequestDispatcher("ResultatRecherche.jsp");
+		    r2.forward(request, response);;
+	    
+	    }
+       if (action.equals("confirm_don")){
+    	   
+			ParticiperModel am = new ParticiperModel();
+           ProjetTraitement pt = new ProjetTraitement();
+           float montant ;
+           montant = Float.parseFloat(request.getParameter("montant"));
+           am.setCin(request.getParameter("proprietaire"));
+           am.setMontant(montant);    
+           am.setType_participation("argent");
+           pt.adddon(am);
 			RequestDispatcher r2;
 		    r2=request.getRequestDispatcher("ResultatRecherche.jsp");
 		    r2.forward(request, response);;
